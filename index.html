@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="tool">
+  <meta name="design-style" content="vitals">
+  <title>Right Form of Verbs & Subject-Verb Agreement — 41-Passage Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Figtree:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces (Emerald & Soft Mint Green) */
+      --background: #f2fbf7;
+      --surface-container-low: #ffffff;
+      --surface-container: #e3f5ec;
+      --surface-container-high: #ccf0df;
+
+      /* Text */
+      --on-surface: #0f291e;
+      --on-surface-variant: #3b594b;
+
+      /* Rules & Borders */
+      --outline: #86b8a0;
+      --outline-variant: #cbe6d8;
+
+      /* Accents */
+      --primary: #059669;
+      --primary-hover: #047857;
+      --on-primary: #ffffff;
+      --primary-container: #d1fae5;
+      --on-primary-container: #065f46;
+      --secondary: #065f46;
+      --tertiary: #10b981;
+      --error: #dc2626;
+      --on-error: #ffffff;
+      --error-container: #fef2f2;
+      --on-error-container: #991b1b;
+
+      /* Semantic */
+      --positive: #059669;
+      --warning: #d97706;
+      --warning-container: #fef3c7;
+      --on-warning-container: #92400e;
+      --focus: #059669;
+
+      /* Data series */
+      --data-1: #059669;
+      --data-2: #10b981;
+      --data-3: #d97706;
+      --data-4: #0d9488;
+      --data-context: #b6d4c5;
+
+      /* Fonts */
+      --font-headline: 'Figtree', 'Noto Sans Bengali', sans-serif;
+      --font-body: 'Atkinson Hyperlegible', 'Noto Sans Bengali', sans-serif;
+      --font-label: 'Figtree', 'Noto Sans Bengali', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Shape */
+      --rounded: 0.625rem;
+      --rounded-lg: 0.875rem;
+      --rounded-full: 9999px;
+
+      /* Style effects */
+      --top-bar: 6px solid var(--primary);
+      --status-bar-width: 4px;
+      --card-border: 1px solid var(--outline-variant);
+      --card-lift: 0 2px 6px rgba(6, 95, 70, 0.06), 0 8px 24px rgba(6, 95, 70, 0.05);
+      --modal-shadow: 0 20px 50px rgba(6, 45, 30, 0.22);
+      --backdrop-bg: rgba(15, 41, 30, 0.48);
+
+      /* Type scale (Focused Tool) */
+      --display-size: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+      --headline-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --subhead-size: clamp(1.05rem, 1rem + 0.25vw, 1.1875rem);
+      --body-size: clamp(0.95rem, 0.92rem + 0.15vw, 1.025rem);
+      --label-size: 0.78rem;
+
+      /* Spacing scale */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { overflow-x: clip; margin: 0; padding: 0; }
+    header { position: static !important; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.65;
+      color: var(--on-surface);
+      background-color: var(--background);
+      border-top: var(--top-bar);
+      min-height: 100vh;
+    }
+
+    button, input, select, textarea { font-family: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .app-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .app-shell * { min-width: 0; }
+
+    /* Top Header */
+    .top-header {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-left: var(--status-bar-width) solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--card-lift);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .kicker {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+    }
+
+    .app-title {
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .app-subtitle {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: 0.55rem 1.1rem;
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out),
+                  transform var(--dur-micro) var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); }
+
+    .btn-secondary {
+      background-color: var(--surface-container-low);
+      color: var(--secondary);
+      border-color: var(--outline);
+    }
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--surface-container);
+      border-color: var(--primary);
+    }
+
+    .btn-mint {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--outline-variant);
+    }
+    .btn-mint:hover:not(:disabled) {
+      background-color: var(--surface-container-high);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--on-surface-variant);
+      border-color: var(--outline-variant);
+    }
+    .btn-ghost:hover:not(:disabled) {
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+    }
+
+    .badge-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: var(--rounded-full);
+      background: var(--error-container);
+      color: var(--on-error-container);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+    .badge-count.is-zero {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Progress & Summary Bar */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-tile {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-left: var(--status-bar-width) solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-tile[data-tone="mint"] { border-left-color: var(--tertiary); }
+    .stat-tile[data-tone="warn"] { border-left-color: var(--warning); }
+
+    .stat-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+
+    .stat-value {
+      font-family: var(--font-headline);
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--on-surface);
+      line-height: 1.2;
+    }
+
+    .stat-note {
+      font-size: 0.82rem;
+      color: var(--secondary);
+    }
+
+    /* Main Workspace Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Question Navigator Sidebar */
+    .nav-panel {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      box-shadow: var(--card-lift);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .nav-title {
+      font-family: var(--font-headline);
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .filter-select {
+      padding: 0.35rem 1.75rem 0.35rem 0.6rem;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-size: 0.82rem;
+      font-weight: 600;
+      min-height: 36px;
+    }
+
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .q-num-btn {
+      min-height: 40px;
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: background-color var(--dur-micro) var(--ease-out),
+                  border-color var(--dur-micro) var(--ease-out);
+    }
+    .q-num-btn:hover {
+      background: var(--surface-container);
+      border-color: var(--primary);
+    }
+    .q-num-btn.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .q-num-btn.is-checked:not(.is-active) {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+    }
+    .q-num-btn.is-partial:not(.is-active) {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+      border-color: var(--warning);
+    }
+
+    .nav-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      font-size: 0.76rem;
+      color: var(--on-surface-variant);
+      padding-top: var(--space-xs);
+      border-top: 1px solid var(--outline-variant);
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .legend-dot.active { background: var(--primary); }
+    .legend-dot.done { background: var(--primary-container); border: 1px solid var(--primary); }
+    .legend-dot.todo { background: var(--surface-container-low); border: 1px solid var(--outline-variant); }
+
+    /* Practice Card */
+    .practice-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--card-lift);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .passage-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .passage-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .passage-title {
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 800;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .board-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container);
+      color: var(--secondary);
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .score-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .passage-instruction {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: 0.65rem 0.95rem;
+      border-radius: var(--rounded);
+      border-left: 3px solid var(--primary);
+    }
+
+    /* Inline Passage Inputs */
+    .passage-body {
+      font-size: 1.08rem;
+      line-height: 2.25;
+      color: var(--on-surface);
+      word-wrap: break-word;
+    }
+
+    .gap-slot {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      margin: 0 3px;
+      vertical-align: baseline;
+    }
+
+    .gap-tag {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .gap-input {
+      width: 140px;
+      min-height: 36px;
+      padding: 2px 10px;
+      border: 1.5px solid var(--outline);
+      border-radius: var(--rounded);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      font-weight: 600;
+      transition: border-color var(--dur-micro) var(--ease-out),
+                  background-color var(--dur-micro) var(--ease-out),
+                  box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .gap-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.16);
+    }
+    .gap-input.is-correct {
+      border-color: var(--positive);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .gap-input.is-incorrect {
+      border-color: var(--error);
+      background-color: var(--error-container);
+      color: var(--on-error-container);
+    }
+
+    .gap-clue {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      font-style: italic;
+    }
+
+    /* Action Bar */
+    .passage-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--outline-variant);
+    }
+
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .inline-status {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    /* Feedback Section (Matches Screenshot Layout) */
+    .feedback-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 2px dashed var(--outline-variant);
+    }
+
+    .feedback-heading {
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+
+    .feedback-item {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .feedback-item.is-wrong {
+      border-left-color: var(--error);
+    }
+
+    .feedback-item-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+    }
+
+    /* Screenshot-exact green badge: "সঠিক উত্তর: <word>" */
+    .correct-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--rounded-full);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .gap-marker-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: 2px 8px;
+      border-radius: var(--rounded);
+    }
+
+    .user-verdict {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .user-verdict.ok { color: var(--positive); }
+    .user-verdict.bad { color: var(--error); }
+
+    .feedback-explanation {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--on-surface);
+    }
+
+    .rule-ref-chip {
+      align-self: flex-start;
+      font-family: var(--font-label);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--secondary);
+      background: var(--surface-container);
+      padding: 2px 8px;
+      border-radius: var(--rounded);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--backdrop-bg);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+    .modal-backdrop.is-open { display: flex; }
+
+    .modal-dialog {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 5px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      box-shadow: var(--modal-shadow);
+      width: min(920px, 100%);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--outline-variant);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: var(--surface-container);
+    }
+
+    .modal-title {
+      font-family: var(--font-headline);
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--on-surface);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-sm);
+    }
+
+    .tab-btn {
+      min-height: 40px;
+      padding: 0.45rem 1rem;
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--on-surface-variant);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab-btn.is-active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+    }
+
+    .search-box-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .field-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--on-surface-variant);
+    }
+    .text-input {
+      width: 100%;
+      min-height: 42px;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--outline);
+      border-radius: var(--rounded);
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      background: var(--surface-container-low);
+    }
+
+    .rule-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .rule-card-title {
+      font-weight: 700;
+      color: var(--on-primary-container);
+      font-size: 0.95rem;
+    }
+    .rule-card-desc {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--on-surface);
+    }
+    .rule-card-examples {
+      margin: 0;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Weakness Tracker */
+    .weak-row {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .weak-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .weak-bar-track {
+      height: 8px;
+      width: 100%;
+      background: var(--surface-container);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+    }
+    .weak-bar-fill {
+      height: 100%;
+      background: var(--error);
+      border-radius: var(--rounded-full);
+    }
+    .weak-suggestion {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--on-surface-variant);
+      background: var(--surface-container);
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--rounded);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      color: var(--on-surface-variant);
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 860px) {
+      .workspace-grid { grid-template-columns: 1fr; }
+      .q-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .app-shell { padding: var(--space-sm); gap: var(--space-md); }
+      .top-header, .practice-card { padding: var(--space-md); }
+      .q-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .gap-input { width: 120px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Access-code gate */
+    body.auth-locked .app-shell, body.auth-locked .modal-backdrop { display:none !important; }
+    #auth-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; background:var(--surface, #f4f7f8); }
+    .auth-card { width:min(100%, 440px); background:#fff; color:#17252b; border:1px solid #dce5e8; border-radius:22px; padding:30px; box-shadow:0 18px 55px rgba(18,48,58,.12); }
+    .auth-card h2 { margin:0 0 8px; font-size:1.55rem; }
+    .auth-card p { color:#60727a; line-height:1.6; }
+    .auth-card label { display:block; font-weight:700; margin:18px 0 7px; }
+    .auth-card input { width:100%; box-sizing:border-box; padding:14px 15px; border:1px solid #cbd8dd; border-radius:12px; font:inherit; letter-spacing:.06em; }
+    .auth-card button { width:100%; margin-top:14px; padding:13px 16px; border:0; border-radius:12px; background:#176b60; color:white; font:inherit; font-weight:700; cursor:pointer; }
+    #auth-message { min-height:24px; color:#a33b35; font-size:.92rem; }
+    #auth-screen[hidden] { display:none !important; }
+    .user-session-actions { display:flex; align-items:center; gap:8px; }
+    #btn-logout { border:1px solid #d6e0e3; background:transparent; border-radius:10px; padding:8px 11px; cursor:pointer; color:inherit; }
+    @media(max-width:600px){ .auth-card{padding:23px;} }
+
+  </style>
+</head>
+<body class="auth-locked">
+  <section id="auth-screen">
+    <div class="auth-card">
+      <h2>RFV Grammar Checker</h2>
+      <p>অনুশীলন শুরু করতে তোমার ব্যক্তিগত Access Code প্রবেশ করাও।</p>
+      <form id="access-form">
+        <label for="access-code">Access Code</label>
+        <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
+        <button type="submit" id="access-submit">প্রবেশ করো</button>
+      </form>
+      <p id="auth-message" role="status"></p>
+    </div>
+  </section>
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="top-header">
+      <div class="brand-block">
+        <span class="kicker">HSC English 2nd Paper • Interactive Practice</span>
+        <h1 class="app-title">Right Form of Verbs &amp; Subject-Verb Agreement</h1>
+        <p class="app-subtitle">Practice all 41 board-exam passages with instant gap-by-gap grading, Bengali grammar explanations, rule reference, and weakness analytics.</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn btn-mint" onclick="openWeaknessModal()" id="btn-weakness">
+          <span>দুর্বলতা</span>
+          <span class="badge-count is-zero" id="weakness-badge">0</span>
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="openRulesModal()" id="btn-rules">
+          <span>নিয়মাবলি</span>
+        </button>
+        <button type="button" id="btn-logout" onclick="logoutUser()" title="Sign out">লগ আউট</button>
+      </div>
+    </header>
+
+    <!-- Live Summary Strip -->
+    <section class="stats-strip" aria-label="Practice progress summary">
+      <div class="stat-tile">
+        <span class="stat-label">Passages Checked</span>
+        <span class="stat-value" id="stat-passages">0 / 41</span>
+        <span class="stat-note">Board passages completed</span>
+      </div>
+      <div class="stat-tile" data-tone="mint">
+        <span class="stat-label">Overall Accuracy</span>
+        <span class="stat-value" id="stat-accuracy">—</span>
+        <span class="stat-note" id="stat-accuracy-note">Check a passage to begin</span>
+      </div>
+      <div class="stat-tile" data-tone="warn">
+        <span class="stat-label">Focus Rule</span>
+        <span class="stat-value" id="stat-top-weak" style="font-size: 1.05rem;">None yet</span>
+        <span class="stat-note">Most missed grammar rule</span>
+      </div>
+    </section>
+
+    <!-- Main Workspace -->
+    <div class="workspace-grid">
+      <!-- Left Sidebar: 41 Questions -->
+      <aside class="nav-panel" aria-label="Question selector">
+        <div class="nav-header">
+          <h2 class="nav-title">All 41 Questions</h2>
+          <label for="q-filter" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;">Filter questions</label>
+          <select id="q-filter" class="filter-select" onchange="applyQuestionFilter()">
+            <option value="all">All (41)</option>
+            <option value="todo">Unchecked</option>
+            <option value="done">Checked</option>
+          </select>
+        </div>
+        <div class="q-grid" id="q-grid"></div>
+        <div class="nav-legend">
+          <span><i class="legend-dot active"></i>Current</span>
+          <span><i class="legend-dot done"></i>Checked</span>
+          <span><i class="legend-dot todo"></i>Pending</span>
+        </div>
+      </aside>
+
+      <!-- Main Passage Practice Panel -->
+      <main class="practice-card" id="practice-card">
+        <div class="passage-head">
+          <div class="passage-title-wrap">
+            <h2 class="passage-title" id="q-title">Question 1</h2>
+            <span class="board-chip" id="q-board">Dhaka Board 2024</span>
+          </div>
+          <span class="score-chip" id="q-score-chip">Not checked</span>
+        </div>
+
+        <p class="passage-instruction">
+          Read the text and fill in the gaps with the correct form of verbs as per subject and context. Type each verb form in the boxes, then click <strong>Check Answer</strong>.
+        </p>
+
+        <div class="passage-body" id="passage-body"></div>
+
+        <div class="passage-actions">
+          <div class="action-group">
+            <button type="button" class="btn btn-primary" onclick="checkCurrentPassage()" id="btn-check">Check Answer</button>
+            <button type="button" class="btn btn-ghost" onclick="resetCurrentPassage(this)" id="btn-reset-q">Clear Passage</button>
+          </div>
+          <div class="action-group">
+            <button type="button" class="btn btn-secondary" onclick="prevQuestion()" id="btn-prev">← Previous</button>
+            <button type="button" class="btn btn-secondary" onclick="nextQuestion()" id="btn-next">Next →</button>
+          </div>
+        </div>
+
+        <div id="feedback-container" class="feedback-section" style="display:none;"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Weakness Tracker Modal ("দুর্বলতা") -->
+  <div class="modal-backdrop" id="modal-weakness" role="dialog" aria-modal="true" aria-labelledby="modal-weakness-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-weakness-title">দুর্বলতা — Weakness &amp; Error Analytics</h2>
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modal-weakness')">Close</button>
+      </div>
+      <div class="modal-body" id="weakness-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Rules Modal ("নিয়মাবলি") -->
+  <div class="modal-backdrop" id="modal-rules" role="dialog" aria-modal="true" aria-labelledby="modal-rules-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-rules-title">নিয়মাবলি — Grammar Rules Reference</h2>
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modal-rules')">Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="tabs-bar">
+          <button type="button" class="tab-btn is-active" id="tab-rfv" onclick="switchRulesTab('rfv')">Right Form of Verbs (Rules 1–30)</button>
+          <button type="button" class="tab-btn" id="tab-sva" onclick="switchRulesTab('sva')">Subject-Verb Agreement (Rules 1–27)</button>
+        </div>
+        <div class="search-box-wrap">
+          <label for="rules-search" class="field-label">Search rules, keywords, or examples</label>
+          <input type="text" id="rules-search" class="text-input" placeholder="e.g., since, lest, with a view to, singular, either..." oninput="renderRulesList()">
+        </div>
+        <div id="rules-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const RULE_CATEGORIES = {
+      "RFV-1": { label: "Present Indefinite & 3rd Person (s/es)", tip: "Subject 3rd person singular এবং Present Indefinite Tense হলে verb-এর শেষে s বা es যোগ করুন (যেমন: goes, reads)।" },
+      "RFV-2": { label: "Universal Truth / Habitual Fact", tip: "চিরন্তন সত্য, বৈজ্ঞানিক সত্য বা অভ্যাসগত কাজ বোঝালে সর্বদা Present Indefinite Tense হয়।" },
+      "RFV-3": { label: "Present Indefinite Markers (always, regularly)", tip: "always, regularly, often, usually, normally, daily থাকলে Present Indefinite Tense হয়।" },
+      "RFV-4": { label: "Negative / Interrogative (do, does, did)", tip: "Be-verb না থাকলে negative/interrogative করতে tense ও subject অনুযায়ী do, does বা did + V1 বসান।" },
+      "RFV-6": { label: "Present Continuous (now, day by day)", tip: "বর্তমানে চলমান কাজ (now, right now, at this moment, day by day) বোঝালে am/is/are + V-ing হয়।" },
+      "RFV-7": { label: "Perfect Form (have/has/had/having + V3)", tip: "have, has, had বা having-এর পর সর্বদা মূল verb-এর Past Participle (V3) বসে।" },
+      "RFV-8": { label: "Present Perfect Markers (already, just now, yet)", tip: "already, just, just now, yet, recently, ever থাকলে Present Perfect Tense (have/has + V3) হয়।" },
+      "RFV-9": { label: "Past Tense Markers (yesterday, ago, once, last)", tip: "অতীত নির্দেশক শব্দ (once, yesterday, ago, long since, last night/month/year) বা অতীতের ঘটনায় Past Indefinite (V2) হয়।" },
+      "RFV-11": { label: "Since + Clause Tense Sequence", tip: "Since-এর প্রথম অংশ Present হলে পরের অংশ Past Indefinite; প্রথম অংশ Past Indefinite হলে পরের অংশ Past Perfect হয়।" },
+      "RFV-14": { label: "Simple Sentence Double Verb (to + V1 / V-ing)", tip: "একই simple sentence-এ দুটি verb থাকলে উদ্দেশ্য বোঝাতে to + V1 অথবা দ্বিতীয় verb-এ -ing (participle/gerund) হয়।" },
+      "RFV-15": { label: "Bare Infinitive (let, had better, would rather)", tip: "had better, would rather, let, must, need, dare-এর পর সর্বদা verb-এর base form (V1) বসে; to বসে না।" },
+      "RFV-17": { label: "Participle / Adjective Role (V3 / V-ing)", tip: "Being/having/to be-এর পর V3 হয়; এছাড়া noun-কে modify করতে V3 (passive) বা V-ing (active participle) বসে।" },
+      "RFV-18": { label: "Preposition / Special Phrases + V-ing", tip: "যে কোনো preposition (of, for, by, in, without, on) এবং with a view to, look forward to, cannot help, mind-এর পর V-ing হয়।" },
+      "RFV-19": { label: "It is high time / It is time / wish + V2", tip: "It is high time, It is time, wish, fancy-এর পর subject থাকলে verb-এর Past Indefinite (V2) হয়।" },
+      "RFV-20": { label: "As though / As if / Wish (Subjunctive)", tip: "As if, as though, wish-এর পর কাল্পনিক অবস্থা বোঝালে be-verb হিসেবে were বসে; প্রথম অংশ present হলে পরের অংশ V2 বা past tense হয়।" },
+      "RFV-23": { label: "Modal Auxiliaries (can, should, must, will + V1)", tip: "can, could, may, might, shall, should, will, would, must, have to-এর পর verb-এর base form (V1) হয় (passive হলে be + V3)।" },
+      "RFV-24": { label: "Passive Voice (be + V3)", tip: "Subject নিজে কাজ না করে কাজটি তার ওপর সম্পাদিত হলে (Passive Voice) Tense অনুযায়ী am/is/are/was/were/be + V3 হয়।" },
+      "RFV-25": { label: "Present Perfect Continuous (since / for + time)", tip: "অতীতে শুরু হয়ে এখনো চলছে (since/for + সময়) বোঝালে have/has been + V-ing হয়।" },
+      "RFV-26": { label: "Introductory There / Here", tip: "There বা Here দিয়ে বাক্য শুরু হলে পরের noun singular হলে singular verb এবং plural হলে plural verb বসে।" },
+      "RFV-27": { label: "Lest + Subject + should/might + V1", tip: "Lest থাকলে তার পরের subject-এর সাথে should বা might + verb-এর base form বসে।" },
+      "RFV-28": { label: "While + V-ing / While + Sub + was/were + V-ing", tip: "While-এর ঠিক পর verb থাকলে V-ing হয়, আর subject থাকলে Past Continuous (was/were + V-ing) হয়।" },
+      "RFV-COND": { label: "Conditional Sentences (1st / 2nd / 3rd)", tip: "1st Cond: If+V1 -> will+V1; 2nd Cond: If+V2 -> would+V1; 3rd Cond: If+had+V3 -> would have+V3।" },
+      "SVA-1": { label: "Subject-Verb Agreement (Singular vs Plural)", tip: "Subject singular হলে singular verb (is/was/has/V+s) এবং plural হলে plural verb (are/were/have/V1) বসে।" },
+      "SVA-11": { label: "As well as / Along with / Together with", tip: "as well as, along with, together with দ্বারা দুটি noun যুক্ত হলে প্রথম subject অনুযায়ী verb বসে।" },
+      "SVA-14": { label: "Preposition-এর পূর্বের Subject অনুযায়ী Verb", tip: "Preposition (of, in, on)-এর পূর্বের মূল head noun অনুযায়ী verb singular বা plural হয়।" },
+      "SVA-20": { label: "Gerund / Infinitive / Clause as Subject", tip: "Verb+ing (Gerund), To+V1 (Infinitive) বা কোনো Clause যখন subject হয়, তখন verb singular হয়।" },
+      "SVA-22": { label: "Relative Pronoun (who/which/that) Antecedent", tip: "Relative pronoun-এর ঠিক আগের noun/pronoun (antecedent)-এর number ও person অনুযায়ী verb বসে।" },
+      "SVA-24": { label: "The number of vs A number of", tip: "'The number of + plural noun'-এর পর singular verb এবং 'A number of + plural noun'-এর পর plural verb বসে।" }
+    };
+
+    const RULES_RFV = [
+      { id: "Rule 1", title: "3rd Person Singular Subject in Present Indefinite", desc: `Sentence-টির subject যদি 3rd person singular number হয় এবং sentence-টি যদি Present Indefinite Tense-এ থাকে তাহলে verb-এর শেষে s বা es যোগ করতে হয়।`, ex: [`Jabir reads various kinds of books.`, `Annur loves chocolate cake.`] },
+      { id: "Rule 2", title: "Universal Truth, Habitual Fact, Scientific Truth", desc: `যদি Sentence-টির অর্থ universal truth, habitual fact, historical fact বা scientific truth প্রকাশ করে, তাহলে ঐ Sentence-টির Present Indefinite Tense হয়।`, ex: [`The sun rises in the east.`, `Water boils at 100 degrees Celsius.`, `She drinks coffee every morning.`] },
+      { id: "Rule 3", title: "Adverbial Indicators of Present Indefinite", desc: `Sentence-এ always, regularly, sometimes, often, generally, daily, everyday, occasionally, usually, normally ইত্যাদি থাকলে Present Indefinite Tense হয়।`, ex: [`Jahin always disturbs the class.`, `Farhan visits our family occasionally.`, `He usually reads a book before going to bed.`] },
+      { id: "Rule 4", title: "Negative / Interrogative without Be-verb", desc: `যে sentence-এ Be verb নেই, তাদেরকে negative বা interrogative করতে হলে tense ও subject অনুসারে do, does, did ব্যবহার করতে হয়।`, ex: [`He does not like ice cream.`, `Does he like ice cream?`, `She did not go to the market.`] },
+      { id: "Rule 5", title: "WH Question Auxiliary Placement", desc: `WH question-এর ক্ষেত্রে WH word (what, when, where, who, which, whose, why, how) এবং Subject-এর মাঝে Auxiliary verb ব্যবহার করতে হবে।`, ex: [`Why did Monir laugh at me?`, `Whom did you meet?`] },
+      { id: "Rule 6", title: "Present Continuous Tense", desc: `বর্তমানে চলছে এমন কোনো কাজ বোঝাতে (now, right now, at this moment, at this time, today) Present Continuous Tense হয়।`, ex: [`Araf is working with Fatir right now.`, `They are getting ready for the match at this moment.`] },
+      { id: "Rule 7", title: "Have / Has / Had / Having + V3", desc: `Sentence-এ যদি have, has, had বা having থাকে তাহলে verb-এর Past Participle Form (V3) হয়।`, ex: [`I have done the work.`, `We have made him captain.`] },
+      { id: "Rule 8", title: "Present Perfect Tense Markers", desc: `Sentence-এ just, just now, already, yet, ever, lately, recently, so far থাকলে Present Perfect Tense হয়। Affirmative-এ already এবং Negative-এ yet বসে।`, ex: [`She has already come out of the cabin.`, `Haven't you done the work yet?`, `He has gone out just now.`] },
+      { id: "Rule 9", title: "Past Tense Indicators", desc: `অতীত নির্দেশক শব্দ বা phrase (yesterday, ago, long since, last night বা last + time) থাকলে sentence-টির Past Tense হয়।`, ex: [`I left my home last night.`, `He saw me long ago.`] },
+      { id: "Rule 10", title: "No sooner had...than / Scarcely...when / Hardly...before", desc: `No sooner had...than, scarcely had...when, hardly had...before থাকলে had যুক্ত অংশটি Past Perfect Tense এবং পরবর্তী অংশটি Past Indefinite Tense হয়।`, ex: [`No sooner had he seen the police than he ran away.`, `Scarcely had they finished dinner when the phone rang.`] },
+      { id: "Rule 11", title: "Since (Present -> Past Indefinite)", desc: `Since-এর ১ম অংশ Present Indefinite/Present Perfect Tense হলে পরের অংশ Past Indefinite Tense-এ হয়।`, ex: [`It is many years since I came to Cumilla.`, `Many years have passed since his mother died.`] },
+      { id: "Rule 12", title: "Since (Past Indefinite -> Past Perfect)", desc: `Since-এর ১ম অংশ Past Indefinite হলে পরের অংশ Past Perfect Tense-এ হয়।`, ex: [`It was many years since I had visited Cumilla.`] },
+      { id: "Rule 13", title: "Distance, Quantity, Time as Single Unit", desc: `একই দৈর্ঘ্য, পরিমাণ বা সময় বোঝালে subject দেখতে plural হলেও verb singular হয়।`, ex: [`Ten miles is a long way.`, `10 minutes is not enough for this job.`] },
+      { id: "Rule 14", title: "Two Verbs in a Simple Sentence", desc: `কোনো simple sentence-এ principal verb-এর পর আরেকটি verb হলে পরের verb-এর সাথে -ing যোগ করতে হয় অথবা উদ্দেশ্য বোঝাতে verb-টির পূর্বে to বসাতে হয়।`, ex: [`I saw him going.`, `I don't want to leave this place.`] },
+      { id: "Rule 15", title: "Had better / Would rather / Let / Must + Base Form", desc: `Had better, had rather, would better, would rather, let, must, need, dare থাকলে verb-এর base form হয় এবং পূর্বে to থাকলে তা উঠে যায়।`, ex: [`You had better go home.`, `I will not let you enter the meeting room.`] },
+      { id: "Rule 16", title: "Would that + Subject + could + V1", desc: `Sentence-এর শুরুতে would that থাকলে subject-এর পর could হয় এবং প্রদত্ত verb-এর base form হয়।`, ex: [`Would that I could go to college.`] },
+      { id: "Rule 17", title: "To be / Be / Being / Having + Past Participle", desc: `To be, be, being, having-এর পর মূল verb-এর Past Participle (V3) হয়।`, ex: [`He ran away having taken the money.`] },
+      { id: "Rule 18", title: "Prepositions & Special Phrases + V-ing", desc: `Verb-এর পূর্বে mind, worth, cannot help, could not help, would you mind, with a view to, look forward to, with an eye to, addicted to, used to এবং যেকোনো preposition থাকলে verb-এর সাথে ing যোগ করতে হয়।`, ex: [`I went to library with a view to reading there.`, `I don't mind waiting for a few minutes.`] },
+      { id: "Rule 19", title: "It is high time / It is time / Wish / Fancy", desc: `It is high time, it is time, wish, fancy থাকলে এর পরের অংশে Past Indefinite Tense হয়।`, ex: [`I fancy I turned pale.`, `I wish he understood the importance of the meeting.`] },
+      { id: "Rule 20", title: "As though / As if / Wish + Were", desc: `As though, as if, wish থাকলে অবাস্তব/কাল্পনিক অবস্থায় to be verb হিসেবে were বসে।`, ex: [`I wish I were a king.`, `He talks as if he were a leader.`] },
+      { id: "Rule 21", title: "As though / As if Sequence of Tenses", desc: `As though/as if-এর ১ম অংশ Present Indefinite Tense হলে পরের অংশ Past Indefinite Tense হয়; ১ম অংশ Past Indefinite হলে পরের অংশ Past Perfect Tense হয়।`, ex: [`He speaks as though he knew everything.`, `She proceeded as though I had not spoken.`] },
+      { id: "Rule 22", title: "Every / Each / One of + Singular Verb", desc: `Every, each, one of থাকলে verb singular হয়।`, ex: [`One of the students was absent yesterday.`, `Every student has completed the assignment.`] },
+      { id: "Rule 23", title: "Modal Auxiliaries + Base Form", desc: `Can, could, may, might, shall, should, will, would ইত্যাদি modal auxiliary verb-এর পর মূল verb-টির base form হয়।`, ex: [`You may come tomorrow.`, `I can do the work.`] },
+      { id: "Rule 24", title: "Passive Voice (Be-verb + V3)", desc: `Am, is, are, was, were, been ইত্যাদি to be verb-এর passive voice-এর ক্ষেত্রে verb-এর Past Participle হয়।`, ex: [`The book was stolen from my table.`, `The construction of the building has been completed.`] },
+      { id: "Rule 25", title: "Present Perfect Continuous (For / Since + Time)", desc: `কোনো কাজ পূর্বে শুরু হয়ে এখনো পর্যন্ত চলছে বোঝালে verb-এর Present Perfect Continuous Tense হয়।`, ex: [`I have been reading for three hours.`, `The construction work has been going on since last year.`] },
+      { id: "Rule 26", title: "Here / There Sentences", desc: `Sentence যদি here/there দ্বারা শুরু হয় এবং এর পর singular noun থাকে তাহলে singular verb বসে; plural noun থাকলে verb-টি plural হয়।`, ex: [`There is a high school in our village.`, `There are two high schools in our village.`] },
+      { id: "Rule 27", title: "Lest + Subject + Should / Might", desc: `Lest যুক্ত sentence-এ lest-এর পর যে subject থাকে তারপরে should বা might বসে।`, ex: [`He ran fast lest he should miss the train.`, `Study more lest you should cut a sorry figure in the exam.`] },
+      { id: "Rule 28", title: "While + V-ing / Past Continuous", desc: `While-এর ঠিক পরে verb থাকলে তার সাথে ing যোগ করতে হয়; কিন্তু while-এর ঠিক পরে subject থাকলে Past Continuous Tense (was/were + v-ing) হয়।`, ex: [`While walking in the garden, he was bitten by a snake.`, `While she was coming, I was sleeping.`] },
+      { id: "Rule 30", title: "Subject-Verb Number & Person Match", desc: `Sentence-এর verb তার subject-এর number ও person অনুযায়ী ব্যবহৃত হয় অর্থাৎ subject singular হলে verb singular এবং plural হলে plural হয়।`, ex: [`The colour of his eyes is blue.`, `The players in the field are strong.`] }
+    ];
+
+    const RULES_SVA = [
+      { id: "SVA Rule 1", title: "Singular Subject -> Singular Verb", desc: `সাধারণত একটি singular subject একটি singular verb গ্রহণ করে।`, ex: [`He reads a book.`, `She plays the piano well.`] },
+      { id: "SVA Rule 2", title: "Subject Names, Book Titles, Country Names", desc: `বিষয়ের নাম, বইয়ের নাম, দেশের নাম দেখতে plural হলেও এর verb singular হবে।`, ex: [`Economics is my favorite subject.`, `Arabian Nights is still a great favorite.`] },
+      { id: "SVA Rule 3", title: "The rest of the + Noun", desc: `The rest of the-এর পরে uncountable noun হলে verb singular হয়; কিন্তু countable noun হলে Noun ও Verb উভয়ই plural হয়।`, ex: [`The rest of the money is for the whole month.`, `The rest of the students have not come today.`] },
+      { id: "SVA Rule 4", title: "Compound Subject with 'And'", desc: `And দ্বারা যুক্ত একাধিক noun যদি দুটি আলাদা ব্যক্তি বা বস্তু বোঝায় তাহলে verb-টি plural হবে।`, ex: [`The teacher and the students are going on a field trip.`] },
+      { id: "SVA Rule 5", title: "Each / Every / No before Nouns Joined by 'And'", desc: `And দ্বারা যুক্ত দুই বা ততোধিক singular noun-এর প্রত্যেকটির পূর্বে Each, every বা no থাকলে verb-টি singular হয়।`, ex: [`Each boy and each girl has a unique talent.`, `No student and no teacher is allowed to leave early.`] },
+      { id: "SVA Rule 6", title: "Single Idea / Person Joined by 'And'", desc: `And দ্বারা যুক্ত একাধিক noun যদি কেবল একটিমাত্র ব্যক্তি বা একটিমাত্র ভাব প্রকাশ করে তাহলে verb-টি singular হবে।`, ex: [`Slow and steady wins the race.`, `Name and fame is my goal.`] },
+      { id: "SVA Rule 7", title: "Two Designations with 'The'", desc: `একই ব্যক্তি দুটি পদবীর অধিকারী হলে শুধু প্রথম পদবীর পূর্বে The বসে এবং verb singular হয়। দুটি আলাদা ব্যক্তি হলে উভয়ের পূর্বে the বসে এবং verb plural হয়।`, ex: [`The teacher and secretary is coming to submit his proposal.`, `The teacher and the secretary are coming to submit their proposals.`] },
+      { id: "SVA Rule 8", title: "Academic / Abstract -ics Nouns", desc: `Ethics, politics, mathematics, physics, athletics, acoustics, hysterics ইত্যাদি subject-এর নাম বোঝালে verb singular হবে।`, ex: [`Mathematics is my favorite subject.`] },
+      { id: "SVA Rule 9", title: "Indefinite Pronouns (Everyone, Nobody, Anyone)", desc: `Everyone, Everybody, Nobody, No one, Anybody, Anyone ইত্যাদি singular—এদের পরে singular verb বসে।`, ex: [`Everyone is going to attend today's party.`, `Nobody knows the answer.`] },
+      { id: "SVA Rule 10", title: "The + Adjective (Plural Class)", desc: `Adjective-এর পূর্বে the বসলে তা plural common noun হয় এবং verb-টি plural হয়।`, ex: [`The poor are not happy always.`] },
+      { id: "SVA Rule 11", title: "Along with / As well as / Together with", desc: `Along with, together with, as well as, accompanied with, with, and not, in addition to, including দিয়ে যুক্ত একাধিক noun/pronoun-এর ক্ষেত্রে প্রথম noun/pronoun অনুযায়ী verb হয়।`, ex: [`The teacher, along with the students, is attending the seminar.`, `The books, as well as the notebook, are on the table.`] },
+      { id: "SVA Rule 12", title: "Either...or / Neither...nor / Not only...but also", desc: `Either...or, Neither...nor, not only...but also বা শুধু or দিয়ে যুক্ত noun/pronoun-এর ক্ষেত্রে or, nor, but also-এর পরের noun/pronoun অনুযায়ী verb হয়।`, ex: [`Either John or his friends are going to join.`, `Either the students or the teacher is responsible.`] },
+      { id: "SVA Rule 13", title: "Many a / an + Singular Noun", desc: `Many a/an-এর পরে noun ও verb দুটোই singular হয়।`, ex: [`Many a man is present in the meeting.`, `Many a child has liked the gift.`] },
+      { id: "SVA Rule 14", title: "Subject Preceding Prepositions", desc: `একই sentence-এ এক বা একাধিক preposition ব্যবহৃত হলে প্রথম preposition-এর পূর্বে ব্যবহৃত head noun অনুযায়ী verb singular বা plural হয়।`, ex: [`The study of different languages is very interesting.`] },
+      { id: "SVA Rule 15", title: "One of / Either of / Neither of + Plural Noun", desc: `One of, either of, neither of-এর পর plural noun কিন্তু verb singular হয়।`, ex: [`One of my friends is coming here today.`] },
+      { id: "SVA Rule 16", title: "Fractions (One-third, Two-thirds)", desc: `ভগ্নাংশের পর uncountable/singular noun থাকলে singular verb এবং plural countable noun থাকলে (two-thirds etc.) plural verb বসে।`, ex: [`One-third of the work has been done.`, `Two-thirds of the students are present today.`] },
+      { id: "SVA Rule 17", title: "Time, Distance, Weight, Length, Money", desc: `Time, Distance, Weight, Length, Money-এর সমষ্টি দেখতে plural হলেও এরা singular verb গ্রহণ করে।`, ex: [`Ten minutes is not a long duration.`] },
+      { id: "SVA Rule 18", title: "No / None of the + Noun", desc: `No/None of the + singular/uncountable noun + singular verb; plural noun + plural verb।`, ex: [`None of the students are present today.`] },
+      { id: "SVA Rule 19", title: "A lot of + Noun", desc: `A lot of + singular/uncountable noun + singular verb; plural noun + plural verb।`, ex: [`A lot of water is consumed.`, `A lot of people are gathering there.`] },
+      { id: "SVA Rule 20", title: "Infinitive, Gerund, Clause as Subject", desc: `Infinitive, Gerund বা Clause যখন subject রূপে কাজ করে তখন verb-টি singular হবে।`, ex: [`Walking is good for health.`, `To walk is good for health.`, `That he is honest is known to all.`] },
+      { id: "SVA Rule 21", title: "Introductory 'It'", desc: `It subject হিসেবে ব্যবহৃত হলে এর পরবর্তী verb-টি সর্বদা singular হবে।`, ex: [`It is raining cats and dogs.`] },
+      { id: "SVA Rule 22", title: "Relative Pronoun + Antecedent", desc: `Relative pronoun (who, which, that) subject হলে তার পরবর্তী verb-টি Antecedent (পূর্ববর্তী noun/pronoun)-এর number ও person অনুযায়ী হয়।`, ex: [`It is he who is to blame.`, `It is you who are to do this.`] },
+      { id: "SVA Rule 23", title: "Mathematical Calculations in Words", desc: `Mathematical calculations word-এ প্রকাশ করা হলে subject-টি singular verb গ্রহণ করে।`, ex: [`Five plus five is ten.`] },
+      { id: "SVA Rule 24", title: "A number of vs The number of", desc: `A number of-এর পর plural noun এবং plural verb বসে; কিন্তু The number of-এর পর plural noun এবং singular verb বসে।`, ex: [`A number of students are absent today.`, `The number of students absent today is twenty.`] },
+      { id: "SVA Rule 25", title: "More than one vs More than two/three", desc: `More than one + singular noun singular verb গ্রহণ করে; কিন্তু more than two/three plural verb গ্রহণ করে।`, ex: [`More than one student is absent.`, `More than three students are absent.`] },
+      { id: "SVA Rule 26", title: "Few / Many + Plural Noun", desc: `Few/many/a few + plural noun + plural verb।`, ex: [`A few people are aware of their duties.`] },
+      { id: "SVA Rule 27", title: "Both + Plural Verb", desc: `Both হলো Plural subject; এর পরে সর্বদা plural verb বসে।`, ex: [`Both of you are guilty.`] }
+    ];
+
+    const QUESTIONS = [
+      {
+        id: 1,
+        title: `Question 1`,
+        board: `Dhaka Board 2024`,
+        segments: [
+          `Once upon a time, there `, { g: `a`, v: `be` }, ` a king who was very fond of `, { g: `b`, v: `know` }, ` his future from the astrologers. A famous astrologer `, { g: `c`, v: `stop` }, ` at his capital on his way to home. The king called on him to `, { g: `d`, v: `know` }, ` about the future and the astrologer `, { g: `e`, v: `tell` }, ` him something unpleasant. At this the king `, { g: `f`, v: `get` }, ` furious and `, { g: `g`, v: `condemn` }, ` him to death saying, "Men like you `, { g: `h`, v: `live` }, ` to spoil the peace of the world." But another thought `, { g: `i`, v: `cross` }, ` his mind before the astrologer `, { g: `j`, v: `send` }, ` for execution. "How long will you `, { g: `k`, v: `live` }, `?" asked the king. With ready wit, the astrologer said, "The stars `, { g: `l`, v: `declare` }, ` that I shall die only a week before your majesty, so goodbye." `, { g: `m`, v: `hear` }, ` this, the king turned pale like a dead man and shouted, "Drive this wretch away, let him `, { g: `n`, v: `come` }, ` here again."`
+        ],
+        gaps: {
+          a: { ans: `was`, rule: `RFV-26`, exp: `অতীতের গল্প ('Once upon a time') এবং 'there'-এর পরে singular noun 'a king' থাকায় be-verb-এর past singular রূপ 'was' বসেছে।` },
+          b: { ans: `knowing`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর মূল verb আসলে তার সাথে -ing যোগ করতে হয়, তাই 'knowing' হয়েছে।` },
+          c: { ans: `stopped`, rule: `RFV-9`, exp: `ঘটনাটি অতীতকালের বর্ণনা (Past Indefinite Tense), তাই 'stop'-এর past form 'stopped' বসেছে।` },
+          d: { ans: `know`, rule: `RFV-14`, exp: `Infinitive marker 'to'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'know' হয়েছে।` },
+          e: { ans: `told`, rule: `RFV-9`, exp: `বাক্যের আগের clause ('called on') Past Indefinite হওয়ায় এখানেও 'tell'-এর past form 'told' বসেছে।` },
+          f: { ans: `got`, rule: `RFV-9`, exp: `অতীতের ধারাবাহিক বর্ণনায় Past Indefinite Tense অনুযায়ী 'get'-এর past form 'got' বসেছে।` },
+          g: { ans: `condemned`, rule: `RFV-9`, exp: `'and' দ্বারা দুটি সমজাতীয় past verb যুক্ত হয়েছে ('got furious and condemned'), তাই 'condemned' বসেছে।` },
+          h: { ans: `should not live`, rule: `RFV-23`, exp: `রাজার ক্ষুব্ধ উক্তিতে ঔচিত্য বা নিষেধাজ্ঞা বোঝাতে 'Men like you'-এর পর modal negative 'should not live' বসেছে।` },
+          i: { ans: `crossed/had crossed`, rule: `RFV-9`, exp: `অতীতের ঘটনায় Past Indefinite ('crossed') অথবা 'before'-এর আগের কাজ হিসেবে Past Perfect ('had crossed') বসে।` },
+          j: { ans: `was sent`, rule: `RFV-24`, exp: `জ্যোতিষীকে মৃত্যুদণ্ডের জন্য পাঠানো হয়েছিল—কাজটি অন্যের দ্বারা সম্পাদিত হওয়ায় Past Indefinite Passive 'was sent' হয়েছে।` },
+          k: { ans: `live`, rule: `RFV-23`, exp: `Modal auxiliary 'will'-এর পর verb-এর base form (V1) বসে, তাই 'live' অপরিবর্তিত আছে।` },
+          l: { ans: `declare`, rule: `RFV-1`, exp: `Direct speech-এ জ্যোতিষীর বর্তমান ঘোষণা এবং subject 'The stars' plural হওয়ায় Present Indefinite-এ 'declare' বসেছে।` },
+          m: { ans: `Hearing`, rule: `RFV-14`, exp: `বাক্যের শুরুতে একটি কাজ ('শোনা') শেষ করে আরেকটি কাজ করা বোঝাতে Present Participle 'Hearing' ব্যবহৃত হয়েছে।` },
+          n: { ans: `not come`, rule: `RFV-15`, exp: `'let'-এর পর object ('him') থাকলে verb-এর bare infinitive বসে; অর্থানুসারে নেতিবাচক হওয়ায় 'not come' হয়েছে।` }
+        }
+      },
+      {
+        id: 2,
+        title: `Question 2`,
+        board: `Dinajpur Board 2024`,
+        segments: [
+          `We can't help `, { g: `a`, v: `rely` }, ` on English. Now, English is `, { g: `b`, v: `use` }, ` as a common language for global communication. It `, { g: `c`, v: `recognize` }, ` as an international language. English is important for `, { g: `d`, v: `maintain` }, ` communication with our development partners. A good command over English as well as regular practices `, { g: `e`, v: `be` }, ` essential for us. 80% information of all the computers `, { g: `f`, v: `be` }, ` in English. With a view to `, { g: `g`, v: `exchange` }, ` our views with the rest of the world, we have to `, { g: `h`, v: `learn` }, ` English. Moreover, we `, { g: `i`, v: `provide` }, ` with the good scope of `, { g: `j`, v: `enjoy` }, ` the best books through English.`
+        ],
+        gaps: {
+          a: { ans: `relying`, rule: `RFV-18`, exp: `'can't help'-এর পর কোনো verb আসলে তার সাথে -ing যোগ করতে হয়, তাই 'relying' হয়েছে।` },
+          b: { ans: `used`, rule: `RFV-24`, exp: `ইংরেজি নিজে ব্যবহৃত হয় না, মানুষ ব্যবহার করে—তাই 'is'-এর পর Passive Voice-এ V3 'used' বসেছে।` },
+          c: { ans: `is recognized`, rule: `RFV-24`, exp: `Subject 'It' নিজে স্বীকৃতি দেয় না বরং স্বীকৃত হয়, তাই Present Indefinite Passive 'is recognized' হয়েছে।` },
+          d: { ans: `maintaining`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb আসলে তার সাথে -ing যুক্ত হয়ে gerund হয়, তাই 'maintaining' বসেছে।` },
+          e: { ans: `is`, rule: `SVA-11`, exp: `'as well as' দ্বারা যুক্ত subject-এ প্রথম subject ('A good command' — singular) অনুযায়ী verb singular 'is' হয়েছে।` },
+          f: { ans: `is`, rule: `SVA-1`, exp: `'information' একটি uncountable singular noun হওয়ায় '80% information'-এর পর singular verb 'is' বসেছে।` },
+          g: { ans: `exchanging`, rule: `RFV-18`, exp: `'With a view to'-এর পর সর্বদা verb + ing বসে, তাই 'exchanging' হয়েছে।` },
+          h: { ans: `learn`, rule: `RFV-23`, exp: `'have to' (semi-modal)-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'learn' হয়েছে।` },
+          i: { ans: `are provided`, rule: `RFV-24`, exp: `Subject 'we' সুযোগটি পায় (আমাদেরকে দেওয়া হয়), তাই Present Indefinite Passive 'are provided' বসেছে।` },
+          j: { ans: `enjoying`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর verb-এর সাথে -ing যোগ হয়, তাই 'enjoying' বসেছে।` }
+        }
+      },
+      {
+        id: 3,
+        title: `Question 3`,
+        board: `Rajshahi Board 2024`,
+        segments: [
+          `The life of our farmers `, { g: `a`, v: `be` }, ` full of hardships. Many a farmer `, { g: `b`, v: `not know` }, ` how to cultivate scientifically. They `, { g: `c`, v: `work` }, ` hard from dawn to dusk. But their toil `, { g: `d`, v: `go` }, ` away due to lack of scientific knowledge. Our government offers a lot of opportunities to them with a view to `, { g: `e`, v: `eliminate` }, ` their sufferings. Unfortunately, they `, { g: `f`, v: `not avail` }, ` themselves of those opportunities. It is time they `, { g: `g`, v: `to get` }, ` scientific education and all concerned `, { g: `h`, v: `to help` }, ` them. If they `, { g: `i`, v: `to educate` }, `, they `, { g: `j`, v: `to contribute` }, ` better to the prosperity of the country. The prosperity of our country `, { g: `k`, v: `to lie` }, ` in their proper education. `, { g: `l`, v: `to educate` }, ` a farmer `, { g: `m`, v: `mean` }, ` educating a family and a nation. And, it `, { g: `n`, v: `to result` }, ` in greater success in every sector of the country.`
+        ],
+        gaps: {
+          a: { ans: `is`, rule: `SVA-14`, exp: `'of'-এর পূর্বের মূল subject 'The life' singular হওয়ায় singular verb 'is' বসেছে।` },
+          b: { ans: `does not know`, rule: `RFV-4`, exp: `'Many a + singular noun'-এর পর singular verb হয়; Present Indefinite-এ negative করতে 'does not know' বসেছে।` },
+          c: { ans: `work`, rule: `SVA-1`, exp: `Subject 'They' plural এবং বর্তমান অভ্যাসগত কাজ বোঝানোয় Present Indefinite-এ 'work' হয়েছে।` },
+          d: { ans: `goes`, rule: `RFV-1`, exp: `Subject 'their toil' (singular uncountable) হওয়ায় Present Indefinite-এ verb-এর সাথে es যুক্ত হয়ে 'goes' হয়েছে।` },
+          e: { ans: `eliminating`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb + ing হয়, তাই 'eliminating' বসেছে।` },
+          f: { ans: `do not avail`, rule: `RFV-4`, exp: `Subject 'they' plural হওয়ায় Present Indefinite-এর negative করতে 'do not avail' বসেছে।` },
+          g: { ans: `got`, rule: `RFV-19`, exp: `'It is time'-এর পর subject ('they') থাকলে verb-এর Past Indefinite form (V2) বসে, তাই 'got' হয়েছে।` },
+          h: { ans: `helped`, rule: `RFV-19`, exp: `'It is time'-এর অধীন দ্বিতীয় clause-টিতেও 'and'-এর পর parallel structure-এ V2 'helped' বসেছে।` },
+          i: { ans: `were educated`, rule: `RFV-COND`, exp: `2nd Conditional-এর passive sense ('যদি তারা শিক্ষিত হতো'), তাই 'were educated' বসেছে।` },
+          j: { ans: `would contribute`, rule: `RFV-COND`, exp: `If-clause Past Indefinite (2nd Conditional) হওয়ায় main clause-এ 'would + V1' অর্থাৎ 'would contribute' হয়েছে।` },
+          k: { ans: `lies`, rule: `SVA-14`, exp: `Preposition 'of'-এর পূর্বের subject 'The prosperity' singular হওয়ায় verb-এর সাথে s যোগ হয়ে 'lies' বসেছে।` },
+          l: { ans: `Educating`, rule: `SVA-20`, exp: `বাক্যের শুরুতে subject হিসেবে Gerund ব্যবহৃত হয়েছে ('একজন কৃষককে শিক্ষিত করা'), তাই 'Educating' হয়েছে।` },
+          m: { ans: `means`, rule: `SVA-20`, exp: `Subject যখন Gerund ('Educating a farmer') হয় তখন verb singular হয়, তাই 'means' বসেছে।` },
+          n: { ans: `may result/results`, rule: `RFV-1`, exp: `Subject 'it' (3rd person singular) হওয়ায় Present Indefinite-এ 'results' অথবা সম্ভাবনা অর্থে 'may result' বসে।` }
+        }
+      },
+      {
+        id: 4,
+        title: `Question 4`,
+        board: `Mymensingh Board 2024`,
+        segments: [
+          `Man has an unquenchable thirst for knowledge. He is never `, { g: `a`, v: `satisfy` }, ` with what he already `, { g: `b`, v: `know` }, ` and `, { g: `c`, v: `see` }, `. Naturally he `, { g: `d`, v: `want` }, ` to know and `, { g: `e`, v: `see` }, ` more and more. This curiosity for `, { g: `f`, v: `know` }, ` more has `, { g: `g`, v: `inspire` }, ` him `, { g: `h`, v: `undertake` }, ` and `, { g: `i`, v: `carry` }, ` out difficult and dangerous tasks which eventually `, { g: `j`, v: `result` }, ` in epoch-making discoveries and inventions and `, { g: `k`, v: `lead` }, ` him in his long and continuous journey from his helpless state of caveman to his present situations of power and progress. He `, { g: `l`, v: `be` }, ` helpless still now, he would not have `, { g: `m`, v: `be` }, ` able to control all powers and forces. `, { g: `n`, v: `invent` }, ` so many technologies he now controls almost all destructive powers and forces.`
+        ],
+        gaps: {
+          a: { ans: `satisfied`, rule: `RFV-24`, exp: `'is'-এর পর adjective/passive participle হিসেবে V3 'satisfied' বসেছে।` },
+          b: { ans: `has known`, rule: `RFV-8`, exp: `বাক্যে 'already' থাকায় Present Perfect Tense হয়েছে এবং 'he'-এর পর 'has known' বসেছে।` },
+          c: { ans: `seen`, rule: `RFV-7`, exp: `'has known and seen'—একই auxiliary 'has'-এর অধীনে V3 'seen' বসেছে।` },
+          d: { ans: `wants`, rule: `RFV-1`, exp: `Subject 'he' (3rd person singular) এবং Present Indefinite Tense হওয়ায় 'wants' হয়েছে।` },
+          e: { ans: `see`, rule: `RFV-14`, exp: `'to know and see'—Infinitive 'to'-এর পর দুটি base verb যুক্ত হয়েছে, তাই 'see' বসেছে।` },
+          f: { ans: `knowing`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb-এর সাথে -ing যোগ হয়ে 'knowing' হয়েছে।` },
+          g: { ans: `inspired`, rule: `RFV-7`, exp: `Auxiliary 'has'-এর পর সর্বদা মূল verb-এর Past Participle (V3) বসে, তাই 'inspired' হয়েছে।` },
+          h: { ans: `to undertake`, rule: `RFV-14`, exp: `'inspire + object'-এর পর পরবর্তী verb-এর আগে উদ্দেশ্য বোঝাতে infinitive 'to undertake' বসে।` },
+          i: { ans: `carry`, rule: `RFV-14`, exp: `'to undertake and carry out'—একই infinitive-এর অংশ হিসেবে base form 'carry' বসেছে।` },
+          j: { ans: `have resulted`, rule: `RFV-8`, exp: `অতীত থেকে বর্তমান পর্যন্ত ফলাফল বোঝাচ্ছে এবং antecedent 'tasks' plural হওয়ায় 'have resulted' বসেছে।` },
+          k: { ans: `led/have led`, rule: `RFV-7`, exp: `'which eventually have resulted... and (have) led'—সমান্তরালভাবে V3 'led' বা 'have led' বসেছে।` },
+          l: { ans: `is/has been`, rule: `RFV-2`, exp: `মানুষ এখনো অসহায় নয় বা থাকলে কী হতো—প্রদত্ত উত্তরমালা অনুযায়ী 'is/has been' ব্যবহৃত হয়েছে।` },
+          m: { ans: `been`, rule: `RFV-7`, exp: `'would not have'-এর পর be-verb-এর Past Participle (V3) 'been' বসেছে।` },
+          n: { ans: `Inventing`, rule: `RFV-14`, exp: `বাক্যের শুরুতে Present Participle হিসেবে কাজটি সম্পাদন করা বোঝাতে 'Inventing' বসেছে।` }
+        }
+      },
+      {
+        id: 5,
+        title: `Question 5`,
+        board: `Cumilla Board 2024`,
+        segments: [
+          `Students get themselves `, { g: `a`, v: `admit` }, ` into universities for higher education. They acquire higher education from two streams; one is public and the other is private. The private universities `, { g: `b`, v: `be` }, ` open to all but one has to `, { g: `c`, v: `face` }, ` tough competition for `, { g: `d`, v: `get` }, ` a seat there. The public universities are cheaper in terms of tuition fees. They `, { g: `e`, v: `offer` }, ` residential and boarding facilities at subsidized rates. But public universities often `, { g: `f`, v: `face` }, ` a number of problems. Student politics `, { g: `g`, v: `play` }, ` a vital role in `, { g: `h`, v: `deteriorate` }, ` the academic environment there. As a result, students `, { g: `i`, v: `face` }, ` session jam. So, the conscious and moneyed persons `, { g: `j`, v: `impress` }, ` by the private universities. Since this is the age of privatization, the private universities `, { g: `k`, v: `become` }, ` popular day by day. Besides, it is less difficult `, { g: `l`, v: `get` }, ` a seat in a private university but here they are to pay a lot. However, the private sectors have some limitations. In fact, two streams should `, { g: `m`, v: `develop` }, ` in a balanced way. Because, both sectors are playing important roles with a view to `, { g: `n`, v: `make` }, ` the nation highly educated.`
+        ],
+        gaps: {
+          a: { ans: `admitted`, rule: `RFV-24`, exp: `Causative 'get + object + V3' কাঠামো অনুযায়ী 'get themselves admitted' বসেছে।` },
+          b: { ans: `are`, rule: `SVA-1`, exp: `Subject 'The private universities' plural এবং বর্তমান তথ্য হওয়ায় 'are' বসেছে।` },
+          c: { ans: `face`, rule: `RFV-23`, exp: `'has to'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'face' হয়েছে।` },
+          d: { ans: `getting`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb আসলে -ing যোগ হয়, তাই 'getting' হয়েছে।` },
+          e: { ans: `offer`, rule: `SVA-1`, exp: `Subject 'They' (plural) এবং Present Indefinite Tense হওয়ায় 'offer' বসেছে।` },
+          f: { ans: `face`, rule: `RFV-3`, exp: `বাক্যে 'often' থাকায় Present Indefinite এবং subject plural হওয়ায় 'face' বসেছে।` },
+          g: { ans: `plays`, rule: `RFV-1`, exp: `'Student politics' একটি singular subject (3rd person singular), তাই 'plays' হয়েছে।` },
+          h: { ans: `deteriorating`, rule: `RFV-18`, exp: `Preposition 'in'-এর পর verb-এর সাথে -ing যোগ করে 'deteriorating' হয়েছে।` },
+          i: { ans: `face`, rule: `SVA-1`, exp: `Subject 'students' plural হওয়ায় Present Indefinite-এ 'face' বসেছে।` },
+          j: { ans: `are impressed`, rule: `RFV-24`, exp: `ব্যক্তিরা বেসরকারি বিশ্ববিদ্যালয়ের দ্বারা প্রভাবিত/মুগ্ধ হয় (Passive + 'by'), তাই 'are impressed' বসেছে।` },
+          k: { ans: `are becoming`, rule: `RFV-6`, exp: `'day by day' থাকায় ক্রমবর্ধমান চলমান অবস্থা বোঝাতে Present Continuous 'are becoming' হয়েছে।` },
+          l: { ans: `to get`, rule: `RFV-14`, exp: `'it is less difficult + to + V1'—Adjective-এর পর infinitive 'to get' বসেছে।` },
+          m: { ans: `be developed`, rule: `RFV-23`, exp: `Modal 'should'-এর পর Passive Voice-এ 'be + V3' বসে, তাই 'be developed' হয়েছে।` },
+          n: { ans: `making`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb-এর সাথে -ing যুক্ত হয়, তাই 'making' বসেছে।` }
+        }
+      },
+      {
+        id: 6,
+        title: `Question 6`,
+        board: `Barisal Board 2024`,
+        segments: [
+          `Tigers `, { g: `a`, v: `know` }, ` as ferocious animals. But they hardly `, { g: `b`, v: `kill` }, ` any animal when they are not hungry. Usually, the tigers `, { g: `c`, v: `reside` }, ` in the deep forest. They are hardly `, { g: `d`, v: `see` }, ` in the open unless there `, { g: `e`, v: `to be` }, ` a strong necessity. They often remain `, { g: `f`, v: `hide` }, ` under the deep green in search of prey. Whenever they `, { g: `g`, v: `discern` }, ` any prospective prey, they take a pose to `, { g: `h`, v: `fall` }, ` upon it. Tigers often `, { g: `i`, v: `unite` }, ` themselves to `, { g: `j`, v: `attack` }, ` their prey from different directions. An adult tiger `, { g: `k`, v: `devour` }, ` 20 to 30 kilograms of meat at a single meal. In our Sundarbans the number of tigers `, { g: `l`, v: `decrease` }, ` day by day. Poaching and illegal trafficking `, { g: `m`, v: `to be` }, ` the main reasons of decrease. So the concerned authority should be committed to `, { g: `n`, v: `take` }, ` action to protect the tigers.`
+        ],
+        gaps: {
+          a: { ans: `are known`, rule: `RFV-24`, exp: `বাঘ হিংস্র প্রাণী হিসেবে পরিচিত—Passive sense ও plural subject হওয়ায় 'are known' বসেছে।` },
+          b: { ans: `kill`, rule: `RFV-2`, exp: `সাধারণ সত্য/স্বভাব এবং plural subject 'they' হওয়ায় Present Indefinite 'kill' বসেছে।` },
+          c: { ans: `reside`, rule: `RFV-3`, exp: `'Usually' থাকায় Present Indefinite এবং plural subject 'the tigers' হওয়ায় 'reside' বসেছে।` },
+          d: { ans: `seen`, rule: `RFV-24`, exp: `'are hardly + V3'—তাদেরকে খোলা জায়গায় কমই দেখা যায় (Passive), তাই 'seen' বসেছে।` },
+          e: { ans: `is`, rule: `RFV-26`, exp: `'there'-এর পর singular noun 'a strong necessity' থাকায় singular verb 'is' বসেছে।` },
+          f: { ans: `hidden`, rule: `RFV-17`, exp: `'remain'-এর পর অবস্থা বোঝাতে Past Participle (adjective রূপে) 'hidden' বসেছে।` },
+          g: { ans: `discern`, rule: `RFV-2`, exp: `স্বভাবগত কাজ এবং plural subject 'they' হওয়ায় Present Indefinite 'discern' হয়েছে।` },
+          h: { ans: `fall`, rule: `RFV-14`, exp: `'to'-এর পর verb-এর base form (V1) বসে, তাই 'fall' হয়েছে।` },
+          i: { ans: `unite`, rule: `RFV-3`, exp: `'often' ও plural subject 'Tigers' থাকায় Present Indefinite 'unite' বসেছে।` },
+          j: { ans: `attack`, rule: `RFV-14`, exp: `Infinitive 'to'-এর পর base form 'attack' বসেছে।` },
+          k: { ans: `devours`, rule: `RFV-1`, exp: `Subject 'An adult tiger' 3rd person singular হওয়ায় Present Indefinite-এ 'devours' হয়েছে।` },
+          l: { ans: `is decreasing`, rule: `SVA-24`, exp: `'The number of + plural noun'-এর পর singular verb হয় এবং 'day by day' থাকায় 'is decreasing' বসেছে।` },
+          m: { ans: `are`, rule: `SVA-1`, exp: `'Poaching and illegal trafficking' দুটি বিষয় 'and' দ্বারা যুক্ত হয়ে plural subject হওয়ায় 'are' বসেছে।` },
+          n: { ans: `taking`, rule: `RFV-18`, exp: `'committed to'-এর পর 'to' preposition হওয়ায় verb + ing অর্থাৎ 'taking' বসেছে।` }
+        }
+      },
+      {
+        id: 7,
+        title: `Question 7`,
+        board: `Jessore Board 2024`,
+        segments: [
+          `Dear Mr. and Mrs. Biswas, We are very `, { g: `a`, v: `concern` }, ` about your son Rahel’s behavior. He `, { g: `b`, v: `play` }, ` truant from school three times last month. When he `, { g: `c`, v: `come` }, ` to class, he usually `, { g: `d`, v: `not concentrate` }, ` on his lessons. He does not seem to understand texts and never `, { g: `e`, v: `ask` }, ` any questions. The only time he `, { g: `f`, v: `show` }, ` any initiative is in `, { g: `g`, v: `make` }, ` excuses for not `, { g: `h`, v: `to have` }, ` `, { g: `i`, v: `do` }, ` his homework. Although he `, { g: `j`, v: `have` }, ` a natural talent for art, he even `, { g: `k`, v: `not take` }, ` any interest in art lessons. This is `, { g: `l`, v: `disappoint` }, `, because even last year he `, { g: `m`, v: `be` }, ` attentive in his studies. We hoped he `, { g: `n`, v: `win` }, ` a scholarship. I would like to request you to come to school to discuss this situation further. Yours Sincerely, J. H. Khan, Principal.`
+        ],
+        gaps: {
+          a: { ans: `concerned`, rule: `RFV-24`, exp: `'are very + adjective/V3' অর্থে উদ্বিগ্ন বোঝাতে 'concerned' বসেছে।` },
+          b: { ans: `played`, rule: `RFV-9`, exp: `বাক্যে অতীত নির্দেশক 'last month' থাকায় Past Indefinite 'played' বসেছে।` },
+          c: { ans: `comes`, rule: `RFV-3`, exp: `বর্তমান অভ্যাস ও 'he' (3rd person singular) হওয়ায় Present Indefinite-এ 'comes' হয়েছে।` },
+          d: { ans: `does not concentrate`, rule: `RFV-4`, exp: `'usually' এবং 3rd person singular 'he'-এর negative করতে 'does not concentrate' বসেছে।` },
+          e: { ans: `asks`, rule: `RFV-1`, exp: `Subject 'he' এবং Present Indefinite Tense হওয়ায় 'never'-এর পর 'asks' বসেছে।` },
+          f: { ans: `shows`, rule: `RFV-1`, exp: `Subject 'he' (3rd person singular) হওয়ায় Present Indefinite-এ 'shows' হয়েছে।` },
+          g: { ans: `making`, rule: `RFV-18`, exp: `Preposition 'in'-এর পর verb আসলে তার সাথে -ing যুক্ত হয়, তাই 'making' বসেছে।` },
+          h: { ans: `having`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর perfect gerund হিসেবে 'not having' হয়েছে।` },
+          i: { ans: `done`, rule: `RFV-7`, exp: `'having'-এর পর সর্বদা verb-এর Past Participle (V3) বসে, তাই 'done' হয়েছে।` },
+          j: { ans: `has`, rule: `SVA-1`, exp: `বর্তমান প্রতিভা ও singular subject 'he'-এর সাথে Present Indefinite-এ 'has' বসেছে।` },
+          k: { ans: `does not take`, rule: `RFV-4`, exp: `Present Indefinite-এ 'he'-এর সাথে negative করতে 'does not take' বসেছে।` },
+          l: { ans: `disappointing`, rule: `RFV-17`, exp: `বস্তু বা পরিস্থিতি হতাশাজনক বোঝাতে Present Participle (adjective) 'disappointing' বসেছে।` },
+          m: { ans: `was`, rule: `RFV-9`, exp: `'last year' অতীত নির্দেশক শব্দ থাকায় be-verb-এর past singular 'was' বসেছে।` },
+          n: { ans: `would win`, rule: `RFV-9`, exp: `Principal clause 'We hoped' Past Tense হওয়ায় subordinate clause-এ future-in-the-past 'would win' বসেছে।` }
+        }
+      },
+      {
+        id: 8,
+        title: `Question 8`,
+        board: `Chittagong Board 2024`,
+        segments: [
+          `Relationships `, { g: `a`, v: `be` }, ` of different kinds. Some `, { g: `b`, v: `be` }, ` familial and intimate, `, { g: `c`, v: `form` }, ` by blood and by marriage; some are social like the ones we have with friends and some `, { g: `d`, v: `make` }, ` in school where we `, { g: `e`, v: `form` }, ` close bonds with classmates and teachers. Relationships can also `, { g: `f`, v: `foster` }, ` in the workplace, which may quickly `, { g: `g`, v: `change` }, ` from professional to social. There `, { g: `h`, v: `be` }, ` relationships also between human beings and animals, between children and their toys that they can't `, { g: `i`, v: `part` }, ` with. All these relationships `, { g: `j`, v: `keep` }, ` us close to each other and `, { g: `k`, v: `provide` }, ` us with all kinds of support, love and affection. A person `, { g: `l`, v: `have` }, ` no family feels the pain of loneliness and isolation. There `, { g: `m`, v: `be` }, ` no one to laugh or `, { g: `n`, v: `cry` }, ` with him/her.`
+        ],
+        gaps: {
+          a: { ans: `are`, rule: `SVA-1`, exp: `Subject 'Relationships' plural এবং সাধারণ বক্তব্য হওয়ায় 'are' বসেছে।` },
+          b: { ans: `are`, rule: `SVA-1`, exp: `এখানে 'Some' বলতে সম্পর্কগুলোকে (plural) বোঝানো হয়েছে, তাই 'are' বসেছে।` },
+          c: { ans: `formed`, rule: `RFV-17`, exp: `রক্ত ও বিবাহের মাধ্যমে গঠিত—Past Participle modifier হিসেবে 'formed' বসেছে।` },
+          d: { ans: `are made`, rule: `RFV-24`, exp: `স্কুলে কিছু সম্পর্ক তৈরি হয় (Passive sense) এবং 'some' plural হওয়ায় 'are made' বসেছে।` },
+          e: { ans: `form`, rule: `SVA-1`, exp: `Subject 'we' (plural) এবং বর্তমান সত্য হওয়ায় Present Indefinite 'form' বসেছে।` },
+          f: { ans: `be fostered`, rule: `RFV-23`, exp: `Modal 'can'-এর পর Passive Voice-এ 'be + V3' বসে, তাই 'be fostered' হয়েছে।` },
+          g: { ans: `change`, rule: `RFV-23`, exp: `Modal 'may'-এর পর verb-এর base form (V1) বসে, তাই 'change' হয়েছে।` },
+          h: { ans: `are`, rule: `RFV-26`, exp: `'There'-এর পর plural noun 'relationships' থাকায় plural verb 'are' বসেছে।` },
+          i: { ans: `part`, rule: `RFV-23`, exp: `Modal 'can't'-এর পর verb-এর base form (V1) বসে, তাই 'part' হয়েছে।` },
+          j: { ans: `keep`, rule: `SVA-1`, exp: `Subject 'All these relationships' plural হওয়ায় Present Indefinite-এ 'keep' বসেছে।` },
+          k: { ans: `provide`, rule: `SVA-1`, exp: `'and' দ্বারা যুক্ত হয়ে একই plural subject-এর verb হিসেবে 'provide' বসেছে।` },
+          l: { ans: `having`, rule: `RFV-14`, exp: `বাক্যে মূল verb 'feels' আগে থেকেই আছে, তাই noun 'A person'-কে modify করতে 'having' বসেছে।` },
+          m: { ans: `is`, rule: `RFV-26`, exp: `'There'-এর পর singular pronoun 'no one' থাকায় singular verb 'is' বসেছে।` },
+          n: { ans: `cry`, rule: `RFV-14`, exp: `'to laugh or cry'—infinitive 'to'-এর অধীনে base form 'cry' বসেছে।` }
+        }
+      },
+      {
+        id: 9,
+        title: `Question 9`,
+        board: `Dhaka Board 2023`,
+        segments: [
+          `Student life is the best time for `, { g: `a`, v: `prepare` }, ` ourselves for future. It is `, { g: `b`, v: `call` }, ` the seed time of life. So, during this period of life students mustn't `, { g: `c`, v: `waste` }, ` time. The main pursuit of the students `, { g: `d`, v: `be` }, ` study. They should prepare themselves for the life `, { g: `e`, v: `lie` }, ` ahead. They should also `, { g: `f`, v: `participate` }, ` in co-curricular activities. By `, { g: `g`, v: `read` }, ` newspaper they will know what `, { g: `h`, v: `happen` }, ` in the world. When the country `, { g: `i`, v: `face` }, ` with a natural calamity, they should `, { g: `j`, v: `come` }, ` forward with a view to `, { g: `k`, v: `remove` }, ` the sufferings of the affected people. Even in normal times they `, { g: `l`, v: `engage` }, ` themselves in acts of social service. The students cannot do well in the examination without `, { g: `m`, v: `work` }, ` hard. It is a pity that many students are trying to `, { g: `n`, v: `succeed` }, ` in the shortest and easiest way.`
+        ],
+        gaps: {
+          a: { ans: `preparing`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb-এর সাথে -ing যোগ হয়, তাই 'preparing' বসেছে।` },
+          b: { ans: `called`, rule: `RFV-24`, exp: `এটিকে জীবনের বীজ বপনের সময় বলা হয়—Passive Voice হওয়ায় 'is'-এর পর V3 'called' বসেছে।` },
+          c: { ans: `waste`, rule: `RFV-23`, exp: `Modal 'mustn't'-এর পর verb-এর base form (V1) বসে, তাই 'waste' হয়েছে।` },
+          d: { ans: `is`, rule: `SVA-14`, exp: `Preposition 'of'-এর পূর্বের মূল subject 'The main pursuit' singular হওয়ায় 'is' বসেছে।` },
+          e: { ans: `lying`, rule: `RFV-14`, exp: `'the life'-এর পর চলমান অবস্থা বোঝাতে Present Participle 'lying' (যা সামনে পড়ে আছে) বসেছে।` },
+          f: { ans: `participate`, rule: `RFV-23`, exp: `Modal 'should'-এর পর verb-এর base form (V1) বসে, তাই 'participate' হয়েছে।` },
+          g: { ans: `reading`, rule: `RFV-18`, exp: `Preposition 'By'-এর পর verb আসলে -ing যোগ হয়, তাই 'reading' বসেছে।` },
+          h: { ans: `is happening`, rule: `RFV-6`, exp: `পৃথিবীতে বর্তমানে কী ঘটছে বোঝাতে Present Continuous 'is happening' বসেছে।` },
+          i: { ans: `is faced`, rule: `RFV-24`, exp: `দেশ প্রাকৃতিক দুর্যোগের সম্মুখীন হয় ('faced with' passive expression), তাই 'is faced' হয়েছে।` },
+          j: { ans: `come`, rule: `RFV-23`, exp: `Modal 'should'-এর পর verb-এর base form (V1) বসে, তাই 'come' হয়েছে।` },
+          k: { ans: `removing`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb + ing বসে, তাই 'removing' হয়েছে।` },
+          l: { ans: `should engage`, rule: `RFV-23`, exp: `ছাত্রদের উচিত অর্থে নৈতিক দায়িত্ব বোঝাতে 'should engage' ব্যবহৃত হয়েছে।` },
+          m: { ans: `working`, rule: `RFV-18`, exp: `Preposition 'without'-এর পর verb-এর সাথে -ing যুক্ত হয়, তাই 'working' হয়েছে।` },
+          n: { ans: `succeed`, rule: `RFV-14`, exp: `Infinitive 'to'-এর পর verb-এর base form (V1) বসে, তাই 'succeed' হয়েছে।` }
+        }
+      },
+      {
+        id: 10,
+        title: `Question 10`,
+        board: `Chittagong Board 2023`,
+        segments: [
+          `While `, { g: `a`, v: `eat` }, ` food, we should `, { g: `b`, v: `bear` }, ` in mind that we don't eat just to `, { g: `c`, v: `satisfy` }, ` hunger or to `, { g: `d`, v: `fill` }, ` the belly. We eat to `, { g: `e`, v: `preserve` }, ` our health. For good health, a man `, { g: `f`, v: `eat` }, ` good food. Sometimes, it so `, { g: `g`, v: `happen` }, ` that people who `, { g: `h`, v: `live` }, ` even in the midst of plenty do not `, { g: `i`, v: `eat` }, ` the food they need for good health. Actually they `, { g: `j`, v: `have` }, ` no knowledge of health and nutrition. They don't know how to `, { g: `k`, v: `select` }, ` a balanced diet from the many foods that `, { g: `l`, v: `be` }, ` available to them. Besides, foods are being `, { g: `m`, v: `adulterate` }, ` in many ways nowadays. So, it is high time we `, { g: `n`, v: `select` }, ` right the kind of foods for avoiding health hazards.`
+        ],
+        gaps: {
+          a: { ans: `eating`, rule: `RFV-28`, exp: `'While'-এর ঠিক পরে subject না থেকে সরাসরি verb থাকলে তার সাথে -ing যুক্ত হয়, তাই 'eating' হয়েছে।` },
+          b: { ans: `bear`, rule: `RFV-23`, exp: `Modal 'should'-এর পর verb-এর base form (V1) বসে, তাই 'bear' হয়েছে।` },
+          c: { ans: `satisfy`, rule: `RFV-14`, exp: `Infinitive 'to'-এর পর verb-এর base form (V1) বসে, তাই 'satisfy' হয়েছে।` },
+          d: { ans: `fill`, rule: `RFV-14`, exp: `Infinitive 'to'-এর পর base form 'fill' বসেছে।` },
+          e: { ans: `preserve`, rule: `RFV-14`, exp: `উদ্দেশ্য বোঝাতে 'to'-এর পর base form 'preserve' বসেছে।` },
+          f: { ans: `should eat`, rule: `RFV-23`, exp: `সুস্বাস্থ্যের জন্য মানুষের ভালো খাবার খাওয়া উচিত—উপদেশ বোঝাতে 'should eat' বসেছে।` },
+          g: { ans: `happens`, rule: `RFV-1`, exp: `'Sometimes' ও singular subject 'it' থাকায় Present Indefinite-এ 'happens' হয়েছে।` },
+          h: { ans: `live`, rule: `SVA-22`, exp: `Relative pronoun 'who'-এর antecedent 'people' plural হওয়ায় plural verb 'live' বসেছে।` },
+          i: { ans: `eat`, rule: `RFV-4`, exp: `'do not'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'eat' হয়েছে।` },
+          j: { ans: `have`, rule: `SVA-1`, exp: `Subject 'they' plural হওয়ায় Present Indefinite-এ 'have' বসেছে।` },
+          k: { ans: `select`, rule: `RFV-14`, exp: `'how to'-এর পর verb-এর base form (V1) বসে, তাই 'select' হয়েছে।` },
+          l: { ans: `are`, rule: `SVA-22`, exp: `Relative pronoun 'that'-এর antecedent 'the many foods' plural হওয়ায় 'are' বসেছে।` },
+          m: { ans: `adulterated`, rule: `RFV-24`, exp: `খাদ্যে ভেজাল মেশানো হচ্ছে—Present Continuous Passive 'are being + V3' অনুযায়ী 'adulterated' হয়েছে।` },
+          n: { ans: `selected`, rule: `RFV-19`, exp: `'it is high time'-এর পর subject ('we') থাকলে verb-এর Past Indefinite form (V2) 'selected' বসে।` }
+        }
+      },
+      {
+        id: 11,
+        title: `Question 11`,
+        board: `Rajshahi Board 2023`,
+        segments: [
+          `If all the children `, { g: `a`, v: `go` }, ` to school, the country `, { g: `b`, v: `get` }, ` rid of the curse of illiteracy. To boost up education, the govt. `, { g: `c`, v: `spend` }, ` more money. Subsidies must `, { g: `d`, v: `give` }, ` in the education sector. Teachers `, { g: `e`, v: `need` }, ` to `, { g: `f`, v: `train` }, ` for good teaching. The poor students can `, { g: `g`, v: `bring` }, ` under the "Food for Education" programme. We `, { g: `h`, v: `take` }, ` care that no institution `, { g: `i`, v: `close` }, ` down due to political clashes. All concerned `, { g: `j`, v: `be` }, ` conscious about it. If we cannot `, { g: `k`, v: `keep` }, ` pace with the present world, we `, { g: `l`, v: `lag` }, ` behind. For this we have to `, { g: `m`, v: `ensure` }, ` education for all and set a bright prospect for `, { g: `n`, v: `implement` }, ` all necessary steps.`
+        ],
+        gaps: {
+          a: { ans: `went/go`, rule: `RFV-COND`, exp: `Conditional sentence-এ If-clause-এ Present ('go') অথবা 2nd Conditional-এ Past ('went') উভয়ই প্রযোজ্য।` },
+          b: { ans: `would get/will get`, rule: `RFV-COND`, exp: `If-clause-এর সাথে সংগতি রেখে 1st Conditional-এ 'will get' বা 2nd Conditional-এ 'would get' বসে।` },
+          c: { ans: `should/must spend`, rule: `RFV-23`, exp: `শিক্ষার উন্নয়নে সরকারের অর্থ ব্যয় করা উচিত/আবশ্যক অর্থে 'should spend' বা 'must spend' বসেছে।` },
+          d: { ans: `be given`, rule: `RFV-23`, exp: `'Subsidies' নিজে দেয় না, ভর্তুকি দেওয়া হয়—তাই 'must'-এর পর Passive 'be given' বসেছে।` },
+          e: { ans: `need`, rule: `SVA-1`, exp: `Subject 'Teachers' plural হওয়ায় Present Indefinite-এ 'need' বসেছে।` },
+          f: { ans: `be trained`, rule: `RFV-24`, exp: `শিক্ষকদের প্রশিক্ষিত হওয়া প্রয়োজন (Passive Infinitive 'to be + V3'), তাই 'be trained' হয়েছে।` },
+          g: { ans: `be brought`, rule: `RFV-23`, exp: `দরিদ্র শিক্ষার্থীদের আনা যেতে পারে—Modal 'can'-এর পর Passive 'be brought' বসেছে।` },
+          h: { ans: `should take`, rule: `RFV-23`, exp: `আমাদের যত্ন নেওয়া উচিত অর্থে modal 'should take' বসেছে।` },
+          i: { ans: `closes`, rule: `RFV-1`, exp: `'no institution' singular subject হওয়ায় Present Indefinite-এ 'closes' হয়েছে।` },
+          j: { ans: `should/must be`, rule: `RFV-23`, exp: `সংশ্লিষ্ট সকলের সচেতন হওয়া উচিত অর্থে 'should be' বা 'must be' বসেছে।` },
+          k: { ans: `keep`, rule: `RFV-23`, exp: `'cannot'-এর পর verb-এর base form (V1) বসে, তাই 'keep' হয়েছে।` },
+          l: { ans: `will lag`, rule: `RFV-COND`, exp: `1st Conditional ('If we cannot keep...') অনুযায়ী main clause-এ 'will lag' বসেছে।` },
+          m: { ans: `ensure`, rule: `RFV-23`, exp: `'have to'-এর পর verb-এর base form (V1) বসে, তাই 'ensure' হয়েছে।` },
+          n: { ans: `implementing`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb-এর সাথে -ing যোগ হয়ে 'implementing' হয়েছে।` }
+        }
+      },
+      {
+        id: 12,
+        title: `Question 12`,
+        board: `Cumilla Board 2023`,
+        segments: [
+          `Newspaper `, { g: `a`, v: `consider` }, ` the people's parliament. The newspaper `, { g: `b`, v: `play` }, ` a vital role in modern civilization. It `, { g: `c`, v: `call` }, ` to be the mirror of the world. We must `, { g: `d`, v: `develop` }, ` the habit of `, { g: `e`, v: `read` }, ` the newspaper daily. It helps us `, { g: `f`, v: `acquire` }, ` general knowledge, which `, { g: `g`, v: `be` }, ` essential for our education. Nobody `, { g: `h`, v: `maintain` }, ` contact with the outside world without reading the newspaper. Mere bookish knowledge `, { g: `i`, v: `be` }, ` not sufficient in the struggle of life. A man who `, { g: `j`, v: `read` }, ` the newspaper daily `, { g: `k`, v: `be` }, ` like a creature of the narrow well. Being ignorant of current topics, he cannot `, { g: `l`, v: `take` }, ` part in the talks and discussions in an enlightened society and he `, { g: `m`, v: `live` }, ` like a fish out of water in it. Students `, { g: `n`, v: `ask` }, ` for reading newspaper daily.`
+        ],
+        gaps: {
+          a: { ans: `is considered`, rule: `RFV-24`, exp: `সংবাদপত্রকে জনগণের সংসদ হিসেবে গণ্য করা হয়—Passive Voice হওয়ায় 'is considered' বসেছে।` },
+          b: { ans: `plays`, rule: `RFV-1`, exp: `Subject 'The newspaper' (3rd person singular) হওয়ায় Present Indefinite-এ 'plays' হয়েছে।` },
+          c: { ans: `is called`, rule: `RFV-24`, exp: `এটিকে বিশ্বের দর্পণ বলা হয়—Passive Voice হওয়ায় 'is called' বসেছে।` },
+          d: { ans: `develop`, rule: `RFV-23`, exp: `Modal 'must'-এর পর verb-এর base form (V1) বসে, তাই 'develop' হয়েছে।` },
+          e: { ans: `reading`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর verb-এর সাথে -ing যোগ হয়ে 'reading' হয়েছে।` },
+          f: { ans: `to acquire`, rule: `RFV-14`, exp: `'helps us'-এর পর উদ্দেশ্য/সহায়তা বোঝাতে infinitive 'to acquire' (বা bare infinitive) বসেছে।` },
+          g: { ans: `is`, rule: `SVA-22`, exp: `'which'-এর antecedent 'general knowledge' (uncountable singular) হওয়ায় 'is' বসেছে।` },
+          h: { ans: `can maintain`, rule: `RFV-23`, exp: `সামর্থ্য বোঝাতে 'Nobody'-এর পর modal 'can maintain' বসেছে।` },
+          i: { ans: `is`, rule: `SVA-1`, exp: `'Mere bookish knowledge' singular subject হওয়ায় 'is' বসেছে।` },
+          j: { ans: `does not read`, rule: `RFV-4`, exp: `বাক্যের অর্থ অনুযায়ী যে সংবাদপত্র পড়ে না সে কূপমণ্ডূক; তাই negative 'does not read' বসেছে।` },
+          k: { ans: `is`, rule: `SVA-1`, exp: `মূল subject 'A man' singular হওয়ায় singular verb 'is' বসেছে।` },
+          l: { ans: `take`, rule: `RFV-23`, exp: `Modal 'cannot'-এর পর verb-এর base form (V1) বসে, তাই 'take' হয়েছে।` },
+          m: { ans: `cannot live`, rule: `RFV-23`, exp: `সামর্থ্যহীনতা বোঝাতে modal negative 'cannot live' বসেছে।` },
+          n: { ans: `are asked`, rule: `RFV-24`, exp: `ছাত্রদেরকে প্রতিদিন সংবাদপত্র পড়তে বলা হয়—Passive Voice-এ 'are asked' হয়েছে।` }
+        }
+      },
+      {
+        id: 13,
+        title: `Question 13`,
+        board: `Jashore Board 2023`,
+        segments: [
+          `Dhaka, the world's densest and fastest growing city, `, { g: `a`, v: `face` }, ` unbearable traffic jams. There `, { g: `b`, v: `be` }, ` many reasons for this. The ever-increasing number of vehicles and population `, { g: `c`, v: `be` }, ` the main reason. During a traffic jam, people `, { g: `d`, v: `has` }, ` to suffer much. They have to `, { g: `e`, v: `move` }, ` inch by inch. They have to wait on roads hours after hours `, { g: `f`, v: `face` }, ` unbearable sufferings. Again, the roads of Dhaka city `, { g: `g`, v: `be not` }, ` spacious. Only seven percent of Dhaka city is `, { g: `h`, v: `cover` }, ` by roads, compared with around 25 percent of Paris and Vienna. If anybody falls in a traffic jam, he `, { g: `i`, v: `not know` }, ` when he will reach home. Sometimes, a distance of 1km `, { g: `j`, v: `take` }, ` an hour to cross. Office and schoolgoers find it very difficult `, { g: `k`, v: `reach` }, ` their destination in time. Our government `, { g: `l`, v: `try` }, ` heart and soul to solve this problem. Flyovers `, { g: `m`, v: `build` }, ` in different places in order to control traffic jam. Besides, traffic police and sergeants `, { g: `n`, v: `see` }, ` filing cases against vehicles breaking road transport rules. But still, it is becoming impossible to control traffic jams.`
+        ],
+        gaps: {
+          a: { ans: `faces`, rule: `RFV-1`, exp: `মূল subject 'Dhaka' (3rd person singular) হওয়ায় Present Indefinite-এ 'faces' হয়েছে।` },
+          b: { ans: `are`, rule: `RFV-26`, exp: `'There'-এর পর plural noun 'many reasons' থাকায় plural verb 'are' বসেছে।` },
+          c: { ans: `is`, rule: `SVA-14`, exp: `Preposition 'of'-এর পূর্বের head noun 'The ever-increasing number' singular হওয়ায় 'is' বসেছে।` },
+          d: { ans: `have`, rule: `SVA-1`, exp: `'people' plural subject হওয়ায় 'has'-এর পরিবর্তে plural 'have' বসেছে।` },
+          e: { ans: `move`, rule: `RFV-23`, exp: `'have to'-এর পর verb-এর base form (V1) বসে, তাই 'move' হয়েছে।` },
+          f: { ans: `facing`, rule: `RFV-14`, exp: `একই বাক্যে চলমান অবস্থা বোঝাতে Present Participle 'facing' বসেছে।` },
+          g: { ans: `are not`, rule: `SVA-14`, exp: `'of'-এর পূর্বের মূল subject 'the roads' plural হওয়ায় 'are not' হয়েছে।` },
+          h: { ans: `covered`, rule: `RFV-24`, exp: `ঢাকা শহরের মাত্র ৭ শতাংশ রাস্তা দ্বারা আবৃত—Passive Voice ('is + V3') হওয়ায় 'covered' বসেছে।` },
+          i: { ans: `does not know`, rule: `RFV-4`, exp: `Subject 'he' (3rd person singular) এবং Present Indefinite negative হওয়ায় 'does not know' বসেছে।` },
+          j: { ans: `takes/can take`, rule: `RFV-1`, exp: `দূরত্ব 'a distance of 1km' singular subject হওয়ায় 'takes' বা সামর্থ্য/সম্ভাবনায় 'can take' বসেছে।` },
+          k: { ans: `to reach`, rule: `RFV-14`, exp: `Adjective 'difficult'-এর পর infinitive হিসেবে 'to reach' বসেছে।` },
+          l: { ans: `is trying`, rule: `RFV-6`, exp: `সরকার বর্তমানে প্রাণপণ চেষ্টা করছে বোঝাতে Present Continuous 'is trying' বসেছে।` },
+          m: { ans: `are built/are being built`, rule: `RFV-24`, exp: `ফ্লাইওভার নিজে তৈরি হয় না, তৈরি করা হয়/হচ্ছে—Passive Voice-এ 'are built' বা 'are being built' বসেছে।` },
+          n: { ans: `are seen`, rule: `RFV-24`, exp: `ট্রাফিক পুলিশ ও সার্জেন্টদের মামলা করতে দেখা যায়—Passive Voice-এ 'are seen' হয়েছে।` }
+        }
+      },
+      {
+        id: 14,
+        title: `Question 14`,
+        board: `Barishal Board 2023`,
+        segments: [
+          `On 26 March 1971, Bangabandhu Sheikh Mujibur `, { g: `a`, v: `declare` }, ` the independence of Bangladesh. `, { g: `b`, v: `follow` }, ` this declaration, a war began between the freedom-loving Bengalis and the brutal forces of West Pakistan, `, { g: `c`, v: `result` }, ` in independence of Bangladesh. The Pakistani Military junta `, { g: `d`, v: `base` }, ` in West Pakistan `, { g: `e`, v: `launch` }, ` the Operation Searchlight against the unarmed people of East Pakistan `, { g: `f`, v: `initiate` }, ` genocide in Bangladesh. In response to the violence, members of Mukti Bahini `, { g: `g`, v: `start` }, ` a mass guerrilla war against the occupation forces. People from all walks of life `, { g: `h`, v: `respond` }, ` to the call of Bangabandhu and joined the war `, { g: `i`, v: `liberate` }, ` their dear motherland. The war `, { g: `j`, v: `continue` }, ` for about nine months. The heroic sons of soil made the supreme sacrifices with a view to `, { g: `k`, v: `snatch` }, ` away the long-cherished freedom and thus `, { g: `l`, v: `establish` }, ` Bangladesh as an independent country in the world map. Now, it `, { g: `m`, v: `be` }, ` our bounden duty `, { g: `n`, v: `uphold` }, ` the freedom of the country.`
+        ],
+        gaps: {
+          a: { ans: `declared`, rule: `RFV-9`, exp: `১৯৭১ সালের ২৬শে মার্চ—অতীতের নির্দিষ্ট তারিখ থাকায় Past Indefinite 'declared' বসেছে।` },
+          b: { ans: `Following`, rule: `RFV-14`, exp: `বাক্যের শুরুতে 'এই ঘোষণার অনুসরণে' অর্থে Present Participle 'Following' বসেছে।` },
+          c: { ans: `resulting`, rule: `RFV-14`, exp: `যার ফলে স্বাধীনতা অর্জিত হয়—ফলাফল বোঝাতে Present Participle 'resulting' বসেছে।` },
+          d: { ans: `based`, rule: `RFV-17`, exp: `'পশ্চিম পাকিস্তানে অবস্থিত' অর্থে Past Participle modifier 'based' বসেছে।` },
+          e: { ans: `launched`, rule: `RFV-9`, exp: `১৯৭১ সালের অতীত ঘটনা হওয়ায় মূল verb হিসেবে Past Indefinite 'launched' বসেছে।` },
+          f: { ans: `initiating`, rule: `RFV-14`, exp: `একই simple sentence-এ দ্বিতীয় ক্রিয়া হিসেবে Present Participle 'initiating' বসেছে।` },
+          g: { ans: `started`, rule: `RFV-9`, exp: `মুক্তিযুদ্ধের অতীত বর্ণনা হওয়ায় Past Indefinite 'started' বসেছে।` },
+          h: { ans: `responded`, rule: `RFV-9`, exp: `'and joined'-এর সাথে সমান্তরালভাবে Past Indefinite 'responded' বসেছে।` },
+          i: { ans: `to liberate`, rule: `RFV-14`, exp: `উদ্দেশ্য ('মাতৃভূমিকে স্বাধীন করতে') বোঝাতে infinitive 'to liberate' বসেছে।` },
+          j: { ans: `continued`, rule: `RFV-9`, exp: `যুদ্ধ নয় মাস চলেছিল—অতীত ঘটনায় Past Indefinite 'continued' বসেছে।` },
+          k: { ans: `snatching`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb + ing হয়, তাই 'snatching' বসেছে।` },
+          l: { ans: `established`, rule: `RFV-9`, exp: `'made the supreme sacrifices... and thus established'—অতীত ঘটনায় V2 'established' বসেছে।` },
+          m: { ans: `is`, rule: `SVA-21`, exp: `'Now' বর্তমানে বোঝাচ্ছে এবং subject 'it' singular হওয়ায় 'is' বসেছে।` },
+          n: { ans: `to uphold`, rule: `RFV-14`, exp: `'our bounden duty'-এর পর করণীয় বোঝাতে infinitive 'to uphold' বসেছে।` }
+        }
+      },
+      {
+        id: 15,
+        title: `Question 15`,
+        board: `Sylhet Board 2023`,
+        segments: [
+          `It is natural that a man cannot `, { g: `a`, v: `live` }, ` alone. He always `, { g: `b`, v: `need` }, ` a company. He has to `, { g: `c`, v: `express` }, ` his thoughts and ideas, `, { g: `d`, v: `think` }, ` others while the others `, { g: `e`, v: `be` }, ` of the same needs. He `, { g: `f`, v: `have` }, ` also the need of others for `, { g: `g`, v: `ensure` }, ` their safety and comfort. So, he is bound `, { g: `h`, v: `live` }, ` with others `, { g: `i`, v: `make` }, ` an institution and it `, { g: `j`, v: `call` }, ` society. Society `, { g: `k`, v: `be` }, ` the first organization which `, { g: `l`, v: `make` }, ` by our primitive ancestors. They `, { g: `m`, v: `be` }, ` the first to contribute to `, { g: `n`, v: `develop` }, ` the civilization.`
+        ],
+        gaps: {
+          a: { ans: `live`, rule: `RFV-23`, exp: `Modal 'cannot'-এর পর verb-এর base form (V1) বসে, তাই 'live' হয়েছে।` },
+          b: { ans: `needs`, rule: `RFV-3`, exp: `'always' ও 3rd person singular 'He' থাকায় Present Indefinite-এ 'needs' হয়েছে।` },
+          c: { ans: `express`, rule: `RFV-23`, exp: `'has to'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'express' হয়েছে।` },
+          d: { ans: `thinking`, rule: `RFV-14`, exp: `অন্যদের কথা চিন্তা করে—একই বাক্যে Present Participle 'thinking' বসেছে।` },
+          e: { ans: `are`, rule: `SVA-1`, exp: `'the others' plural subject হওয়ায় plural verb 'are' বসেছে।` },
+          f: { ans: `has`, rule: `SVA-1`, exp: `Subject 'He' (3rd person singular) হওয়ায় Present Indefinite-এ 'has' বসেছে।` },
+          g: { ans: `ensuring`, rule: `RFV-18`, exp: `Preposition 'for'-এর পর verb আসলে -ing যুক্ত হয়, তাই 'ensuring' হয়েছে।` },
+          h: { ans: `to live`, rule: `RFV-14`, exp: `'is bound'-এর পর infinitive হিসেবে 'to live' বসে।` },
+          i: { ans: `to make/making`, rule: `RFV-14`, exp: `একটি প্রতিষ্ঠান গড়ার উদ্দেশ্যে ('to make') বা গড়ার মাধ্যমে ('making') উভয়ই প্রযোজ্য।` },
+          j: { ans: `is called`, rule: `RFV-24`, exp: `একে সমাজ বলা হয়—Passive Voice হওয়ায় 'is called' বসেছে।` },
+          k: { ans: `is`, rule: `SVA-1`, exp: `Subject 'Society' singular এবং চিরন্তন সত্য হওয়ায় 'is' বসেছে।` },
+          l: { ans: `was made`, rule: `RFV-24`, exp: `সমাজ আমাদের আদিম পূর্বপুরুষদের দ্বারা ('by') তৈরি হয়েছিল—Past Indefinite Passive 'was made' বসেছে।` },
+          m: { ans: `were`, rule: `RFV-9`, exp: `'They' (পূর্বপুরুষেরা) plural এবং অতীতকাল বোঝানোয় 'were' বসেছে।` },
+          n: { ans: `develop`, rule: `RFV-14`, exp: `'contribute to'-এর পর উত্তরমালা অনুযায়ী base form 'develop' (বা developing) ব্যবহৃত হয়েছে।` }
+        }
+      },
+      {
+        id: 16,
+        title: `Question 16`,
+        board: `Dinajpur Board 2023`,
+        segments: [
+          `Deforestation `, { g: `a`, v: `mean` }, ` cutting down trees at random. It `, { g: `b`, v: `cause` }, ` mainly by a group of dishonest people. They cut trees `, { g: `c`, v: `make` }, ` profit. Ordinary people also `, { g: `d`, v: `use` }, ` trees as fuel and furniture. Because of `, { g: `e`, v: `cut` }, ` more and more trees, we are going `, { g: `f`, v: `face` }, ` a great danger in the coming future. We `, { g: `g`, v: `know` }, ` that oxygen `, { g: `h`, v: `supply` }, ` by trees for animals. Without `, { g: `i`, v: `take` }, ` oxygen, we cannot live a single moment. If trees `, { g: `j`, v: `cut` }, ` down in this way, the amount of carbon dioxide `, { g: `k`, v: `increase` }, ` in the atmosphere. As a result, the heat `, { g: `l`, v: `rise` }, `. It `, { g: `m`, v: `call` }, ` greenhouse effect. `, { g: `n`, v: `enjoy` }, ` a peaceful life, we must plant more and more trees.`
+        ],
+        gaps: {
+          a: { ans: `means`, rule: `RFV-1`, exp: `Subject 'Deforestation' (3rd person singular) ও সংজ্ঞামূলক বাক্য হওয়ায় Present Indefinite-এ 'means' বসেছে।` },
+          b: { ans: `is caused`, rule: `RFV-24`, exp: `বন উজাড় অসাধু লোকদের দ্বারা ('by') ঘটে—Passive Voice হওয়ায় 'is caused' বসেছে।` },
+          c: { ans: `to make`, rule: `RFV-14`, exp: `উদ্দেশ্য ('মুনাফা অর্জনের জন্য') বোঝাতে infinitive 'to make' বসেছে।` },
+          d: { ans: `use`, rule: `SVA-1`, exp: `Subject 'Ordinary people' plural হওয়ায় Present Indefinite-এ 'use' বসেছে।` },
+          e: { ans: `cutting`, rule: `RFV-18`, exp: `'Because of'-এর শেষ শব্দ 'of' preposition হওয়ায় verb-এর সাথে -ing যোগ হয়ে 'cutting' হয়েছে।` },
+          f: { ans: `to face`, rule: `RFV-14`, exp: `'are going'-এর পর ভবিষ্যৎ কাজ বোঝাতে infinitive 'to face' বসেছে।` },
+          g: { ans: `know`, rule: `SVA-1`, exp: `Subject 'We' (plural) এবং চিরন্তন সত্য হওয়ায় 'know' বসেছে।` },
+          h: { ans: `is supplied`, rule: `RFV-24`, exp: `অক্সিজেন গাছের দ্বারা ('by trees') সরবরাহ করা হয়—Passive Voice-এ 'is supplied' বসেছে।` },
+          i: { ans: `taking`, rule: `RFV-18`, exp: `Preposition 'Without'-এর পর verb-এর সাথে -ing যোগ হয়ে 'taking' বসেছে।` },
+          j: { ans: `are cut`, rule: `RFV-24`, exp: `গাছ নিজে কাটে না, কাটা হয়—1st Conditional-এর If-clause-এ Passive 'are cut' বসেছে।` },
+          k: { ans: `will increase`, rule: `RFV-COND`, exp: `If-clause Present Indefinite হলে main clause-এ 'will increase' বসে।` },
+          l: { ans: `will rise`, rule: `RFV-COND`, exp: `পূর্ববর্তী বাক্যের ভবিষ্যৎ ফলাফলের ধারাবাহিকতায় 'will rise' বসেছে।` },
+          m: { ans: `is called`, rule: `RFV-24`, exp: `একে গ্রিনহাউস প্রভাব বলা হয়—Passive Voice-এ 'is called' বসেছে।` },
+          n: { ans: `To enjoy`, rule: `RFV-14`, exp: `বাক্যের শুরুতে উদ্দেশ্য বোঝাতে ('শান্তিপূর্ণ জীবন উপভোগ করতে') infinitive 'To enjoy' বসেছে।` }
+        }
+      },
+      {
+        id: 17,
+        title: `Question 17`,
+        board: `Mymensingh Board 2023`,
+        segments: [
+          `Cricket `, { g: `a`, v: `be` }, ` a popular game. Now-a-days, people `, { g: `b`, v: `long` }, ` to watch it to get pleasure. Cricket `, { g: `c`, v: `call` }, ` a gentlemen's game too. A bond of friendship `, { g: `d`, v: `create` }, ` among the playing nations. The Bangladesh national cricket team is popularly `, { g: `e`, v: `know` }, ` as the Tigers. Our cricket team `, { g: `f`, v: `be` }, ` very organized. It already `, { g: `g`, v: `prove` }, ` its worth in many an international match. Our cricketers `, { g: `h`, v: `be` }, ` capable of `, { g: `i`, v: `compete` }, ` with the renowned cricket teams of the world. The prestige of our country already `, { g: `j`, v: `go` }, ` up in the international arena; thanks to our cricket team. In spite of its renown, sometimes our cricket team `, { g: `k`, v: `shock` }, ` us by `, { g: `l`, v: `perform` }, ` poorly. Even after that, we believe, our cricketers `, { g: `m`, v: `outshine` }, ` all other competitors in future. However, they `, { g: `n`, v: `need` }, ` more vigorous practice to reach their goals.`
+        ],
+        gaps: {
+          a: { ans: `is`, rule: `SVA-1`, exp: `Subject 'Cricket' singular এবং বর্তমান তথ্য হওয়ায় 'is' বসেছে।` },
+          b: { ans: `long`, rule: `RFV-3`, exp: `'Now-a-days' ও plural subject 'people' থাকায় Present Indefinite 'long' বসেছে।` },
+          c: { ans: `is called`, rule: `RFV-24`, exp: `ক্রিকেটকে ভদ্রলোকের খেলা বলা হয়—Passive Voice-এ 'is called' বসেছে।` },
+          d: { ans: `is created`, rule: `RFV-24`, exp: `'A bond of friendship' (singular) তৈরি হয়—Passive Voice-এ 'is created' বসেছে।` },
+          e: { ans: `known`, rule: `RFV-24`, exp: `'is popularly + V3'—পরিচিত অর্থে Passive Participle 'known' বসেছে।` },
+          f: { ans: `is`, rule: `SVA-1`, exp: `'Our cricket team' একটি collective singular noun, তাই 'is' বসেছে।` },
+          g: { ans: `has proved`, rule: `RFV-8`, exp: `বাক্যে 'already' থাকায় Present Perfect Tense এবং 'It'-এর পর 'has proved' বসেছে।` },
+          h: { ans: `are`, rule: `SVA-1`, exp: `Subject 'Our cricketers' plural হওয়ায় 'are' বসেছে।` },
+          i: { ans: `competing`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর verb-এর সাথে -ing যোগ হয়ে 'competing' হয়েছে।` },
+          j: { ans: `has gone`, rule: `RFV-8`, exp: `'already' থাকায় Present Perfect Tense এবং singular subject 'The prestige'-এর পর 'has gone' বসেছে।` },
+          k: { ans: `shocks`, rule: `RFV-3`, exp: `'sometimes' ও singular subject 'our cricket team' থাকায় 'shocks' বসেছে।` },
+          l: { ans: `performing`, rule: `RFV-18`, exp: `Preposition 'by'-এর পর verb-এর সাথে -ing যুক্ত হয়ে 'performing' হয়েছে।` },
+          m: { ans: `will outshine`, rule: `RFV-23`, exp: `'in future' ভবিষ্যৎ নির্দেশক হওয়ায় Future Indefinite 'will outshine' বসেছে।` },
+          n: { ans: `need`, rule: `SVA-1`, exp: `Subject 'they' plural এবং বর্তমান প্রয়োজনীয়তা বোঝানোয় 'need' বসেছে।` }
+        }
+      },
+      {
+        id: 18,
+        title: `Question 18`,
+        board: `Dhaka Board 2019`,
+        segments: [
+          `Cricket is a popular game. Both the young and the old `, { g: `a`, v: `get` }, ` pleasure from this game. In fact, cricket `, { g: `b`, v: `call` }, ` the gentlemen’s game. It `, { g: `c`, v: `entertain` }, ` us with politeness and discipline. A sense of brotherhood and fraternity `, { g: `d`, v: `create` }, ` among the playing nations through it. At present cricket is the most popular game in Bangladesh. The English `, { g: `e`, v: `play` }, ` it here in this subcontinent and since then it `, { g: `f`, v: `become` }, ` an integral part of our entertainment. Our team `, { g: `g`, v: `consist` }, ` of skilled players. They already `, { g: `h`, v: `show` }, ` their performance in several matches. But it is a matter of sorrow that sometimes our players `, { g: `i`, v: `play` }, ` so poorly that our countrymen `, { g: `j`, v: `become` }, ` astonished.`
+        ],
+        gaps: {
+          a: { ans: `get`, rule: `SVA-27`, exp: `'Both...and' দ্বারা যুক্ত plural subject হওয়ায় Present Indefinite-এ 'get' বসেছে।` },
+          b: { ans: `is called`, rule: `RFV-24`, exp: `ক্রিকেটকে ভদ্রলোকের খেলা বলা হয়—Passive Voice-এ 'is called' বসেছে।` },
+          c: { ans: `entertains`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) হওয়ায় Present Indefinite-এ 'entertains' হয়েছে।` },
+          d: { ans: `is created`, rule: `RFV-24`, exp: `'A sense of...' singular এবং কাজটি ক্রিকেটের মাধ্যমে সৃষ্টি হয় (Passive), তাই 'is created' হয়েছে।` },
+          e: { ans: `would play/played`, rule: `RFV-9`, exp: `অতীতকালে ইংরেজরা খেলত বা খেলেছিল বোঝাতে 'played' বা 'would play' বসেছে।` },
+          f: { ans: `has become`, rule: `RFV-8`, exp: `'since then' (তখন থেকে এখন পর্যন্ত) থাকায় Present Perfect 'has become' বসেছে।` },
+          g: { ans: `consists`, rule: `RFV-1`, exp: `Subject 'Our team' singular হওয়ায় Present Indefinite-এ 'consists' বসেছে।` },
+          h: { ans: `have shown/have showed`, rule: `RFV-8`, exp: `'already' থাকায় Present Perfect Tense এবং 'They'-এর পর 'have shown' বা 'have showed' বসেছে।` },
+          i: { ans: `play`, rule: `RFV-3`, exp: `'sometimes' ও plural subject 'our players' থাকায় Present Indefinite 'play' বসেছে।` },
+          j: { ans: `become`, rule: `SVA-1`, exp: `Subject 'our countrymen' plural হওয়ায় Present Indefinite-এ 'become' বসেছে।` }
+        }
+      },
+      {
+        id: 19,
+        title: `Question 19`,
+        board: `Rajshahi Board 2019`,
+        segments: [
+          `A poor man was once `, { g: `a`, v: `put` }, ` in jail, although he `, { g: `b`, v: `do` }, ` no wrong. After a long time, the king of the state `, { g: `c`, v: `visit` }, ` the jail and the man told him that he was innocent but a case `, { g: `d`, v: `file` }, ` against him by some of his enemies. The king `, { g: `e`, v: `inquire` }, ` privately and `, { g: `f`, v: `find` }, ` that it was true. He `, { g: `g`, v: `give` }, ` the man some money and set him free. He went straight to the market. In a shop there, wild birds `, { g: `h`, v: `keep` }, ` in cages for sale. He said to the shopkeeper, I wish to buy all the birds of your shop. These birds unjustly `, { g: `i`, v: `imprison` }, ` and I like to `, { g: `j`, v: `set` }, ` them free.`
+        ],
+        gaps: {
+          a: { ans: `put`, rule: `RFV-24`, exp: `'was once + V3'—গরিব লোকটিকে জেলে রাখা হয়েছিল (Passive), আর 'put'-এর V3 রূপ 'put' হয়।` },
+          b: { ans: `did`, rule: `RFV-9`, exp: `অতীতের ঘটনা হওয়ায় 'do'-এর past form 'did' বসেছে।` },
+          c: { ans: `visited`, rule: `RFV-9`, exp: `অতীত বর্ণনার ধারাবাহিকতায় 'visit'-এর past form 'visited' বসেছে।` },
+          d: { ans: `was filed`, rule: `RFV-24`, exp: `মামলা তার শত্রুদের দ্বারা ('by') দায়ের করা হয়েছিল—Past Indefinite Passive 'was filed' বসেছে।` },
+          e: { ans: `inquired`, rule: `RFV-9`, exp: `অতীত ঘটনা হওয়ায় Past Indefinite 'inquired' বসেছে।` },
+          f: { ans: `found`, rule: `RFV-9`, exp: `'and' দ্বারা যুক্ত অতীতের দ্বিতীয় verb হিসেবে 'find'-এর past form 'found' বসেছে।` },
+          g: { ans: `gave`, rule: `RFV-9`, exp: `অতীতকালে টাকা দিয়েছিলেন বোঝাতে 'give'-এর past form 'gave' বসেছে।` },
+          h: { ans: `were kept`, rule: `RFV-24`, exp: `বন্য পাখিদের খাঁচায় রাখা হয়েছিল—plural subject ও Passive হওয়ায় 'were kept' বসেছে।` },
+          i: { ans: `are imprisoned`, rule: `RFV-24`, exp: `Direct speech-এ পাখিদের বর্তমান বন্দী অবস্থা (Passive sense) বোঝাতে 'are imprisoned' বসেছে।` },
+          j: { ans: `set`, rule: `RFV-14`, exp: `'like to'-এর পর verb-এর base form (V1) বসে, তাই 'set' হয়েছে।` }
+        }
+      },
+      {
+        id: 20,
+        title: `Question 20`,
+        board: `Cumilla Board 2019`,
+        segments: [
+          ``, { g: `a`, v: `teach` }, ` is a noble profession. A teacher `, { g: `b`, v: `teach` }, ` his students from the core of his heart. He teaches his students with a view to `, { g: `c`, v: `give` }, ` the light of education. By `, { g: `d`, v: `get` }, ` the light of education, students can `, { g: `e`, v: `enlighten` }, ` their inside. The students `, { g: `f`, v: `learn` }, ` their lessons now as their teachers `, { g: `g`, v: `instruct` }, ` them. But the students nowadays act as though they `, { g: `h`, v: `know` }, ` everything. They are not `, { g: `i`, v: `pay` }, ` heed to their teachers’ advice. But the students must be careful in their studies lest they `, { g: `j`, v: `fail` }, ` to secure good marks.`
+        ],
+        gaps: {
+          a: { ans: `Teaching`, rule: `SVA-20`, exp: `বাক্যের শুরুতে subject হিসেবে Gerund (V+ing) ব্যবহৃত হয়েছে, তাই 'Teaching' বসেছে।` },
+          b: { ans: `teaches`, rule: `RFV-1`, exp: `Subject 'A teacher' (3rd person singular) হওয়ায় Present Indefinite-এ 'teaches' হয়েছে।` },
+          c: { ans: `giving`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb-এর সাথে -ing যুক্ত হয়, তাই 'giving' বসেছে।` },
+          d: { ans: `getting`, rule: `RFV-18`, exp: `Preposition 'By'-এর পর verb আসলে -ing যোগ হয়, তাই 'getting' হয়েছে।` },
+          e: { ans: `enlighten`, rule: `RFV-23`, exp: `Modal 'can'-এর পর verb-এর base form (V1) বসে, তাই 'enlighten' হয়েছে।` },
+          f: { ans: `should learn`, rule: `RFV-23`, exp: `ছাত্রদের শিক্ষকদের নির্দেশ মতো পাঠ শেখা উচিত অর্থে 'should learn' বসেছে।` },
+          g: { ans: `instruct`, rule: `SVA-1`, exp: `Subject 'their teachers' plural হওয়ায় Present Indefinite-এ 'instruct' বসেছে।` },
+          h: { ans: `knew`, rule: `RFV-20`, exp: `'as though'-এর প্রথম অংশ Present Indefinite ('act') হওয়ায় পরের অংশ Past Indefinite 'knew' বসেছে।` },
+          i: { ans: `paying`, rule: `RFV-6`, exp: `'are not'-এর পর active চলমান কাজ বোঝাতে Present Continuous-এ 'paying' বসেছে।` },
+          j: { ans: `should fail`, rule: `RFV-27`, exp: `'lest'-এর পর subject থাকলে 'should + V1' বসে, তাই 'should fail' হয়েছে।` }
+        }
+      },
+      {
+        id: 21,
+        title: `Question 21`,
+        board: `Jashore Board 2019`,
+        segments: [
+          `Kuakata, locally `, { g: `a`, v: `know` }, ` as Sagar Kannya `, { g: `b`, v: `be` }, ` an uncommon scenic spot of Bangladesh. Kuakata `, { g: `c`, v: `take` }, ` its origin from the story of a ‘Kua’ or well-dug on the sea-shore. It `, { g: `d`, v: `allow` }, ` a visitor to watch both the sunrise and the sunset from the beach. The beach `, { g: `e`, v: `have` }, ` a typical natural setting. This sandy beach `, { g: `f`, v: `slope` }, ` gently into the Bay and `, { g: `g`, v: `bathe` }, ` there is as pleasant as is swimming or diving. Fishing boats `, { g: `h`, v: `ply` }, ` in the Bay of Bengal and `, { g: `i`, v: `surf` }, ` waves add to the vibrant colours of Kuakata. Steps `, { g: `j`, v: `take` }, ` to preserve the beauty of the famous beach.`
+        ],
+        gaps: {
+          a: { ans: `known`, rule: `RFV-17`, exp: `'স্থানীয়ভাবে সাগরকন্যা নামে পরিচিত'—Past Participle modifier হিসেবে 'known' বসেছে।` },
+          b: { ans: `is`, rule: `SVA-1`, exp: `মূল subject 'Kuakata' singular এবং বর্তমান পরিচয় হওয়ায় 'is' বসেছে।` },
+          c: { ans: `takes`, rule: `RFV-1`, exp: `Subject 'Kuakata' (3rd person singular) হওয়ায় Present Indefinite-এ 'takes' হয়েছে।` },
+          d: { ans: `allows`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) হওয়ায় 'allows' বসেছে।` },
+          e: { ans: `has`, rule: `SVA-1`, exp: `'The beach' singular subject হওয়ায় Present Indefinite-এ 'has' বসেছে।` },
+          f: { ans: `slopes`, rule: `RFV-1`, exp: `'This sandy beach' singular subject হওয়ায় verb-এর সাথে s যোগ হয়ে 'slopes' হয়েছে।` },
+          g: { ans: `bathing`, rule: `SVA-20`, exp: `'and'-এর পর নতুন clause-এর singular subject (পরের verb 'is') হিসেবে Gerund 'bathing' বসেছে।` },
+          h: { ans: `plying`, rule: `RFV-14`, exp: `'Fishing boats'-কে modify করতে Present Participle 'plying' (চলাচলরত) বসেছে।` },
+          i: { ans: `surfing`, rule: `RFV-14`, exp: `'waves'-এর আগে adjective/participle হিসেবে 'surfing' (উথলে ওঠা ঢেউ) বসেছে।` },
+          j: { ans: `should be taken`, rule: `RFV-23`, exp: `সৈকতের সৌন্দর্য রক্ষায় পদক্ষেপ নেওয়া উচিত (Passive) অর্থে 'should be taken' বসেছে।` }
+        }
+      },
+      {
+        id: 22,
+        title: `Question 22`,
+        board: `Sylhet Board 2019`,
+        segments: [
+          `When I was a child I `, { g: `a`, v: `be` }, ` afraid of the dark, and I `, { g: `b`, v: `go` }, ` to sleep with a light on. Even then, I feared that monsters `, { g: `c`, v: `climb` }, ` in through my bedroom window. Every sound I `, { g: `d`, v: `hear` }, ` struck fear into me. Often, I ran away from the room and `, { g: `e`, v: `sleep` }, ` on the floor at the foot of my parents' bed. Now that I `, { g: `f`, v: `be` }, ` almost twenty, I obviously do better than what I `, { g: `g`, v: `do` }, ` as a child. However, I `, { g: `h`, v: `be` }, ` still scared of bedtime. I hate `, { g: `i`, v: `sleep` }, ` alone, and I still keep a tiny night-light on. And before I go to bed, I double-check every door and every window to make sure that they `, { g: `j`, v: `be` }, ` locked.`
+        ],
+        gaps: {
+          a: { ans: `was`, rule: `RFV-9`, exp: `শৈশবের অতীত ঘটনা ('When I was a child') হওয়ায় 'I'-এর সাথে 'was' বসেছে।` },
+          b: { ans: `went`, rule: `RFV-9`, exp: `অতীতের অভ্যাসগত কাজ বোঝাতে 'go'-এর past form 'went' বসেছে।` },
+          c: { ans: `would climb`, rule: `RFV-9`, exp: `Principal clause 'I feared' Past Tense হওয়ায় পরের clause-এ 'would climb' বসেছে।` },
+          d: { ans: `heard`, rule: `RFV-9`, exp: `অতীতকালের ঘটনা হওয়ায় 'hear'-এর past form 'heard' বসেছে।` },
+          e: { ans: `slept`, rule: `RFV-9`, exp: `'ran away... and slept'—অতীতের সমজাতীয় verb হিসেবে 'slept' বসেছে।` },
+          f: { ans: `am`, rule: `SVA-1`, exp: `'Now' বর্তমান সময় নির্দেশ করায় 'I'-এর সাথে 'am' বসেছে।` },
+          g: { ans: `did`, rule: `RFV-9`, exp: `'as a child' শৈশবের অতীত কাজ বোঝানোয় 'do'-এর past form 'did' বসেছে।` },
+          h: { ans: `am`, rule: `SVA-1`, exp: `'still' বর্তমান অবস্থা নির্দেশ করায় 'I'-এর সাথে 'am' বসেছে।` },
+          i: { ans: `sleeping`, rule: `RFV-14`, exp: `'hate'-এর পর অভ্যাস/অপছন্দ অর্থে gerund 'sleeping' বসেছে।` },
+          j: { ans: `are`, rule: `SVA-1`, exp: `দরজা ও জানালাগুলো ('they' plural) বর্তমানে তালাবদ্ধ কিনা নিশ্চিত করতে 'are' বসেছে।` }
+        }
+      },
+      {
+        id: 23,
+        title: `Question 23`,
+        board: `Chattogram Board 2019`,
+        segments: [
+          `Man is a social and rational being. He `, { g: `a`, v: `have` }, ` freedom of choice, thought and expression. But everybody should `, { g: `b`, v: `consider` }, ` that he is not the only person in a society. There `, { g: `c`, v: `be` }, ` many persons in the society and they `, { g: `d`, v: `have` }, ` the same right that one `, { g: `e`, v: `expect` }, ` from one’s society. So, to `, { g: `f`, v: `form` }, ` a peaceful society one should be watchful to see that other’s rights are not violated. Every citizen must `, { g: `g`, v: `cultivate` }, ` the habit of obeying the rules and regulations of the society. Selfishness `, { g: `h`, v: `not help` }, ` the society. Rather it `, { g: `i`, v: `destroy` }, ` the peace and happiness of others. So, we all `, { g: `j`, v: `think` }, ` of the greater interest of the society.`
+        ],
+        gaps: {
+          a: { ans: `has`, rule: `SVA-1`, exp: `Subject 'He' (3rd person singular) হওয়ায় Present Indefinite-এ 'has' বসেছে।` },
+          b: { ans: `consider`, rule: `RFV-23`, exp: `Modal 'should'-এর পর verb-এর base form (V1) বসে, তাই 'consider' হয়েছে।` },
+          c: { ans: `are`, rule: `RFV-26`, exp: `'There'-এর পর plural noun 'many persons' থাকায় plural verb 'are' বসেছে।` },
+          d: { ans: `have`, rule: `SVA-1`, exp: `Subject 'they' plural হওয়ায় Present Indefinite-এ 'have' বসেছে।` },
+          e: { ans: `expects`, rule: `RFV-1`, exp: `'one' (3rd person singular indefinite pronoun) হওয়ায় verb-এর সাথে s যোগ হয়ে 'expects' হয়েছে।` },
+          f: { ans: `form`, rule: `RFV-14`, exp: `উদ্দেশ্য বোঝাতে infinitive 'to'-এর পর base form 'form' বসেছে।` },
+          g: { ans: `cultivate`, rule: `RFV-23`, exp: `Modal 'must'-এর পর verb-এর base form (V1) বসে, তাই 'cultivate' হয়েছে।` },
+          h: { ans: `does not help`, rule: `RFV-4`, exp: `'Selfishness' singular abstract noun হওয়ায় Present Indefinite negative-এ 'does not help' বসেছে।` },
+          i: { ans: `destroys`, rule: `RFV-1`, exp: `Subject 'it' (3rd person singular) হওয়ায় 'destroys' বসেছে।` },
+          j: { ans: `should think`, rule: `RFV-23`, exp: `সকলের চিন্তা করা উচিত অর্থে modal 'should think' বসেছে।` }
+        }
+      },
+      {
+        id: 24,
+        title: `Question 24`,
+        board: `HSC Exam-Ka Set 2018`,
+        segments: [
+          `If all the children of Bangladesh `, { g: `a`, v: `go` }, ` to school, the country `, { g: `b`, v: `get` }, ` rid of the curse of illiteracy. To boost up education, the government `, { g: `c`, v: `spend` }, ` more money. Subsidies must `, { g: `d`, v: `give` }, ` in the education sector. Teachers `, { g: `e`, v: `need` }, ` to `, { g: `f`, v: `train` }, ` for good teaching. The poor students can `, { g: `g`, v: `bring` }, ` under the “Food for Education” programme. We `, { g: `h`, v: `take` }, ` care that no institution `, { g: `i`, v: `close` }, ` down due to political clashes. All concerned `, { g: `j`, v: `be` }, ` conscious about it.`
+        ],
+        gaps: {
+          a: { ans: `go`, rule: `RFV-COND`, exp: `1st Conditional-এর If-clause-এ plural subject 'all the children'-এর সাথে 'go' বসেছে।` },
+          b: { ans: `will get`, rule: `RFV-COND`, exp: `If-clause Present Indefinite হওয়ায় main clause-এ 'will get' বসেছে।` },
+          c: { ans: `should spend`, rule: `RFV-23`, exp: `শিক্ষা খাতে সরকারের বেশি অর্থ ব্যয় করা উচিত অর্থে 'should spend' বসেছে।` },
+          d: { ans: `be given`, rule: `RFV-23`, exp: `ভর্তুকি দেওয়া আবশ্যক—Modal 'must'-এর পর Passive 'be given' বসেছে।` },
+          e: { ans: `need`, rule: `SVA-1`, exp: `Subject 'Teachers' plural হওয়ায় Present Indefinite-এ 'need' বসেছে।` },
+          f: { ans: `be trained`, rule: `RFV-24`, exp: `শিক্ষকদের প্রশিক্ষিত হওয়া প্রয়োজন (Passive Infinitive 'to be + V3'), তাই 'be trained' হয়েছে।` },
+          g: { ans: `be brought`, rule: `RFV-23`, exp: `দরিদ্র শিক্ষার্থীদের আনা যেতে পারে—'can'-এর পর Passive 'be brought' বসেছে।` },
+          h: { ans: `must take`, rule: `RFV-23`, exp: `আমাদের অবশ্যই খেয়াল রাখতে হবে অর্থে 'must take' বসেছে।` },
+          i: { ans: `will be closed/might be closed`, rule: `RFV-24`, exp: `কোনো প্রতিষ্ঠান যেন বন্ধ না হয়—Passive sense-এ 'will be closed' বা 'might be closed' বসেছে।` },
+          j: { ans: `must be/should be`, rule: `RFV-23`, exp: `সংশ্লিষ্ট সকলের সচেতন থাকা উচিত/আবশ্যক অর্থে 'must be' বা 'should be' বসেছে।` }
+        }
+      },
+      {
+        id: 25,
+        title: `Question 25`,
+        board: `HSC Exam-Kha Set 2018`,
+        segments: [
+          `Trees contribute a lot to maintain ecological balance. A month-long tree fair `, { g: `a`, v: `begin` }, ` in Kurigram stadium recently. It `, { g: `b`, v: `organize` }, ` by the local administration and the Department of Social Forestation. The fair `, { g: `c`, v: `inaugurate` }, ` yesterday by the DC of Kurigram. It was also addressed by other speakers who `, { g: `d`, v: `emphasize` }, ` the need for planting more trees. The chief guest in his speech `, { g: `e`, v: `put` }, ` importance on planting trees so that we `, { g: `f`, v: `save` }, ` our environment from other effects of climate change and natural disasters. A huge procession `, { g: `g`, v: `parade` }, ` through the streets of the town after the inaugural session. Various government and non-government organizations `, { g: `h`, v: `set` }, ` up stalls displaying saplings of different varieties. Cultural functions `, { g: `i`, v: `arrange` }, ` every night `, { g: `j`, v: `inspire` }, ` people to plant trees.`
+        ],
+        gaps: {
+          a: { ans: `has begun`, rule: `RFV-8`, exp: `বাক্যে 'recently' থাকায় Present Perfect Tense এবং singular subject-এর পর 'has begun' বসেছে।` },
+          b: { ans: `has been organized/is organized`, rule: `RFV-24`, exp: `মেলাটি প্রশাসনের দ্বারা ('by') আয়োজিত হয়েছে/হয়—Passive Voice-এ 'has been organized' বা 'is organized' বসেছে।` },
+          c: { ans: `was inaugurated`, rule: `RFV-9`, exp: `'yesterday' অতীত নির্দেশক এবং Passive ('by the DC') হওয়ায় 'was inaugurated' বসেছে।` },
+          d: { ans: `emphasized`, rule: `RFV-9`, exp: `অতীতকালের অনুষ্ঠানে বক্তারা গুরুত্বারোপ করেছিলেন বোঝাতে Past Indefinite 'emphasized' বসেছে।` },
+          e: { ans: `put`, rule: `RFV-9`, exp: `অতীতের বক্তৃতায় গুরুত্ব দিয়েছিলেন—'put'-এর past form 'put' হয়।` },
+          f: { ans: `could/might save`, rule: `RFV-23`, exp: `প্রথম অংশ Past Tense ('put') হওয়ায় 'so that'-এর পর 'could save' বা 'might save' বসেছে।` },
+          g: { ans: `was paraded/paraded`, rule: `RFV-9`, exp: `অতীতের ঘটনা বর্ণনায় 'paraded' অথবা Passive sense-এ 'was paraded' বসেছে।` },
+          h: { ans: `have set/set`, rule: `RFV-8`, exp: `মেলায় স্টল স্থাপন করেছে/করেছিল অর্থে Present Perfect 'have set' বা Past 'set' বসে।` },
+          i: { ans: `are arranged`, rule: `RFV-24`, exp: `মেলা চলাকালীন প্রতি রাতে সাংস্কৃতিক অনুষ্ঠান আয়োজন করা হয়—Passive Voice-এ 'are arranged' বসেছে।` },
+          j: { ans: `to inspire/inspiring`, rule: `RFV-14`, exp: `মানুষকে অনুপ্রাণিত করতে ('to inspire') অথবা অনুপ্রাণিত করে ('inspiring') উভয়ই প্রযোজ্য।` }
+        }
+      },
+      {
+        id: 26,
+        title: `Question 26`,
+        board: `Dhaka Board 2017`,
+        segments: [
+          `Road mishap `, { g: `a`, v: `happen` }, ` in our country almost every day. Recently it `, { g: `b`, v: `rise` }, ` to an alarming rate `, { g: `c`, v: `take` }, ` a heavy toll on human lives. The members of a family remain anxious if someone `, { g: `d`, v: `travel` }, ` in a bus. In most cases, reckless driving `, { g: `e`, v: `cause` }, ` road accidents. The drivers are in the habit of `, { g: `f`, v: `violate` }, ` traffic rules. Road accidents can be `, { g: `g`, v: `lessen` }, ` if the drivers drive their vehicles carefully. People should be conscious in this respect. While `, { g: `h`, v: `cross` }, ` the road, they should be careful. Some people travel `, { g: `i`, v: `climb` }, ` on the roof of the buses and trains. Traffic rules must be maintained strictly with a view to `, { g: `j`, v: `control` }, ` road accidents.`
+        ],
+        gaps: {
+          a: { ans: `happens`, rule: `RFV-3`, exp: `'almost every day' থাকায় Present Indefinite এবং singular subject 'Road mishap'-এর পর 'happens' বসেছে।` },
+          b: { ans: `has risen`, rule: `RFV-8`, exp: `বাক্যে 'Recently' থাকায় Present Perfect Tense অনুযায়ী 'has risen' বসেছে।` },
+          c: { ans: `taking`, rule: `RFV-14`, exp: `একই simple sentence-এ ফলাফল বোঝাতে Present Participle 'taking' বসেছে।` },
+          d: { ans: `travels`, rule: `RFV-1`, exp: `'someone' (3rd person singular indefinite pronoun) হওয়ায় Present Indefinite-এ 'travels' হয়েছে।` },
+          e: { ans: `causes`, rule: `RFV-1`, exp: `'reckless driving' singular subject হওয়ায় verb-এর সাথে s যোগ হয়ে 'causes' হয়েছে।` },
+          f: { ans: `violating`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর verb-এর সাথে -ing যোগ হয়ে 'violating' হয়েছে।` },
+          g: { ans: `lessened`, rule: `RFV-24`, exp: `'can be + V3' (Passive Voice) হওয়ায় 'lessen'-এর Past Participle 'lessened' বসেছে।` },
+          h: { ans: `crossing`, rule: `RFV-28`, exp: `'While'-এর ঠিক পরে verb থাকলে তার সাথে -ing যুক্ত হয়, তাই 'crossing' হয়েছে।` },
+          i: { ans: `climbing`, rule: `RFV-14`, exp: `ছাদে উঠে ভ্রমণ করে—একই বাক্যে দ্বিতীয় ক্রিয়ার সাথে -ing যুক্ত হয়ে 'climbing' হয়েছে।` },
+          j: { ans: `controlling`, rule: `RFV-18`, exp: `'with a view to'-এর পর সর্বদা verb + ing বসে, তাই 'controlling' হয়েছে।` }
+        }
+      },
+      {
+        id: 27,
+        title: `Question 27`,
+        board: `Rajshahi Board 2017`,
+        segments: [
+          `It has been over three hundred years since emperor Shah Jahan of Delhi `, { g: `a`, v: `build` }, ` the Taj Mahal as a tomb for his wife in Agra. Architecturally, it `, { g: `b`, v: `be` }, ` one of the most beautiful buildings in the world. The building `, { g: `c`, v: `make` }, ` of fine white marble with inlays of colored marble. It `, { g: `d`, v: `have` }, ` eight sides and many open arches. It `, { g: `e`, v: `rest` }, ` on a platform of a terrace of red sandstone. Four slender white towers `, { g: `f`, v: `rise` }, ` from the corners of the terrace. A large dome `, { g: `g`, v: `stand` }, ` above the centre of the building. Around this large dome there `, { g: `h`, v: `be` }, ` four smaller domes. Just inside the outer walls, there is an open corridor from which the visitors `, { g: `i`, v: `look` }, ` through carved marble screens into a central room. The bodies of Shah Jahan and his wife Mumtaz `, { g: `j`, v: `lie` }, ` in two graves below this room.`
+        ],
+        gaps: {
+          a: { ans: `built`, rule: `RFV-11`, exp: `'Since'-এর প্রথম অংশ Present Perfect ('has been') হওয়ায় পরের অংশ Past Indefinite 'built' বসেছে।` },
+          b: { ans: `is`, rule: `SVA-1`, exp: `বর্তমান স্থাপত্যিক বিবরণ ও singular subject 'it' হওয়ায় 'is' বসেছে।` },
+          c: { ans: `is/was made`, rule: `RFV-24`, exp: `ভবনটি মার্বেল দিয়ে তৈরি (Passive Voice), তাই 'is made' বা অতীত নির্মাণে 'was made' বসেছে।` },
+          d: { ans: `has`, rule: `SVA-1`, exp: `Subject 'It' (3rd person singular) ও বর্তমান বিবরণ হওয়ায় 'has' বসেছে।` },
+          e: { ans: `rests`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) হওয়ায় Present Indefinite-এ 'rests' হয়েছে।` },
+          f: { ans: `have risen/rise`, rule: `SVA-1`, exp: `'Four slender white towers' plural subject হওয়ায় Present Indefinite 'rise' বা 'have risen' বসেছে।` },
+          g: { ans: `stands`, rule: `RFV-1`, exp: `'A large dome' singular subject হওয়ায় Present Indefinite-এ 'stands' হয়েছে।` },
+          h: { ans: `are`, rule: `RFV-26`, exp: `'there'-এর পর plural noun 'four smaller domes' থাকায় plural verb 'are' বসেছে।` },
+          i: { ans: `look`, rule: `SVA-1`, exp: `Subject 'the visitors' plural এবং বর্তমান বিবরণ হওয়ায় 'look' বসেছে।` },
+          j: { ans: `lie`, rule: `SVA-14`, exp: `'of'-এর পূর্বের মূল subject 'The bodies' plural হওয়ায় Present Indefinite-এ 'lie' বসেছে।` }
+        }
+      },
+      {
+        id: 28,
+        title: `Question 28`,
+        board: `Cumilla Board 2017`,
+        segments: [
+          `English `, { g: `a`, v: `be` }, ` the most widely used international language. It `, { g: `b`, v: `learn` }, ` to communicate with the foreigners for various purposes such as `, { g: `c`, v: `maintain` }, ` co-operation, co-existence and exchanging business information. There are also certain jobs which `, { g: `d`, v: `require` }, ` good functional knowledge of English. The jobs of a pilot, a postman, a telephone operator, a tour guide, a mechanic, a receptionist of an international hotel, an executive of a multinational firm, etc. `, { g: `e`, v: `be` }, ` a few of them. Besides, a student `, { g: `f`, v: `wish` }, ` to go for higher studies must learn English because the books on advanced education are mostly `, { g: `g`, v: `write` }, ` in English. So, the importance and demand of learning English in our country can, in no way, be `, { g: `h`, v: `ignore` }, `. Rather, we should `, { g: `i`, v: `put` }, ` high importance on `, { g: `j`, v: `learn` }, ` English to make room for ourselves in the competitive world.`
+        ],
+        gaps: {
+          a: { ans: `is`, rule: `SVA-1`, exp: `Subject 'English' singular এবং বর্তমান বাস্তবতা হওয়ায় 'is' বসেছে।` },
+          b: { ans: `is learnt`, rule: `RFV-24`, exp: `ইংরেজি শেখা হয়—Passive Voice হওয়ায় 'is learnt' (বা is learned) বসেছে।` },
+          c: { ans: `maintaining`, rule: `RFV-18`, exp: `'such as'-এর শেষ শব্দ 'as' (preposition)-এর পর verb + ing বসেছে ('maintaining')।` },
+          d: { ans: `require`, rule: `SVA-22`, exp: `Relative pronoun 'which'-এর antecedent 'certain jobs' plural হওয়ায় 'require' বসেছে।` },
+          e: { ans: `are`, rule: `SVA-14`, exp: `প্রথম preposition 'of'-এর পূর্বের মূল subject 'The jobs' plural হওয়ায় 'are' বসেছে।` },
+          f: { ans: `wishing`, rule: `RFV-14`, exp: `বাক্যের মূল verb 'must learn' আছে, তাই 'a student'-কে modify করতে Present Participle 'wishing' বসেছে।` },
+          g: { ans: `written`, rule: `RFV-24`, exp: `উচ্চশিক্ষার বইগুলো ইংরেজিতে লেখা ('are mostly + V3' Passive), তাই 'written' বসেছে।` },
+          h: { ans: `ignored`, rule: `RFV-24`, exp: `'can... be + V3' (Passive Voice) হওয়ায় 'ignore'-এর V3 'ignored' বসেছে।` },
+          i: { ans: `put`, rule: `RFV-23`, exp: `Modal 'should'-এর পর verb-এর base form (V1) বসে, তাই 'put' হয়েছে।` },
+          j: { ans: `learning`, rule: `RFV-18`, exp: `Preposition 'on'-এর পর verb-এর সাথে -ing যোগ হয়ে 'learning' হয়েছে।` }
+        }
+      },
+      {
+        id: 29,
+        title: `Question 29`,
+        board: `Jashore Board 2017`,
+        segments: [
+          `Most of the people who `, { g: `a`, v: `appear` }, ` most often and most gloriously in the pages of history `, { g: `b`, v: `be` }, ` great conquerors and generals and soldiers, whereas the people who really `, { g: `c`, v: `help` }, ` civilization forward are often never `, { g: `d`, v: `mention` }, ` at all. We do not know who first `, { g: `e`, v: `set` }, ` a broken leg, or launched a seaworthy boat or `, { g: `f`, v: `calculate` }, ` the length of a year, but we `, { g: `g`, v: `know` }, ` all about the killers and destroyers. People think a great deal of them, so much so that on all the highest pillars in great cities of the world you `, { g: `h`, v: `find` }, ` figures of a conqueror or a general or a soldier. And I think that most people `, { g: `i`, v: `believe` }, ` that the greatest countries are those that `, { g: `j`, v: `beat` }, ` in the battle the greatest number of countries and ruled over them as conquerors.`
+        ],
+        gaps: {
+          a: { ans: `appear`, rule: `SVA-22`, exp: `Relative pronoun 'who'-এর antecedent 'the people' plural হওয়ায় 'appear' বসেছে।` },
+          b: { ans: `are`, rule: `SVA-14`, exp: `'Most of the people' plural subject হওয়ায় plural verb 'are' বসেছে।` },
+          c: { ans: `helped/help`, rule: `RFV-9`, exp: `যারা সভ্যতাকে এগিয়ে নিয়েছেন/নেন—সাধারণ অর্থে Present 'help' (বা অতীতে 'helped') বসেছে।` },
+          d: { ans: `mentioned`, rule: `RFV-24`, exp: `'are often never + V3'—তাদের কথা উল্লেখ করা হয় না (Passive), তাই 'mentioned' বসেছে।` },
+          e: { ans: `set`, rule: `RFV-9`, exp: `অতীতকালে কে প্রথম ভাঙা পা জোড়া দিয়েছিলেন—'set'-এর past form 'set' বসেছে।` },
+          f: { ans: `calculated`, rule: `RFV-9`, exp: `'or launched... or calculated'—অতীতের সমান্তরাল verb হিসেবে V2 'calculated' বসেছে।` },
+          g: { ans: `know`, rule: `SVA-1`, exp: `Subject 'we' plural এবং বর্তমান সত্য হওয়ায় 'know' বসেছে।` },
+          h: { ans: `can find/will find`, rule: `RFV-23`, exp: `আপনি দেখতে পাবেন/খুঁজে পাবেন অর্থে modal 'can find' বা 'will find' বসেছে।` },
+          i: { ans: `believe`, rule: `SVA-1`, exp: `'most people' plural subject হওয়ায় Present Indefinite-এ 'believe' বসেছে।` },
+          j: { ans: `beat`, rule: `RFV-9`, exp: `'and ruled' Past Tense হওয়ায় 'beat'-এর past form 'beat' বসেছে।` }
+        }
+      },
+      {
+        id: 30,
+        title: `Question 30`,
+        board: `Sylhet Board 2017`,
+        segments: [
+          `Jerry is an orphan. He `, { g: `a`, v: `come` }, ` to the orphanage at the age of four. He `, { g: `b`, v: `lose` }, ` his parents in his infancy. Then, he `, { g: `c`, v: `commit` }, ` to the care of the orphanage. He could hardly `, { g: `d`, v: `recollect` }, ` his parents’ memory. In spite of `, { g: `e`, v: `be` }, ` an orphan, he had developed a strong fabric of morality. His inimitable morality `, { g: `f`, v: `draw` }, ` him close to the writer. The writer `, { g: `g`, v: `impress` }, ` with him. She started `, { g: `h`, v: `show` }, ` affection for him. Jerry `, { g: `i`, v: `take` }, ` her for his mother. He fabricated a lie `, { g: `j`, v: `win` }, ` her heart.`
+        ],
+        gaps: {
+          a: { ans: `came`, rule: `RFV-9`, exp: `চার বছর বয়সে এতিমখানায় এসেছিল—অতীত ঘটনা হওয়ায় 'come'-এর V2 'came' বসেছে।` },
+          b: { ans: `lost`, rule: `RFV-9`, exp: `শৈশবে বাবা-মাকে হারিয়েছিল—Past Indefinite-এ 'lost' বসেছে।` },
+          c: { ans: `was committed`, rule: `RFV-24`, exp: `তাকে এতিমখানার তত্ত্বাবধানে দেওয়া হয়েছিল—Past Indefinite Passive 'was committed' বসেছে।` },
+          d: { ans: `recollect`, rule: `RFV-23`, exp: `Modal 'could'-এর পর verb-এর base form (V1) বসে, তাই 'recollect' হয়েছে।` },
+          e: { ans: `being`, rule: `RFV-18`, exp: `'In spite of'-এর শেষ শব্দ 'of' preposition হওয়ায় be-verb-এর সাথে -ing যোগ হয়ে 'being' হয়েছে।` },
+          f: { ans: `drew/had drawn`, rule: `RFV-9`, exp: `অতীত ঘটনা বর্ণনায় 'draw'-এর V2 'drew' (বা Past Perfect 'had drawn') বসেছে।` },
+          g: { ans: `was impressed`, rule: `RFV-24`, exp: `লেখিকা তার প্রতি মুগ্ধ হয়েছিলেন—Past Indefinite Passive 'was impressed' বসেছে।` },
+          h: { ans: `showing`, rule: `RFV-14`, exp: `'started'-এর পর verb-এর সাথে -ing যোগ হয়ে 'showing' (gerund) বসেছে।` },
+          i: { ans: `took`, rule: `RFV-9`, exp: `জেরি তাকে মা হিসেবে মনে করেছিল—Past Indefinite-এ 'took' বসেছে।` },
+          j: { ans: `to win`, rule: `RFV-14`, exp: `উদ্দেশ্য ('তার মন জয় করতে') বোঝাতে infinitive 'to win' বসেছে।` }
+        }
+      },
+      {
+        id: 31,
+        title: `Question 31`,
+        board: `Barishal Board 2017`,
+        segments: [
+          `Air `, { g: `a`, v: `be` }, ` an important element of the environment. But it is constantly being `, { g: `b`, v: `pollute` }, ` in many ways. We make a fire to cook food and `, { g: `c`, v: `do` }, ` many works. This fire emits smoke which `, { g: `d`, v: `contaminate` }, ` air. Vehicles pollute air to a great extent by `, { g: `e`, v: `burn` }, ` fuel. Air pollution also `, { g: `f`, v: `happen` }, ` when coal and oil `, { g: `g`, v: `burn` }, `. Mills and factories can be `, { g: `h`, v: `hold` }, ` responsible for this pollution. It is high time we `, { g: `i`, v: `check` }, ` air pollution. Otherwise, we `, { g: `j`, v: `suffer` }, ` a lot.`
+        ],
+        gaps: {
+          a: { ans: `is`, rule: `SVA-1`, exp: `Subject 'Air' uncountable singular হওয়ায় চিরন্তন সত্য হিসেবে 'is' বসেছে।` },
+          b: { ans: `polluted`, rule: `RFV-24`, exp: `'is constantly being + V3' (Present Continuous Passive), তাই 'polluted' বসেছে।` },
+          c: { ans: `do`, rule: `RFV-14`, exp: `'to cook food and do'—একই infinitive 'to'-এর অধীনে base form 'do' বসেছে।` },
+          d: { ans: `contaminates`, rule: `SVA-22`, exp: `'which'-এর antecedent 'smoke' (singular uncountable) হওয়ায় Present Indefinite-এ 'contaminates' বসেছে।` },
+          e: { ans: `burning`, rule: `RFV-18`, exp: `Preposition 'by'-এর পর verb-এর সাথে -ing যোগ হয়ে 'burning' হয়েছে।` },
+          f: { ans: `happens`, rule: `RFV-1`, exp: `Subject 'Air pollution' singular হওয়ায় Present Indefinite-এ 'happens' বসেছে।` },
+          g: { ans: `are burnt`, rule: `RFV-24`, exp: `কয়লা ও তেল নিজে জ্বলে না, পোড়ানো হয়—plural subject ও Passive হওয়ায় 'are burnt' (বা are burned) বসেছে।` },
+          h: { ans: `held`, rule: `RFV-24`, exp: `'can be + V3' (Passive Voice) হওয়ায় 'hold'-এর V3 'held' বসেছে।` },
+          i: { ans: `checked`, rule: `RFV-19`, exp: `'It is high time'-এর পর subject ('we') থাকলে verb-এর Past Indefinite form (V2) 'checked' বসে।` },
+          j: { ans: `will suffer`, rule: `RFV-COND`, exp: `'Otherwise' (নতুবা) দ্বারা ভবিষ্যৎ পরিণতি বোঝানোয় 'will suffer' বসেছে।` }
+        }
+      },
+      {
+        id: 32,
+        title: `Question 32`,
+        board: `Chattogram Board 2017`,
+        segments: [
+          `The Liberation War of Bangladesh inspired many artists, singers and cultural activists. Eminent artist Shaheen Samad `, { g: `a`, v: `join` }, ` Bangladesh Mukti Sangrami Shilpi Sangstha during the Liberation War. She along with others `, { g: `b`, v: `inspire` }, ` millions with her voice `, { g: `c`, v: `raise` }, ` funds for the refugee camps. The cultural troupe used to `, { g: `d`, v: `travel` }, ` to refugee camps and different areas in Mukta’ Anchal. They `, { g: `e`, v: `perform` }, ` patriotic songs and arranged puppet shows, besides, `, { g: `f`, v: `stage` }, ` dramas. Shaheen Samad said, “Liberation War always `, { g: `g`, v: `be` }, ` an inspiration for me.” She sang a lot of songs during that time and now `, { g: `h`, v: `feel` }, ` honoured to have been able to inspire the freedom fighters. She has the memorable harmonium with which she sang in 1971. Now she `, { g: `i`, v: `wish` }, ` to hand it over to the Liberation War Museum. This eminent artist wants a live performance of those moving songs on TV channels, at least one song in a week and thus `, { g: `j`, v: `cover` }, ` all the year-round.`
+        ],
+        gaps: {
+          a: { ans: `joined`, rule: `RFV-9`, exp: `১৯৭১ সালের মুক্তিযুদ্ধের সময়ের অতীত ঘটনা হওয়ায় Past Indefinite 'joined' বসেছে।` },
+          b: { ans: `inspired`, rule: `RFV-9`, exp: `মুক্তিযুদ্ধের সময়ের ঘটনা হওয়ায় 'along with others'-এর পর Past Indefinite 'inspired' বসেছে।` },
+          c: { ans: `to raise`, rule: `RFV-14`, exp: `উদ্দেশ্য ('শরণার্থী শিবিরের জন্য তহবিল সংগ্রহ করতে') বোঝাতে infinitive 'to raise' বসেছে।` },
+          d: { ans: `travel`, rule: `RFV-23`, exp: `'used to'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'travel' হয়েছে।` },
+          e: { ans: `performed`, rule: `RFV-9`, exp: `'and arranged'-এর সাথে সমান্তরালভাবে Past Indefinite 'performed' বসেছে।` },
+          f: { ans: `staging`, rule: `RFV-18`, exp: `Preposition 'besides'-এর পর verb-এর সাথে -ing যোগ হয়ে 'staging' হয়েছে।` },
+          g: { ans: `is/has been`, rule: `RFV-8`, exp: `Direct speech-এ 'always' থাকায় বর্তমান ও চিরন্তন প্রেরণা অর্থে 'is' বা 'has been' বসেছে।` },
+          h: { ans: `feels`, rule: `RFV-1`, exp: `'now' বর্তমান সময় ও 3rd person singular 'She' থাকায় Present Indefinite 'feels' হয়েছে।` },
+          i: { ans: `wishes`, rule: `RFV-1`, exp: `'Now' ও singular subject 'she' থাকায় Present Indefinite-এ 'wishes' হয়েছে।` },
+          j: { ans: `covers`, rule: `RFV-1`, exp: `'This eminent artist wants... and thus covers'—একই singular subject-এর Present Indefinite-এ 'covers' হয়েছে।` }
+        }
+      },
+      {
+        id: 33,
+        title: `Question 33`,
+        board: `Dinajpur Board 2017`,
+        segments: [
+          `In the last autumn vacation I `, { g: `a`, v: `get` }, ` sufficient time. So I `, { g: `b`, v: `make` }, ` up my mind to make a journey from Dhaka to Chattogram. I `, { g: `c`, v: `reach` }, ` the station about half an hour before the departure of the train. It `, { g: `d`, v: `be` }, ` then a very busy time. Rickshaws, motorcars and other vehicles `, { g: `e`, v: `come` }, ` to the station with passengers. Coolies `, { g: `f`, v: `run` }, ` behind them. There `, { g: `g`, v: `be` }, ` shouts and rush of the passengers and the coolies. After some time hearing a whistle, the passengers `, { g: `h`, v: `stand` }, ` in a queue before the ticket counter. I also `, { g: `i`, v: `stand` }, ` in the line and `, { g: `j`, v: `buy` }, ` a second-class ticket.`
+        ],
+        gaps: {
+          a: { ans: `got`, rule: `RFV-9`, exp: `'In the last autumn vacation' অতীত নির্দেশক হওয়ায় 'get'-এর V2 'got' বসেছে।` },
+          b: { ans: `made`, rule: `RFV-9`, exp: `অতীত ভ্রমণের সিদ্ধান্ত বোঝাতে 'make'-এর past form 'made' বসেছে।` },
+          c: { ans: `reached`, rule: `RFV-9`, exp: `অতীত ঘটনা বর্ণনায় Past Indefinite 'reached' বসেছে।` },
+          d: { ans: `was`, rule: `RFV-9`, exp: `'then' অতীতের সময় নির্দেশ করায় 'It'-এর সাথে 'was' বসেছে।` },
+          e: { ans: `came/were coming`, rule: `RFV-9`, exp: `অতীতের চলমান দৃশ্য বোঝাতে Past Continuous 'were coming' বা Past Indefinite 'came' বসেছে।` },
+          f: { ans: `ran/were running`, rule: `RFV-9`, exp: `কুলিরা দৌড়াচ্ছিল/দৌড়াল—'were running' বা 'ran' বসেছে।` },
+          g: { ans: `were`, rule: `RFV-26`, exp: `'There'-এর পর plural noun 'shouts and rush' ও অতীতকাল থাকায় 'were' বসেছে।` },
+          h: { ans: `stood`, rule: `RFV-9`, exp: `অতীত বর্ণনায় 'stand'-এর past form 'stood' বসেছে।` },
+          i: { ans: `stood`, rule: `RFV-9`, exp: `অতীত ঘটনায় 'I'-এর পর 'stood' বসেছে।` },
+          j: { ans: `bought`, rule: `RFV-9`, exp: `'stood in the line and bought'—অতীতের সমান্তরাল verb হিসেবে 'bought' বসেছে।` }
+        }
+      },
+      {
+        id: 34,
+        title: `Question 34`,
+        board: `Dhaka Board 2016`,
+        segments: [
+          `Football is a favourite game in our country. It `, { g: `a`, v: `arrange` }, ` between two teams `, { g: `b`, v: `contain` }, ` eleven players each. The captains of both teams `, { g: `c`, v: `lead` }, ` their groups. This is the most exciting and enjoyable game ever `, { g: `d`, v: `play` }, ` across the world. It `, { g: `e`, v: `run` }, ` for an hour and a half with an interval after half of the time `, { g: `f`, v: `be` }, ` over. Any football tournament `, { g: `g`, v: `arrange` }, ` between two strong teams can be exciting. The result `, { g: `h`, v: `remain` }, ` almost unpredictable till the end because any team might win the other team `, { g: `i`, v: `score` }, ` a goal within seconds. The referee is to see whether rules and order `, { g: `j`, v: `maintain` }, ` by the players.`
+        ],
+        gaps: {
+          a: { ans: `is arranged`, rule: `RFV-24`, exp: `ফুটবল দুটি দলের মধ্যে আয়োজন করা হয়—Passive Voice-এ 'is arranged' বসেছে।` },
+          b: { ans: `containing`, rule: `RFV-14`, exp: `'two teams'-কে modify করতে Present Participle 'containing' (ধারণকারী) বসেছে।` },
+          c: { ans: `lead`, rule: `SVA-14`, exp: `'of'-এর পূর্বের মূল subject 'The captains' plural হওয়ায় Present Indefinite-এ 'lead' বসেছে।` },
+          d: { ans: `played`, rule: `RFV-17`, exp: `'ever played'—সারা বিশ্বে খেলা হওয়া (Past Participle passive modifier) অর্থে 'played' বসেছে।` },
+          e: { ans: `runs`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) ও খেলার নিয়ম হওয়ায় Present Indefinite-এ 'runs' বসেছে।` },
+          f: { ans: `is`, rule: `SVA-14`, exp: `'half of the time' (uncountable singular) হওয়ায় singular verb 'is' বসেছে।` },
+          g: { ans: `arranged`, rule: `RFV-17`, exp: `'যে কোনো টুর্নামেন্ট যা আয়োজিত হয়'—Past Participle modifier হিসেবে 'arranged' বসেছে।` },
+          h: { ans: `remains`, rule: `RFV-1`, exp: `Subject 'The result' singular হওয়ায় Present Indefinite-এ 'remains' হয়েছে।` },
+          i: { ans: `scoring`, rule: `RFV-14`, exp: `কয়েক সেকেন্ডের মধ্যে গোল করে—একই বাক্যে Present Participle 'scoring' বসেছে।` },
+          j: { ans: `are maintained`, rule: `RFV-24`, exp: `খেলোয়াড়দের দ্বারা ('by') নিয়মশৃঙ্খলা মানা হয় কিনা—plural subject ও Passive হওয়ায় 'are maintained' বসেছে।` }
+        }
+      },
+      {
+        id: 35,
+        title: `Question 35`,
+        board: `Rajshahi Board 2016; Barishal Board 2019`,
+        segments: [
+          `Once there `, { g: `a`, v: `live` }, ` an idle king. He `, { g: `b`, v: `not undergo` }, ` physical labor. As a result, he `, { g: `c`, v: `get` }, ` bulky and could not move from one place to another. He `, { g: `d`, v: `call` }, ` in a doctor. The doctor `, { g: `e`, v: `be` }, ` clever and wise. He did not `, { g: `f`, v: `prescribe` }, ` any medicine for the king. He asked the king to buy a club and `, { g: `g`, v: `move` }, ` it in the air till his hands `, { g: `h`, v: `get` }, ` moistened. The king started `, { g: `i`, v: `follow` }, ` the prescription. Thus, the king `, { g: `j`, v: `relieve` }, ` of his problem.`
+        ],
+        gaps: {
+          a: { ans: `lived`, rule: `RFV-9`, exp: `'Once' অতীতের গল্প নির্দেশ করায় Past Indefinite 'lived' বসেছে।` },
+          b: { ans: `did not undergo`, rule: `RFV-4`, exp: `অতীতকালের বাক্যকে negative করতে auxiliary 'did not' + base form 'undergo' বসেছে।` },
+          c: { ans: `got`, rule: `RFV-9`, exp: `অতীতের ফলাফল বোঝাতে 'get'-এর past form 'got' বসেছে।` },
+          d: { ans: `called`, rule: `RFV-9`, exp: `অতীত ঘটনায় 'call'-এর past form 'called' বসেছে।` },
+          e: { ans: `was`, rule: `RFV-9`, exp: `অতীত বর্ণনায় singular subject 'The doctor'-এর পর 'was' বসেছে।` },
+          f: { ans: `prescribe`, rule: `RFV-4`, exp: `'did not'-এর পর সর্বদা verb-এর base form (V1) বসে, তাই 'prescribe' হয়েছে।` },
+          g: { ans: `move`, rule: `RFV-14`, exp: `'to buy a club and move it'—infinitive 'to'-এর অধীনে base form 'move' বসেছে।` },
+          h: { ans: `got`, rule: `RFV-9`, exp: `অতীতের বর্ণনা ('asked... till') অনুযায়ী 'get'-এর past form 'got' বসেছে।` },
+          i: { ans: `to follow/following`, rule: `RFV-14`, exp: `'started'-এর পর infinitive 'to follow' অথবা gerund 'following' উভয়ই সঠিক।` },
+          j: { ans: `was relieved`, rule: `RFV-24`, exp: `রাজা তার সমস্যা থেকে মুক্তি পেয়েছিলেন—Past Indefinite Passive 'was relieved' বসেছে।` }
+        }
+      },
+      {
+        id: 36,
+        title: `Question 36`,
+        board: `Cumilla Board 2016`,
+        segments: [
+          `Parents `, { g: `a`, v: `be` }, ` blessings of God to us. When a child `, { g: `b`, v: `bear` }, `, their joys `, { g: `c`, v: `know` }, ` no bounds. They `, { g: `d`, v: `start` }, ` `, { g: `e`, v: `think` }, ` of `, { g: `f`, v: `nurse` }, ` and `, { g: `g`, v: `bring` }, ` up their children. They `, { g: `h`, v: `remain` }, ` safe under the custody of their parents since birth. Parents never mind `, { g: `i`, v: `take` }, ` pains for the upbringing of their offspring. We `, { g: `j`, v: `never offend` }, ` our parents.`
+        ],
+        gaps: {
+          a: { ans: `are`, rule: `SVA-1`, exp: `'Parents' plural subject এবং চিরন্তন সত্য হওয়ায় 'are' বসেছে।` },
+          b: { ans: `is born`, rule: `RFV-24`, exp: `শিশু জন্মগ্রহণ করে—'bear'-এর passive form 'is born' বসে।` },
+          c: { ans: `know`, rule: `SVA-1`, exp: `'their joys' plural subject হওয়ায় Present Indefinite-এ 'know' বসেছে।` },
+          d: { ans: `start`, rule: `SVA-1`, exp: `Subject 'They' plural হওয়ায় Present Indefinite-এ 'start' বসেছে।` },
+          e: { ans: `thinking`, rule: `RFV-14`, exp: `'start'-এর পর দ্বিতীয় verb হিসেবে gerund 'thinking' বসেছে।` },
+          f: { ans: `nursing`, rule: `RFV-18`, exp: `Preposition 'of'-এর পর verb-এর সাথে -ing যোগ হয়ে 'nursing' হয়েছে।` },
+          g: { ans: `bringing`, rule: `RFV-18`, exp: `'of nursing and bringing'—একই preposition 'of'-এর অধীনে -ing যুক্ত হয়ে 'bringing' হয়েছে।` },
+          h: { ans: `remain`, rule: `SVA-1`, exp: `Subject 'They' (children) plural হওয়ায় Present Indefinite-এ 'remain' বসেছে।` },
+          i: { ans: `taking`, rule: `RFV-18`, exp: `'mind'-এর পর verb আসলে তার সাথে -ing যুক্ত হয়, তাই 'taking' হয়েছে।` },
+          j: { ans: `should never offend`, rule: `RFV-23`, exp: `আমাদের কখনো মা-বাবাকে কষ্ট দেওয়া উচিত নয় অর্থে 'should never offend' বসেছে।` }
+        }
+      },
+      {
+        id: 37,
+        title: `Question 37`,
+        board: `Jashore Board 2016`,
+        segments: [
+          `An idle brain is a devil’s workshop. If we `, { g: `a`, v: `waste` }, ` our time in idleness, all sorts of evil thoughts will crowd in our brain. Idle persons who `, { g: `b`, v: `kill` }, ` their time are burdens of society. They `, { g: `c`, v: `sit` }, ` idle and cherish no high ideal and lofty ambition in life. They `, { g: `d`, v: `not support` }, ` themselves. They `, { g: `e`, v: `lead` }, ` an unhappy life and `, { g: `f`, v: `suffer` }, ` in the long run. There should be time for reading, for office or other work, time for physical exercise, time for recreation and time for prayer. This `, { g: `g`, v: `indicate` }, ` that we should do everything at the right moment. We `, { g: `h`, v: `lead` }, ` a healthy and prosperous life only when we `, { g: `i`, v: `follow` }, ` the routine which we `, { g: `j`, v: `make` }, ` for our guidance.`
+        ],
+        gaps: {
+          a: { ans: `waste`, rule: `RFV-COND`, exp: `Main clause 'will crowd' থাকায় 1st Conditional-এর If-clause-এ Present Indefinite 'waste' বসেছে।` },
+          b: { ans: `kill`, rule: `SVA-22`, exp: `'who'-এর antecedent 'Idle persons' plural হওয়ায় 'kill' বসেছে।` },
+          c: { ans: `sit`, rule: `SVA-1`, exp: `Subject 'They' plural ও চিরন্তন/সাধারণ সত্য হওয়ায় 'sit' বসেছে।` },
+          d: { ans: `cannot support`, rule: `RFV-23`, exp: `অলস ব্যক্তিরা নিজের ভরণপোষণ করতে পারে না—অক্ষমতা বোঝাতে 'cannot support' বসেছে।` },
+          e: { ans: `lead`, rule: `SVA-1`, exp: `Subject 'They' plural হওয়ায় Present Indefinite-এ 'lead' বসেছে।` },
+          f: { ans: `suffer`, rule: `SVA-1`, exp: `'and'-এর পর একই plural subject 'They'-এর জন্য 'suffer' বসেছে।` },
+          g: { ans: `indicates`, rule: `RFV-1`, exp: `Subject 'This' (3rd person singular) হওয়ায় Present Indefinite-এ 'indicates' হয়েছে।` },
+          h: { ans: `may lead/can lead`, rule: `RFV-23`, exp: `সম্ভাবনা/সামর্থ্য বোঝাতে 'may lead' বা 'can lead' বসেছে।` },
+          i: { ans: `follow/will follow`, rule: `SVA-1`, exp: `'only when'-এর অধীন Present Indefinite-এ 'follow' (বা 'will follow') বসেছে।` },
+          j: { ans: `make`, rule: `SVA-1`, exp: `Subject 'we' plural এবং সাধারণ অভ্যাস হওয়ায় Present Indefinite 'make' বসেছে।` }
+        }
+      },
+      {
+        id: 38,
+        title: `Question 38`,
+        board: `Sylhet Board 2016`,
+        segments: [
+          `One night the entire village was sleeping. The boy Bayazid Bustami was busy in the study. His mother `, { g: `a`, v: `sleep` }, `. Suddenly she woke up and `, { g: `b`, v: `feel` }, ` thirsty. `, { g: `c`, v: `call` }, ` her son, she told her son to give her a glass of water and `, { g: `d`, v: `fall` }, ` asleep again. So, he went out with the pitcher in search of water. After a while, he `, { g: `e`, v: `come` }, ` back home with water and found his mother `, { g: `f`, v: `sleep` }, `. Then he waited `, { g: `g`, v: `stand` }, ` by her bed with a glass of water. He did not make any sound lest she `, { g: `h`, v: `wake` }, ` up. Suddenly his mother woke up and saw him with a glass of water. At once she `, { g: `i`, v: `understand` }, ` what was the matter.`
+        ],
+        gaps: {
+          a: { ans: `was sleeping`, rule: `RFV-9`, exp: `অতীতকালে ('One night... was sleeping') মা ঘুমাচ্ছিলেন বোঝাতে Past Continuous 'was sleeping' বসেছে।` },
+          b: { ans: `felt`, rule: `RFV-9`, exp: `'woke up and felt'—অতীতের সমান্তরাল ঘটনায় 'feel'-এর past form 'felt' বসেছে।` },
+          c: { ans: `Calling`, rule: `RFV-14`, exp: `বাক্যের শুরুতে 'ছেলেকে ডেকে' অর্থে Present Participle 'Calling' বসেছে।` },
+          d: { ans: `fell`, rule: `RFV-9`, exp: `'she told... and fell asleep'—অতীতের ঘটনায় 'fall'-এর V2 'fell' বসেছে।` },
+          e: { ans: `came`, rule: `RFV-9`, exp: `কিছুক্ষণ পর সে ফিরে এলো—অতীত ঘটনায় 'come'-এর V2 'came' বসেছে।` },
+          f: { ans: `sleeping`, rule: `RFV-14`, exp: `'found his mother + V-ing'—ঘুমন্ত অবস্থায় পেলেন অর্থে Present Participle 'sleeping' বসেছে।` },
+          g: { ans: `standing`, rule: `RFV-14`, exp: `'waited standing'—দাঁড়িয়ে থেকে অপেক্ষা করছিলেন বোঝাতে Present Participle 'standing' বসেছে।` },
+          h: { ans: `should wake`, rule: `RFV-27`, exp: `'lest'-এর পর subject ('she') থাকলে 'should + V1' বসে, তাই 'should wake' হয়েছে।` },
+          i: { ans: `understood`, rule: `RFV-9`, exp: `অতীত ঘটনা হওয়ায় 'understand'-এর past form 'understood' বসেছে।` }
+        }
+      },
+      {
+        id: 39,
+        title: `Question 39`,
+        board: `Barishal Board 2016`,
+        segments: [
+          `There are many people who `, { g: `a`, v: `not take` }, ` physical exercise. They can hardly `, { g: `b`, v: `realize` }, ` that they themselves `, { g: `c`, v: `ruin` }, ` their health. They `, { g: `d`, v: `fall` }, ` victim to many diseases. Life `, { g: `e`, v: `become` }, ` dull to them. They `, { g: `f`, v: `remain` }, ` always ill-tempered. We `, { g: `g`, v: `build` }, ` good health and sound mind through physical exercise. Physical exercise `, { g: `h`, v: `make` }, ` our body active and the muscles strong. It also `, { g: `i`, v: `improve` }, ` our power of digestion and blood circulation. It `, { g: `j`, v: `give` }, ` strength to our brain.`
+        ],
+        gaps: {
+          a: { ans: `do not take`, rule: `RFV-4`, exp: `'who'-এর antecedent 'many people' plural হওয়ায় Present Indefinite negative 'do not take' বসেছে।` },
+          b: { ans: `realize`, rule: `RFV-23`, exp: `Modal 'can'-এর পর verb-এর base form (V1) বসে, তাই 'realize' হয়েছে।` },
+          c: { ans: `are ruining`, rule: `RFV-6`, exp: `তারা নিজেরাই নিজেদের স্বাস্থ্য নষ্ট করছে—চলমান কাজ বোঝাতে Present Continuous 'are ruining' বসেছে।` },
+          d: { ans: `fall`, rule: `SVA-1`, exp: `Subject 'They' plural হওয়ায় Present Indefinite-এ 'fall' বসেছে।` },
+          e: { ans: `becomes`, rule: `RFV-1`, exp: `Subject 'Life' (3rd person singular) হওয়ায় Present Indefinite-এ 'becomes' হয়েছে।` },
+          f: { ans: `remain`, rule: `SVA-1`, exp: `Subject 'They' plural হওয়ায় Present Indefinite-এ 'remain' বসেছে।` },
+          g: { ans: `can build`, rule: `RFV-23`, exp: `শরীরচর্চার মাধ্যমে আমরা সুস্বাস্থ্য গড়তে পারি—সামর্থ্য বোঝাতে 'can build' বসেছে।` },
+          h: { ans: `makes`, rule: `RFV-1`, exp: `'Physical exercise' singular subject হওয়ায় Present Indefinite-এ 'makes' হয়েছে।` },
+          i: { ans: `improves`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) হওয়ায় Present Indefinite-এ 'improves' হয়েছে।` },
+          j: { ans: `gives`, rule: `RFV-1`, exp: `Subject 'It' (3rd person singular) হওয়ায় Present Indefinite-এ 'gives' হয়েছে।` }
+        }
+      },
+      {
+        id: 40,
+        title: `Question 40`,
+        board: `Chattogram Board 2016`,
+        segments: [
+          `To err is human. If a man commits a crime anytime and repents truly for his misdeed, he may `, { g: `a`, v: `forgive` }, `. But the man who `, { g: `b`, v: `not, give up` }, ` the wrong, `, { g: `c`, v: `suffer` }, ` surely. In the long run, he `, { g: `d`, v: `will take` }, ` to the land of death. The old sailor `, { g: `e`, v: `be` }, ` a wrong-doer in his long journey. He committed a crime `, { g: `f`, v: `kill` }, ` a sea bird `, { g: `g`, v: `call` }, ` Albatross. That crime ultimately `, { g: `h`, v: `bring` }, ` bad luck to them. The ship `, { g: `i`, v: `leave` }, ` in the icy sea. The sun shone over their head. The wind `, { g: `j`, v: `drop` }, ` down. It was a great disaster.`
+        ],
+        gaps: {
+          a: { ans: `be forgiven`, rule: `RFV-23`, exp: `তাকে ক্ষমা করা হতে পারে—Modal 'may'-এর পর Passive Voice-এ 'be forgiven' বসেছে।` },
+          b: { ans: `does not give up`, rule: `RFV-4`, exp: `'who'-এর antecedent 'the man' (3rd person singular) হওয়ায় Present Indefinite negative 'does not give up' বসেছে।` },
+          c: { ans: `suffers`, rule: `RFV-1`, exp: `মূল subject 'the man' singular হওয়ায় Present Indefinite-এ 'suffers' হয়েছে।` },
+          d: { ans: `will be taken`, rule: `RFV-24`, exp: `তাকে মৃত্যুর দেশে নিয়ে যাওয়া হবে—Future Passive 'will be taken' বসেছে।` },
+          e: { ans: `was`, rule: `RFV-9`, exp: `'The old sailor' গল্পের অতীত চরিত্র ও singular হওয়ায় 'was' বসেছে।` },
+          f: { ans: `killing`, rule: `RFV-14`, exp: `অ্যালবাট্রস পাখি হত্যা করে—একই বাক্যে Present Participle 'killing' বসেছে।` },
+          g: { ans: `called`, rule: `RFV-17`, exp: `'অ্যালবাট্রস নামক'—Past Participle passive modifier হিসেবে 'called' বসেছে।` },
+          h: { ans: `brought`, rule: `RFV-9`, exp: `অতীত ঘটনা হওয়ায় 'bring'-এর past form 'brought' বসেছে।` },
+          i: { ans: `was left`, rule: `RFV-24`, exp: `জাহাজটি বরফাচ্ছন্ন সাগরে পরিত্যক্ত/আটকা পড়েছিল—Past Indefinite Passive 'was left' বসেছে।` },
+          j: { ans: `dropped`, rule: `RFV-9`, exp: `অতীতের বর্ণনায় 'drop'-এর past form 'dropped' বসেছে।` }
+        }
+      },
+      {
+        id: 41,
+        title: `Question 41`,
+        board: `Dinajpur Board 2016`,
+        segments: [
+          `Many events of great importance `, { g: `a`, v: `take` }, ` place during the last century. Significant advances `, { g: `b`, v: `make` }, ` in the field of science and technology. Many European colonies `, { g: `c`, v: `gain` }, ` independence. The movement for democracy `, { g: `d`, v: `become` }, ` prominent in many parts of the world. Two World Wars `, { g: `e`, v: `break` }, ` out in this century. It also `, { g: `f`, v: `witness` }, ` the misuse of atomic energy. Two cities of Japan were completely `, { g: `g`, v: `destroy` }, ` as a result of the dropping of atom bombs. However, the emergence of Bangladesh as an independent nation `, { g: `h`, v: `be` }, ` a momentous event. After a bloody war of nine months Bangladesh `, { g: `i`, v: `bear` }, `. Now we `, { g: `j`, v: `hold` }, ` our heads high in the community of nations.`
+        ],
+        gaps: {
+          a: { ans: `took`, rule: `RFV-9`, exp: `'during the last century' অতীত নির্দেশক হওয়ায় 'take'-এর past form 'took' বসেছে।` },
+          b: { ans: `have been made`, rule: `RFV-24`, exp: `বিজ্ঞান ও প্রযুক্তিতে উল্লেখযোগ্য অগ্রগতি সাধিত হয়েছে—Present Perfect Passive 'have been made' বসেছে।` },
+          c: { ans: `have gained`, rule: `RFV-8`, exp: `অনেক উপনিবেশ স্বাধীনতা অর্জন করেছে এবং ফলাফল এখনো বিদ্যমান থাকায় 'have gained' বসেছে।` },
+          d: { ans: `has become`, rule: `RFV-8`, exp: `গণতন্ত্রের আন্দোলন প্রবল হয়েছে—singular subject-এর পর 'has become' বসেছে।` },
+          e: { ans: `broke`, rule: `RFV-9`, exp: `দুটি বিশ্বযুদ্ধ সংঘটিত হয়েছিল—অতীত ঘটনায় 'break'-এর V2 'broke' বসেছে।` },
+          f: { ans: `witnessed`, rule: `RFV-9`, exp: `গত শতাব্দী পরমাণু শক্তির অপব্যবহার দেখেছিল—Past Indefinite 'witnessed' বসেছে।` },
+          g: { ans: `destroyed`, rule: `RFV-24`, exp: `'were completely + V3' (Past Indefinite Passive) হওয়ায় 'destroyed' বসেছে।` },
+          h: { ans: `has become`, rule: `SVA-14`, exp: `'the emergence' singular subject হওয়ায় Present Perfect 'has become' বসেছে।` },
+          i: { ans: `was born`, rule: `RFV-24`, exp: `১৯৭১ সালে বাংলাদেশ জন্মলাভ করেছিল—অতীত ও Passive sense-এ 'was born' বসেছে।` },
+          j: { ans: `can hold`, rule: `RFV-23`, exp: `'Now' বর্তমানে আমরা বিশ্বদরবারে মাথা উঁচু করে দাঁড়াতে পারি—সামর্থ্য বোঝাতে 'can hold' বসেছে।` }
+        }
+      }
+    ];
+
+    /* =========================================================================
+       Application State & Persistence
+       ========================================================================= */
+    let appState = {
+      currentQuestionId: 1,
+      inputs: {},       // { [qId]: { [gapKey]: string } }
+      checked: {},      // { [qId]: { results: { [gapKey]: { correct: bool, userVal: string } }, score: number, total: number } }
+      ruleErrors: {}    // { [ruleCode]: { wrong: number, total: number } }
+    };
+
+    let currentRulesTab = 'rfv';
+    let currentFilter = 'all';
+
+    function normalizeAnswer(str) {
+      return String(str || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .replace(/\bdoesn't\b/g, 'does not')
+        .replace(/\bdon't\b/g, 'do not')
+        .replace(/\bdidn't\b/g, 'did not')
+        .replace(/\bcan't\b/g, 'cannot')
+        .replace(/\bcan not\b/g, 'cannot')
+        .replace(/\bwon't\b/g, 'will not')
+        .replace(/\bmustn't\b/g, 'must not')
+        .replace(/\bshouldn't\b/g, 'should not')
+        .replace(/\bwouldn't\b/g, 'would not')
+        .replace(/\bisn't\b/g, 'is not')
+        .replace(/\baren't\b/g, 'are not')
+        .replace(/\bwasn't\b/g, 'was not')
+        .replace(/\bweren't\b/g, 'were not');
+    }
+
+    function expandVariants(ansString) {
+      const rawParts = ansString.split('/').map(s => s.trim()).filter(Boolean);
+      const out = new Set();
+      rawParts.forEach(part => {
+        out.add(normalizeAnswer(part));
+      });
+      // Handle compact shorthand like "should/must spend" or "should/must be"
+      if (ansString.includes('/')) {
+        const words = ansString.trim().split(/\s+/);
+        if (words.length >= 2 && words[0].includes('/')) {
+          const prefixes = words[0].split('/');
+          const rest = words.slice(1).join(' ');
+          prefixes.forEach(p => out.add(normalizeAnswer(p + ' ' + rest)));
+        }
+        if (words.length >= 2 && words[words.length - 1].includes('/')) {
+          const suffixes = words[words.length - 1].split('/');
+          const lead = words.slice(0, -1).join(' ');
+          suffixes.forEach(s => out.add(normalizeAnswer(lead + ' ' + s)));
+        }
+      }
+      return Array.from(out);
+    }
+
+    function isAnswerMatch(userInput, expectedAns) {
+      const normUser = normalizeAnswer(userInput);
+      if (!normUser) return false;
+      const variants = expandVariants(expectedAns);
+      return variants.includes(normUser);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    let saveQueue = Promise.resolve();
+    async function saveState() {
+      const token = localStorage.getItem('rfv_session_token');
+      if (!token) return;
+      const snapshot = JSON.stringify(appState);
+      saveQueue = saveQueue.then(async () => {
+        const response = await fetch('/api/progress', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+          body: snapshot
+        });
+        if (response.status === 401) logoutUser('তোমার সেশন শেষ হয়েছে। আবার Access Code দিয়ে প্রবেশ করো।');
+        if (!response.ok) throw new Error('Progress save failed');
+      }).catch(err => { console.error(err); });
+      return saveQueue;
+    }
+
+    function getQuestionById(id) {
+      return QUESTIONS.find(q => q.id === id) || QUESTIONS[0];
+    }
+
+    function recomputeStatsAndWeakness() {
+      const ruleErrors = {};
+      let checkedPassages = 0;
+      let totalGapsChecked = 0;
+      let totalCorrect = 0;
+
+      QUESTIONS.forEach(q => {
+        const chk = appState.checked[q.id];
+        if (!chk) return;
+        checkedPassages++;
+        Object.keys(q.gaps).forEach(gKey => {
+          const gapInfo = q.gaps[gKey];
+          const res = chk.results && chk.results[gKey];
+          if (!res) return;
+          totalGapsChecked++;
+          if (res.correct) totalCorrect++;
+          const rCode = gapInfo.rule || 'RFV-1';
+          if (!ruleErrors[rCode]) ruleErrors[rCode] = { wrong: 0, total: 0 };
+          ruleErrors[rCode].total++;
+          if (!res.correct) ruleErrors[rCode].wrong++;
+        });
+      });
+
+      appState.ruleErrors = ruleErrors;
+
+      const statPassages = document.getElementById('stat-passages');
+      if (statPassages) statPassages.textContent = checkedPassages + ' / ' + QUESTIONS.length;
+
+      const statAcc = document.getElementById('stat-accuracy');
+      const statAccNote = document.getElementById('stat-accuracy-note');
+      if (statAcc && statAccNote) {
+        if (totalGapsChecked === 0) {
+          statAcc.textContent = '—';
+          statAccNote.textContent = 'Check a passage to begin';
+        } else {
+          const pct = Math.round((totalCorrect / totalGapsChecked) * 100);
+          statAcc.textContent = pct + '%';
+          statAccNote.textContent = totalCorrect + ' of ' + totalGapsChecked + ' gaps correct';
+        }
+      }
+
+      const weakEntries = Object.entries(ruleErrors)
+        .filter(([, v]) => v.wrong > 0)
+        .sort((a, b) => b[1].wrong - a[1].wrong);
+
+      const totalErrors = weakEntries.reduce((acc, [, v]) => acc + v.wrong, 0);
+      const badge = document.getElementById('weakness-badge');
+      if (badge) {
+        badge.textContent = String(totalErrors);
+        badge.classList.toggle('is-zero', totalErrors === 0);
+      }
+
+      const topWeakEl = document.getElementById('stat-top-weak');
+      if (topWeakEl) {
+        if (weakEntries.length === 0) {
+          topWeakEl.textContent = checkedPassages > 0 ? 'Great job!' : 'None yet';
+        } else {
+          const topCode = weakEntries[0][0];
+          const meta = RULE_CATEGORIES[topCode];
+          topWeakEl.textContent = meta ? meta.label : topCode;
+        }
+      }
+    }
+
+    function renderQuestionNav() {
+      const grid = document.getElementById('q-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      QUESTIONS.forEach(q => {
+        const isChecked = Boolean(appState.checked[q.id]);
+        if (currentFilter === 'todo' && isChecked) return;
+        if (currentFilter === 'done' && !isChecked) return;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'q-num-btn';
+        if (q.id === appState.currentQuestionId) btn.classList.add('is-active');
+        if (isChecked) {
+          const chk = appState.checked[q.id];
+          if (chk.score === chk.total) btn.classList.add('is-checked');
+          else btn.classList.add('is-partial');
+        }
+        btn.textContent = String(q.id);
+        btn.setAttribute('aria-label', q.title + ' - ' + q.board);
+        btn.onclick = function() { selectQuestion(q.id); };
+        grid.appendChild(btn);
+      });
+    }
+
+    function applyQuestionFilter() {
+      const sel = document.getElementById('q-filter');
+      if (!sel) return;
+      currentFilter = sel.value;
+      renderQuestionNav();
+    }
+
+    function selectQuestion(id) {
+      appState.currentQuestionId = id;
+      renderQuestionNav();
+      renderCurrentPassage();
+      saveState();
+    }
+
+    function prevQuestion() {
+      const idx = QUESTIONS.findIndex(q => q.id === appState.currentQuestionId);
+      if (idx > 0) selectQuestion(QUESTIONS[idx - 1].id);
+    }
+
+    function nextQuestion() {
+      const idx = QUESTIONS.findIndex(q => q.id === appState.currentQuestionId);
+      if (idx >= 0 && idx < QUESTIONS.length - 1) selectQuestion(QUESTIONS[idx + 1].id);
+    }
+
+    function onGapInput(qId, gapKey, value) {
+      if (!appState.inputs[qId]) appState.inputs[qId] = {};
+      appState.inputs[qId][gapKey] = value;
+      saveState();
+    }
+
+    function renderCurrentPassage() {
+      const q = getQuestionById(appState.currentQuestionId);
+      const titleEl = document.getElementById('q-title');
+      const boardEl = document.getElementById('q-board');
+      const scoreChip = document.getElementById('q-score-chip');
+      const bodyEl = document.getElementById('passage-body');
+      const feedbackEl = document.getElementById('feedback-container');
+      const prevBtn = document.getElementById('btn-prev');
+      const nextBtn = document.getElementById('btn-next');
+      const resetBtn = document.getElementById('btn-reset-q');
+
+      if (!titleEl || !boardEl || !scoreChip || !bodyEl || !feedbackEl) return;
+
+      titleEl.textContent = q.title;
+      boardEl.textContent = q.board;
+
+      const idx = QUESTIONS.findIndex(item => item.id === q.id);
+      if (prevBtn) prevBtn.disabled = idx <= 0;
+      if (nextBtn) nextBtn.disabled = idx >= QUESTIONS.length - 1;
+      if (resetBtn) {
+        resetBtn.dataset.armed = 'false';
+        resetBtn.textContent = 'Clear Passage';
+      }
+
+      const savedInputs = appState.inputs[q.id] || {};
+      const chk = appState.checked[q.id] || null;
+
+      if (chk) {
+        scoreChip.textContent = 'Score: ' + chk.score + ' / ' + chk.total;
+      } else {
+        scoreChip.textContent = 'Not checked';
+      }
+
+      let html = '';
+      q.segments.forEach(seg => {
+        if (typeof seg === 'string') {
+          html += escapeHtml(seg);
+        } else {
+          const gKey = seg.g;
+          const val = savedInputs[gKey] || '';
+          let statusCls = '';
+          if (chk && chk.results && chk.results[gKey]) {
+            statusCls = chk.results[gKey].correct ? ' is-correct' : ' is-incorrect';
+          }
+          html += `<span class="gap-slot">`
+            + `<span class="gap-tag">(${escapeHtml(gKey)})</span>`
+            + `<input type="text" class="gap-input${statusCls}" id="gap-${q.id}-${gKey}" `
+            + `aria-label="Gap ${escapeHtml(gKey)} for verb ${escapeHtml(seg.v)}" `
+            + `value="${escapeHtml(val)}" autocomplete="off" spellcheck="false" `
+            + `oninput="onGapInput(${q.id}, '${gKey}', this.value)">`
+            + `<span class="gap-clue">(${escapeHtml(seg.v)})</span>`
+            + `</span>`;
+        }
+      });
+      bodyEl.innerHTML = html;
+
+      if (chk) {
+        renderFeedback(q, chk);
+      } else {
+        feedbackEl.style.display = 'none';
+        feedbackEl.innerHTML = '';
+      }
+    }
+
+    function renderFeedback(q, chk) {
+      const feedbackEl = document.getElementById('feedback-container');
+      if (!feedbackEl) return;
+
+      const gapKeys = Object.keys(q.gaps);
+      let cardsHtml = '';
+
+      gapKeys.forEach(gKey => {
+        const info = q.gaps[gKey];
+        const res = chk.results[gKey] || { correct: false, userVal: '' };
+        const userDisplay = res.userVal.trim() ? res.userVal.trim() : '(empty)';
+        const rMeta = RULE_CATEGORIES[info.rule];
+        const ruleLabel = rMeta ? rMeta.label : info.rule;
+
+        cardsHtml += `
+          <div class="feedback-item${res.correct ? '' : ' is-wrong'}">
+            <div class="feedback-item-top">
+              <span class="correct-pill">সঠিক উত্তর: ${escapeHtml(info.ans)}</span>
+              <span class="gap-marker-badge">(${escapeHtml(gKey)})</span>
+            </div>
+            <div class="user-verdict ${res.correct ? 'ok' : 'bad'}">
+              ${res.correct
+                ? `✓ Your answer: "${escapeHtml(userDisplay)}" (Correct)`
+                : `✗ Your answer: "${escapeHtml(userDisplay)}" (Incorrect)`}
+            </div>
+            <p class="feedback-explanation">${escapeHtml(info.exp)}</p>
+            <span class="rule-ref-chip">${escapeHtml(ruleLabel)}</span>
+          </div>
+        `;
+      });
+
+      feedbackEl.innerHTML = `
+        <h3 class="feedback-heading">
+          <span>Answer Feedback &amp; Bengali Explanations</span>
+          <span class="score-chip">${chk.score} / ${chk.total} Correct</span>
+        </h3>
+        <div class="feedback-grid">${cardsHtml}</div>
+      `;
+      feedbackEl.style.display = 'flex';
+    }
+
+    function checkCurrentPassage() {
+      const q = getQuestionById(appState.currentQuestionId);
+      const savedInputs = appState.inputs[q.id] || {};
+      const results = {};
+      let score = 0;
+      const gapKeys = Object.keys(q.gaps);
+
+      gapKeys.forEach(gKey => {
+        const inputEl = document.getElementById('gap-' + q.id + '-' + gKey);
+        const userVal = inputEl ? inputEl.value : (savedInputs[gKey] || '');
+        if (!appState.inputs[q.id]) appState.inputs[q.id] = {};
+        appState.inputs[q.id][gKey] = userVal;
+
+        const ok = isAnswerMatch(userVal, q.gaps[gKey].ans);
+        if (ok) score++;
+        results[gKey] = { correct: ok, userVal: userVal };
+      });
+
+      appState.checked[q.id] = { results: results, score: score, total: gapKeys.length };
+      recomputeStatsAndWeakness();
+      renderQuestionNav();
+      renderCurrentPassage();
+      saveState();
+
+      const fb = document.getElementById('feedback-container');
+      if (fb) fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetCurrentPassage(btn) {
+      if (btn && btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to clear';
+        return;
+      }
+      const q = getQuestionById(appState.currentQuestionId);
+      delete appState.inputs[q.id];
+      delete appState.checked[q.id];
+      if (btn) {
+        btn.dataset.armed = 'false';
+        btn.textContent = 'Clear Passage';
+      }
+      recomputeStatsAndWeakness();
+      renderQuestionNav();
+      renderCurrentPassage();
+      saveState();
+    }
+
+    function openWeaknessModal() {
+      const modal = document.getElementById('modal-weakness');
+      const body = document.getElementById('weakness-modal-body');
+      if (!modal || !body) return;
+
+      recomputeStatsAndWeakness();
+      const entries = Object.entries(appState.ruleErrors || {})
+        .filter(([, v]) => v.wrong > 0)
+        .sort((a, b) => b[1].wrong - a[1].wrong);
+
+      if (entries.length === 0) {
+        const checkedCount = Object.keys(appState.checked).length;
+        body.innerHTML = `
+          <div class="empty-state">
+            <h3 style="margin-top:0;color:var(--on-surface);">
+              ${checkedCount === 0 ? 'No Errors Recorded Yet' : 'Zero Mistakes So Far!'}
+            </h3>
+            <p style="margin-bottom:0;">
+              ${checkedCount === 0
+                ? 'Complete any passage and click <strong>Check Answer</strong> to see rule-wise error analytics and Bengali revision suggestions here.'
+                : 'You have answered every checked gap accurately. Keep practicing more passages to test all rules.'}
+            </p>
+          </div>
+        `;
+      } else {
+        let rowsHtml = `<p style="margin:0;color:var(--on-surface-variant);">Rules sorted by your mistake count. Focus on the top rules below and review them in <strong>নিয়মাবলি</strong>.</p>`;
+        entries.forEach(([code, stats]) => {
+          const meta = RULE_CATEGORIES[code] || { label: code, tip: 'নিয়মাবলি অংশ থেকে এই নিয়মটি অনুশীলন করুন।' };
+          const errRate = Math.round((stats.wrong / stats.total) * 100);
+          rowsHtml += `
+            <div class="weak-row">
+              <div class="weak-row-top">
+                <strong style="color:var(--on-surface);">${escapeHtml(meta.label)}</strong>
+                <span class="badge-count">${stats.wrong} mistake${stats.wrong > 1 ? 's' : ''} (${errRate}% error rate)</span>
+              </div>
+              <div class="weak-bar-track">
+                <div class="weak-bar-fill" style="width:${errRate}%;"></div>
+              </div>
+              <p class="weak-suggestion"><strong>Revision Tip:</strong> ${escapeHtml(meta.tip)}</p>
+            </div>
+          `;
+        });
+        body.innerHTML = rowsHtml;
+      }
+
+      modal.classList.add('is-open');
+    }
+
+    function openRulesModal() {
+      const modal = document.getElementById('modal-rules');
+      if (!modal) return;
+      renderRulesList();
+      modal.classList.add('is-open');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('is-open');
+    }
+
+    function switchRulesTab(tab) {
+      currentRulesTab = tab;
+      const tabRfv = document.getElementById('tab-rfv');
+      const tabSva = document.getElementById('tab-sva');
+      if (tabRfv) tabRfv.classList.toggle('is-active', tab === 'rfv');
+      if (tabSva) tabSva.classList.toggle('is-active', tab === 'sva');
+      renderRulesList();
+    }
+
+    function renderRulesList() {
+      const listEl = document.getElementById('rules-list');
+      const searchEl = document.getElementById('rules-search');
+      if (!listEl) return;
+
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : '';
+      const source = currentRulesTab === 'rfv' ? RULES_RFV : RULES_SVA;
+
+      const filtered = source.filter(r => {
+        if (!query) return true;
+        return r.id.toLowerCase().includes(query)
+          || r.title.toLowerCase().includes(query)
+          || r.desc.toLowerCase().includes(query)
+          || r.ex.some(e => e.toLowerCase().includes(query));
+      });
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="empty-state">No matching rules found for "${escapeHtml(query)}".</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(r => `
+        <article class="rule-card">
+          <div class="rule-card-title">${escapeHtml(r.id)}: ${escapeHtml(r.title)}</div>
+          <p class="rule-card-desc">${escapeHtml(r.desc)}</p>
+          <ul class="rule-card-examples">
+            ${r.ex.map(ex => `<li>${escapeHtml(ex)}</li>`).join('')}
+          </ul>
+        </article>
+      `).join('');
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList && e.target.classList.contains('modal-backdrop')) {
+        e.target.classList.remove('is-open');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal('modal-weakness');
+        closeModal('modal-rules');
+      }
+    });
+
+    const authScreen = document.getElementById('auth-screen');
+    const authForm = document.getElementById('access-form');
+    const authMessage = document.getElementById('auth-message');
+    const authSubmit = document.getElementById('access-submit');
+
+    async function apiRequest(path, options = {}) {
+      const token = localStorage.getItem('rfv_session_token');
+      const headers = Object.assign({}, options.headers || {});
+      if (token) headers.Authorization = 'Bearer ' + token;
+      return fetch(path, Object.assign({}, options, { headers }));
+    }
+
+    async function startUserSession(token) {
+      localStorage.setItem('rfv_session_token', token);
+      const response = await apiRequest('/api/progress');
+      if (!response.ok) throw new Error('তোমার Progress লোড করা যায়নি। আবার প্রবেশ করো।');
+      const data = await response.json();
+      const saved = data.progress;
+      appState = saved && typeof saved === 'object' ? {
+        currentQuestionId: saved.currentQuestionId || 1,
+        inputs: saved.inputs || {},
+        checked: saved.checked || {},
+        ruleErrors: saved.ruleErrors || {}
+      } : { currentQuestionId: 1, inputs: {}, checked: {}, ruleErrors: {} };
+      authScreen.hidden = true;
+      document.body.classList.remove('auth-locked');
+      recomputeStatsAndWeakness();
+      renderQuestionNav();
+      renderCurrentPassage();
+    }
+
+    async function logoutUser(message = '') {
+      const token = localStorage.getItem('rfv_session_token');
+      if (token) {
+        try { await fetch('/api/logout', { method:'POST', headers:{ Authorization:'Bearer '+token } }); } catch (_) {}
+      }
+      localStorage.removeItem('rfv_session_token');
+      document.body.classList.add('auth-locked');
+      authScreen.hidden = false;
+      authMessage.textContent = message;
+      document.getElementById('access-code').value = '';
+    }
+    window.logoutUser = logoutUser;
+
+    authForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      authSubmit.disabled = true;
+      authSubmit.textContent = 'যাচাই হচ্ছে…';
+      authMessage.textContent = '';
+      try {
+        const code = document.getElementById('access-code').value.trim();
+        const response = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({code}) });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Access Code সঠিক নয়।');
+        await startUserSession(data.token);
+      } catch (error) {
+        localStorage.removeItem('rfv_session_token');
+        authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
+      } finally {
+        authSubmit.disabled = false;
+        authSubmit.textContent = 'প্রবেশ করো';
+      }
+    });
+
+    async function initApp() {
+      document.body.classList.add('auth-locked');
+      authScreen.hidden = false;
+      const token = localStorage.getItem('rfv_session_token');
+      if (token) {
+        try { await startUserSession(token); }
+        catch (_) { localStorage.removeItem('rfv_session_token'); }
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
