@@ -5,4 +5,4 @@ compatibility_date = "2026-11-19"
 [[d1_databases]]
 binding = "DB"
 database_name = "rfv-progress"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "15f263ae-9349-4e25-9b12-1ea4bec5f473"
