@@ -2514,25 +2514,46 @@
     }
     window.logoutUser = logoutUser;
 
-    authForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      authSubmit.disabled = true;
-      authSubmit.textContent = 'যাচাই হচ্ছে…';
-      authMessage.textContent = '';
-      try {
-        const code = document.getElementById('access-code').value.trim();
-        const response = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({code}) });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || 'Access Code সঠিক নয়।');
-        await startUserSession(data.token);
-      } catch (error) {
-        localStorage.removeItem('rfv_session_token');
-        authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
-      } finally {
-        authSubmit.disabled = false;
-        authSubmit.textContent = 'প্রবেশ করো';
-      }
+   authForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  authSubmit.disabled = true;
+  authSubmit.textContent = 'যাচাই হচ্ছে…';
+  authMessage.textContent = '';
+
+  try {
+    const code = document.getElementById('access-code').value.trim();
+
+    let deviceId = localStorage.getItem('rfv_device_id');
+
+    if (!deviceId) {
+      deviceId = crypto.randomUUID();
+      localStorage.setItem('rfv_device_id', deviceId);
+    }
+
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({code, deviceId})
     });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Access Code সঠিক নয়।');
+    }
+
+    await startUserSession(data.token);
+
+  } catch (error) {
+    localStorage.removeItem('rfv_session_token');
+    authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
+
+  } finally {
+    authSubmit.disabled = false;
+    authSubmit.textContent = 'প্রবেশ করো';
+  }
+});
+
 
     async function initApp() {
       document.body.classList.add('auth-locked');
