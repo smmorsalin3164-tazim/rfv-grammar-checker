@@ -38,12 +38,8 @@ button:disabled{
   opacity:.5;
   cursor:not-allowed;
 }
-.reset{
-  background:#276b9a;
-}
-.revoke{
-  background:#b33b3b;
-}
+.reset{background:#276b9a}
+.revoke{background:#b33b3b}
 .row{
   display:flex;
   gap:8px;
@@ -61,12 +57,8 @@ button:disabled{
   margin:10px 0;
   overflow-wrap:anywhere;
 }
-.muted{
-  color:#62747b;
-}
-.table-wrap{
-  overflow-x:auto;
-}
+.muted{color:#62747b}
+.table-wrap{overflow-x:auto}
 table{
   width:100%;
   border-collapse:collapse;
@@ -83,8 +75,35 @@ td,th{
   gap:6px;
   flex-wrap:wrap;
 }
-small{
-  color:#667;
+small{color:#667}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin:20px 0;
+}
+.summary-card{
+  padding:18px;
+  background:#eef5f3;
+  border:1px solid #dce9e5;
+  border-radius:12px;
+}
+.summary-number{
+  font-size:32px;
+  font-weight:700;
+  margin:4px 0;
+}
+.summary-label{
+  color:#62747b;
+  font-size:14px;
+}
+@media(max-width:480px){
+  body{padding:12px}
+  .wrap{padding:16px}
+  .summary{gap:8px}
+  .summary-card{padding:12px}
+  .summary-number{font-size:26px}
 }
 </style>
 </head>
@@ -102,6 +121,21 @@ Admin Key শুধু এখানে প্রবেশ করাও। এট
 <div class="row">
   <input id="key" type="password" placeholder="Admin Key">
   <button onclick="connect()">Connect</button>
+</div>
+
+<!-- Summary -->
+<div class="summary">
+
+  <div class="summary-card">
+    <div class="summary-label">মোট Access Code</div>
+    <div class="summary-number" id="totalCodes">—</div>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-label">Active Code</div>
+    <div class="summary-number" id="activeCodes">—</div>
+  </div>
+
 </div>
 
 <hr>
@@ -150,7 +184,7 @@ async function call(method, body){
       'Content-Type':'application/json',
       'X-Admin-Key':document.getElementById('key').value
     },
-    body: body ? JSON.stringify(body) : undefined
+    body:body ? JSON.stringify(body) : undefined
   });
 
   const d = await r.json();
@@ -165,6 +199,7 @@ async function call(method, body){
 async function connect(){
 
   try{
+
     await loadCodes();
 
     sessionStorage.setItem(
@@ -208,6 +243,14 @@ async function loadCodes(){
 
     const d = await call('GET');
 
+    // Summary update
+    document.getElementById('totalCodes').textContent =
+      Number(d.total_codes ?? d.codes.length);
+
+    document.getElementById('activeCodes').textContent =
+      Number(d.active_codes ?? d.codes.filter(c => c.active).length);
+
+    // Access Code List
     document.getElementById('list').innerHTML =
       '<div class="table-wrap">' +
       '<table>' +
