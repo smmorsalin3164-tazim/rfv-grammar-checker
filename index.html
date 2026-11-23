@@ -906,10 +906,12 @@
         <button type="button" id="email-confirm-btn">Confirm</button>
       </div>
       <form id="access-form" hidden>
-        <label for="access-code">ইমেলে পাওয়া Access Code</label>
+        <label for="access-code">Access Code</label>
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
         <button type="submit" id="access-submit">প্রবেশ করো</button>
       </form>
+      <p id="existing-code-switch"><a href="#" id="show-code-login">আগে থেকেই Access Code আছে? এখানে প্রবেশ করো</a></p>
+      <p id="new-student-switch" hidden><a href="#" id="show-enroll-form">নতুন শিক্ষার্থী? নাম ও ইমেল দিয়ে শুরু করো</a></p>
       <p id="auth-message" role="status"></p>
     </div>
   </section>
@@ -2526,6 +2528,10 @@
     const enrollForm = document.getElementById('enroll-form');
     const emailConfirm = document.getElementById('email-confirm');
     const emailConfirmBtn = document.getElementById('email-confirm-btn');
+    const showCodeLogin = document.getElementById('show-code-login');
+    const showEnrollForm = document.getElementById('show-enroll-form');
+    const existingCodeSwitch = document.getElementById('existing-code-switch');
+    const newStudentSwitch = document.getElementById('new-student-switch');
     const authMessage = document.getElementById('auth-message');
     const authSubmit = document.getElementById('access-submit');
     let pendingStudent = null;
@@ -2569,6 +2575,28 @@
     }
     window.logoutUser = logoutUser;
 
+    showCodeLogin.addEventListener('click', (event) => {
+      event.preventDefault();
+      enrollForm.hidden = true;
+      emailConfirm.hidden = true;
+      authForm.hidden = false;
+      existingCodeSwitch.hidden = true;
+      newStudentSwitch.hidden = false;
+      document.getElementById('auth-intro').textContent = 'তোমার Access Code দিয়ে প্রবেশ করো।';
+      authMessage.textContent = '';
+    });
+
+    showEnrollForm.addEventListener('click', (event) => {
+      event.preventDefault();
+      authForm.hidden = true;
+      enrollForm.hidden = false;
+      emailConfirm.hidden = true;
+      existingCodeSwitch.hidden = false;
+      newStudentSwitch.hidden = true;
+      document.getElementById('auth-intro').textContent = 'নতুন শিক্ষার্থী হলে নাম ও ইমেল দিয়ে শুরু করো।';
+      authMessage.textContent = '';
+    });
+
     enrollForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const name = document.getElementById('student-name').value.trim();
@@ -2596,6 +2624,8 @@
         enrollForm.hidden = true;
         emailConfirm.hidden = true;
         authForm.hidden = false;
+        existingCodeSwitch.hidden = true;
+        newStudentSwitch.hidden = false;
         document.getElementById('auth-intro').textContent = 'তোমার ইমেলে পাঠানো Access Code বসিয়ে প্রবেশ করো।';
         authMessage.style.color = '#147a43';
         authMessage.textContent = 'Access Code ইমেলে পাঠানো হয়েছে। Inbox না পেলে Spam/Junk folder দেখো।';
