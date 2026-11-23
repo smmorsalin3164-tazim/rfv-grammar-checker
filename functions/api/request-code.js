@@ -1,4 +1,4 @@
-import { json, sha256 } from './_utils.js';
+import { json, sha256, encryptAccessCode } from './_utils.js';
 
 function makeCode() {
   const bytes = crypto.getRandomValues(new Uint8Array(6));
@@ -20,12 +20,16 @@ export async function onRequestPost({ request, env }) {
     return json({ error: 'ইমেল পাঠানোর ব্যবস্থা এখনো যুক্ত করা হয়নি। Admin-এর সঙ্গে যোগাযোগ করো।' }, 503);
   }
 
+  if (!env.CODE_ENCRYPTION_KEY || env.CODE_ENCRYPTION_KEY.length < 32) {
+    return json({ error: 'Access Code নিরাপদে সংরক্ষণের ব্যবস্থা এখনো প্রস্তুত নয়। Admin-এর সঙ্গে যোগাযোগ করো।' }, 503);
+  }
   const code = makeCode();
+  const encryptedCode = await encryptAccessCode(code, env.CODE_ENCRYPTION_KEY);
   const id = crypto.randomUUID();
   const now = Date.now();
   await env.DB.prepare(
-    'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit) VALUES(?,?,?,1,?,3)'
-  ).bind(id, await sha256(code), name, now).run();
+    'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,3,?)'
+  ).bind(id, await sha256(code), name, now, encryptedCode).run();
 
   try {
     const mailResponse = await fetch(env.MAILER_URL, {
