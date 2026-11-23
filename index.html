@@ -893,9 +893,20 @@
   <section id="auth-screen">
     <div class="auth-card">
       <h2>RFV Grammar Checker</h2>
-      <p>অনুশীলন শুরু করতে তোমার ব্যক্তিগত Access Code প্রবেশ করাও।</p>
-      <form id="access-form">
-        <label for="access-code">Access Code</label>
+      <p id="auth-intro">নতুন শিক্ষার্থী হলে নাম ও ইমেল দিয়ে শুরু করো।</p>
+      <form id="enroll-form">
+        <label for="student-name">তোমার নাম</label>
+        <input id="student-name" type="text" autocomplete="name" placeholder="সম্পূর্ণ নাম" required maxlength="80">
+        <label for="student-email">Email Address</label>
+        <input id="student-email" type="email" autocomplete="email" placeholder="তোমার ইমেল" required maxlength="254">
+        <button type="submit" id="enroll-submit">Continue</button>
+      </form>
+      <div id="email-confirm" hidden>
+        <p style="color:#b42318;font-weight:700">Check your email — ইমেল ঠিক আছে কি না দেখে Confirm চাপো।</p>
+        <button type="button" id="email-confirm-btn">Confirm</button>
+      </div>
+      <form id="access-form" hidden>
+        <label for="access-code">ইমেলে পাওয়া Access Code</label>
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
         <button type="submit" id="access-submit">প্রবেশ করো</button>
       </form>
@@ -2512,8 +2523,12 @@
 
     const authScreen = document.getElementById('auth-screen');
     const authForm = document.getElementById('access-form');
+    const enrollForm = document.getElementById('enroll-form');
+    const emailConfirm = document.getElementById('email-confirm');
+    const emailConfirmBtn = document.getElementById('email-confirm-btn');
     const authMessage = document.getElementById('auth-message');
     const authSubmit = document.getElementById('access-submit');
+    let pendingStudent = null;
 
     async function apiRequest(path, options = {}) {
       const token = localStorage.getItem('rfv_session_token');
@@ -2554,45 +2569,74 @@
     }
     window.logoutUser = logoutUser;
 
-   authForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  authSubmit.disabled = true;
-  authSubmit.textContent = 'যাচাই হচ্ছে…';
-  authMessage.textContent = '';
-
-  try {
-    const code = document.getElementById('access-code').value.trim();
-
-    let deviceId = localStorage.getItem('rfv_device_id');
-
-    if (!deviceId) {
-      deviceId = crypto.randomUUID();
-      localStorage.setItem('rfv_device_id', deviceId);
-    }
-
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({code, deviceId})
+    enrollForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('student-name').value.trim();
+      const email = document.getElementById('student-email').value.trim();
+      if (!name || !email) return;
+      pendingStudent = { name, email };
+      authMessage.textContent = '';
+      emailConfirm.hidden = false;
+      enrollForm.querySelector('button[type="submit"]').textContent = 'Continue';
     });
 
-    const data = await response.json();
+    emailConfirmBtn.addEventListener('click', async () => {
+      if (!pendingStudent) return;
+      emailConfirmBtn.disabled = true;
+      emailConfirmBtn.textContent = 'ইমেল পাঠানো হচ্ছে…';
+      authMessage.textContent = '';
+      try {
+        const response = await fetch('/api/request-code', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(pendingStudent)
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'ইমেল পাঠানো যায়নি।');
+        enrollForm.hidden = true;
+        emailConfirm.hidden = true;
+        authForm.hidden = false;
+        document.getElementById('auth-intro').textContent = 'তোমার ইমেলে পাঠানো Access Code বসিয়ে প্রবেশ করো।';
+        authMessage.style.color = '#147a43';
+        authMessage.textContent = 'Access Code ইমেলে পাঠানো হয়েছে। Inbox না পেলে Spam/Junk folder দেখো।';
+      } catch (error) {
+        authMessage.style.color = '#a33b35';
+        authMessage.textContent = error.message || 'আবার চেষ্টা করো।';
+      } finally {
+        emailConfirmBtn.disabled = false;
+        emailConfirmBtn.textContent = 'Confirm';
+      }
+    });
 
-    if (!response.ok) {
-      throw new Error(data.error || 'Access Code সঠিক নয়।');
-    }
-
-    await startUserSession(data.token);
-
-  } catch (error) {
-    localStorage.removeItem('rfv_session_token');
-    authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
-
-  } finally {
-    authSubmit.disabled = false;
-    authSubmit.textContent = 'প্রবেশ করো';
-  }
-});
+    authForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      authSubmit.disabled = true;
+      authSubmit.textContent = 'যাচাই হচ্ছে…';
+      authMessage.style.color = '#a33b35';
+      authMessage.textContent = '';
+      try {
+        const code = document.getElementById('access-code').value.trim();
+        let deviceId = localStorage.getItem('rfv_device_id');
+        if (!deviceId) {
+          deviceId = crypto.randomUUID();
+          localStorage.setItem('rfv_device_id', deviceId);
+        }
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code, deviceId})
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Access Code সঠিক নয়।');
+        await startUserSession(data.token);
+      } catch (error) {
+        localStorage.removeItem('rfv_session_token');
+        authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
+      } finally {
+        authSubmit.disabled = false;
+        authSubmit.textContent = 'প্রবেশ করো';
+      }
+    });
 
 
     async function initApp() {
