@@ -43,7 +43,7 @@ export async function onRequestPost({ request, env }) {
   const token = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2, '0')).join('');
   const tokenHash = await sha256(token);
   const expires = now + 30 * 24 * 60 * 60 * 1000;
-  await env.DB.prepare('INSERT INTO sessions(token_hash, code_id, expires_at) VALUES(?,?,?)')
-    .bind(tokenHash, row.id, expires).run();
+  await env.DB.prepare('INSERT INTO sessions(token_hash, code_id, expires_at, device_hash) VALUES(?,?,?,?)')
+    .bind(tokenHash, row.id, expires, deviceHash).run();
   return json({ token, expiresAt: expires });
 }
