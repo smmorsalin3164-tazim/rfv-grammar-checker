@@ -1,4 +1,4 @@
-import { json, sha256 } from './_utils.js';
+import { json, sha256, encryptAccessCode, decryptAccessCode } from './_utils.js';
 
 function authorized(request, env) {
   const key = request.headers.get('X-Admin-Key') || '';
@@ -13,7 +13,7 @@ function makeCode() {
 export async function onRequestGet({ request, env }) {
   if (!authorized(request, env)) return json({ error: 'Admin authorization required' }, 401);
   const { results = [] } = await env.DB.prepare(`
-    SELECT a.id, a.label, a.active, a.created_at, a.device_limit,
+    SELECT a.id, a.label, a.active, a.created_at, a.device_limit, a.encrypted_code,
       (SELECT COUNT(*) FROM device_activations d WHERE d.code_id=a.id) AS device_count,
       (SELECT COUNT(*) FROM login_attempts l WHERE l.code_id=a.id AND l.status='blocked') AS failed_attempt_count,
       (SELECT COUNT(DISTINCT device_hash) FROM login_attempts l WHERE l.code_id=a.id AND l.status='blocked') AS failed_device_count
@@ -36,17 +36,20 @@ export async function onRequestGet({ request, env }) {
     recentAttempts = attempts.results || [];
   }
   const recentAttemptsAll = await env.DB.prepare(`
-    SELECT a.label, l.attempted_at, l.status, l.device_hash
+    SELECT a.label, a.encrypted_code, l.attempted_at, l.status, l.device_hash
     FROM login_attempts l JOIN access_codes a ON a.id=l.code_id
     ORDER BY l.attempted_at DESC LIMIT 100
   `).all();
 
+  const codeKey = env.CODE_ENCRYPTION_KEY || '';
+  const reveal = async value => { try { return value ? await decryptAccessCode(value, codeKey) : null; } catch { return null; } };
+
   return json({
-    codes: results.map(c => ({ ...c, remaining_devices: Math.max(0, Number(c.device_limit || 3) - Number(c.device_count || 0)) })),
-    recent_attempts: (recentAttemptsAll.results || []).map(a => ({
-      label: a.label || '—', attempted_at: a.attempted_at, status: a.status,
+    codes: await Promise.all(results.map(async c => ({ ...c, code: await reveal(c.encrypted_code), encrypted_code: undefined, remaining_devices: Math.max(0, Number(c.device_limit || 3) - Number(c.device_count || 0)) }))),
+    recent_attempts: await Promise.all((recentAttemptsAll.results || []).map(async a => ({
+      label: a.label || '—', code: await reveal(a.encrypted_code), attempted_at: a.attempted_at, status: a.status,
       device: String(a.device_hash || '').slice(0, 10) + '…'
-    })),
+    }))),
     total_codes: summary.total_codes, active_codes: summary.active_codes,
     hsc27: special ? {
       id: special.id, device_count: Number(special.device_count || 0),
@@ -65,25 +68,26 @@ export async function onRequestPost({ request, env }) {
   try { body = await request.json(); } catch {}
   const id = crypto.randomUUID();
   const createdAt = Date.now();
+  if (!env.CODE_ENCRYPTION_KEY || env.CODE_ENCRYPTION_KEY.length < 32) return json({ error: 'Cloudflare CODE_ENCRYPTION_KEY secret is not configured (minimum 32 characters).' }, 503);
 
   if (body.special === 'hsc27') {
     const codeHash = await sha256('HSC27.FREE');
     const existing = await env.DB.prepare('SELECT id, active FROM access_codes WHERE code_hash=?').bind(codeHash).first();
     if (existing) {
-      await env.DB.prepare("UPDATE access_codes SET label='HSC 27', device_limit=29, active=1 WHERE id=?").bind(existing.id).run();
+      await env.DB.prepare("UPDATE access_codes SET label='HSC 27', device_limit=29, active=1, encrypted_code=? WHERE id=?").bind(await encryptAccessCode('hsc27.free', env.CODE_ENCRYPTION_KEY), existing.id).run();
       return json({ id: existing.id, code: 'hsc27.free', label: 'HSC 27', active: true, existing: true });
     }
     await env.DB.prepare(
-      'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit) VALUES(?,?,?,1,?,29)'
-    ).bind(id, codeHash, 'HSC 27', createdAt).run();
+      'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,29,?)'
+    ).bind(id, codeHash, 'HSC 27', createdAt, await encryptAccessCode('hsc27.free', env.CODE_ENCRYPTION_KEY)).run();
     return json({ id, code: 'hsc27.free', label: 'HSC 27', active: true }, 201);
   }
 
   const label = String(body.label || '').trim().slice(0, 80);
   const code = makeCode();
   await env.DB.prepare(
-    'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit) VALUES(?,?,?,1,?,3)'
-  ).bind(id, await sha256(code), label, createdAt).run();
+    'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,3,?)'
+  ).bind(id, await sha256(code), label, createdAt, await encryptAccessCode(code, env.CODE_ENCRYPTION_KEY)).run();
   return json({ id, code, label, active: true }, 201);
 }
 
