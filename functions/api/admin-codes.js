@@ -35,8 +35,18 @@ export async function onRequestGet({ request, env }) {
     `).bind(special.id).all();
     recentAttempts = attempts.results || [];
   }
+  const recentAttemptsAll = await env.DB.prepare(`
+    SELECT a.label, l.attempted_at, l.status, l.device_hash
+    FROM login_attempts l JOIN access_codes a ON a.id=l.code_id
+    ORDER BY l.attempted_at DESC LIMIT 100
+  `).all();
+
   return json({
     codes: results.map(c => ({ ...c, remaining_devices: Math.max(0, Number(c.device_limit || 3) - Number(c.device_count || 0)) })),
+    recent_attempts: (recentAttemptsAll.results || []).map(a => ({
+      label: a.label || '—', attempted_at: a.attempted_at, status: a.status,
+      device: String(a.device_hash || '').slice(0, 10) + '…'
+    })),
     total_codes: summary.total_codes, active_codes: summary.active_codes,
     hsc27: special ? {
       id: special.id, device_count: Number(special.device_count || 0),
