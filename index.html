@@ -728,6 +728,16 @@
       padding-bottom: var(--space-sm);
     }
 
+    .rules-source-tabs { position: sticky; top: 0; z-index: 2; background: var(--surface-container-low); padding: 6px 0 10px; }
+    .rules-pdf-panel { display: flex; flex-direction: column; gap: 10px; min-height: 65vh; }
+    .rules-pdf-panel[hidden] { display: none !important; }
+    .rules-pdf-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; color: var(--on-surface); }
+    .rules-pdf-heading span { color: var(--on-surface-variant); font-size: .82rem; }
+    .rules-pdf-frame { width: 100%; height: min(68vh, 900px); min-height: 480px; border: 1px solid var(--outline-variant); border-radius: var(--rounded); background: #fff; }
+    .rules-pdf-fallback { margin: 0; font-size: .9rem; color: var(--on-surface-variant); }
+    .rules-pdf-fallback a { color: var(--primary-hover); font-weight: 700; }
+    @media (max-width: 640px) { .rules-pdf-frame { height: 65vh; min-height: 420px; } }
+
     .tab-btn {
       min-height: 40px;
       padding: 0.45rem 1rem;
@@ -999,15 +1009,32 @@
         <button type="button" class="btn btn-ghost" onclick="closeModal('modal-rules')">Close</button>
       </div>
       <div class="modal-body">
-        <div class="tabs-bar">
-          <button type="button" class="tab-btn is-active" id="tab-rfv" onclick="switchRulesTab('rfv')">Right Form of Verbs (Rules 1–30)</button>
-          <button type="button" class="tab-btn" id="tab-sva" onclick="switchRulesTab('sva')">Subject-Verb Agreement (Rules 1–27)</button>
+        <div class="tabs-bar rules-source-tabs" role="tablist" aria-label="নিয়মাবলীর উৎস">
+          <button type="button" class="tab-btn is-active" id="tab-source-text" onclick="switchRulesSource('text')">মূল নিয়মাবলি (Text)</button>
+          <button type="button" class="tab-btn" id="tab-source-pdf1" onclick="switchRulesSource('pdf1')">Grammar Rules (PDF)</button>
+          <button type="button" class="tab-btn" id="tab-source-pdf2" onclick="switchRulesSource('pdf2')">Grammar Master Guide (PDF)</button>
         </div>
-        <div class="search-box-wrap">
-          <label for="rules-search" class="field-label">Search rules, keywords, or examples</label>
-          <input type="text" id="rules-search" class="text-input" placeholder="e.g., since, lest, with a view to, singular, either..." oninput="renderRulesList()">
-        </div>
-        <div id="rules-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+        <section id="rules-source-text">
+          <div class="tabs-bar">
+            <button type="button" class="tab-btn is-active" id="tab-rfv" onclick="switchRulesTab('rfv')">Right Form of Verbs (Rules 1–30)</button>
+            <button type="button" class="tab-btn" id="tab-sva" onclick="switchRulesTab('sva')">Subject-Verb Agreement (Rules 1–27)</button>
+          </div>
+          <div class="search-box-wrap">
+            <label for="rules-search" class="field-label">Search rules, keywords, or examples</label>
+            <input type="text" id="rules-search" class="text-input" placeholder="e.g., since, lest, with a view to, singular, either..." oninput="renderRulesList()">
+          </div>
+          <div id="rules-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </section>
+        <section id="rules-source-pdf1" class="rules-pdf-panel" hidden>
+          <div class="rules-pdf-heading"><strong>Grammar Rules Collection</strong><span>Uploaded PDF 1 • 25 pages</span></div>
+          <iframe class="rules-pdf-frame" title="Grammar Rules Collection PDF" src="/rules/grammar-rules-source-2.pdf#view=FitH"></iframe>
+          <p class="rules-pdf-fallback">PDF না খুললে <a href="/rules/grammar-rules-source-2.pdf" target="_blank" rel="noopener">এখানে চাপ দিয়ে PDF খুলে নাও</a>।</p>
+        </section>
+        <section id="rules-source-pdf2" class="rules-pdf-panel" hidden>
+          <div class="rules-pdf-heading"><strong>HSC English Grammar Master Guide</strong><span>Uploaded PDF 2 • 10 pages</span></div>
+          <iframe class="rules-pdf-frame" title="HSC English Grammar Master Guide PDF" src="/rules/grammar-master-guide-source-3.pdf#view=FitH"></iframe>
+          <p class="rules-pdf-fallback">PDF না খুললে <a href="/rules/grammar-master-guide-source-3.pdf" target="_blank" rel="noopener">এখানে চাপ দিয়ে PDF খুলে নাও</a>।</p>
+        </section>
       </div>
     </div>
   </div>
@@ -2414,6 +2441,19 @@
     function closeModal(modalId) {
       const modal = document.getElementById(modalId);
       if (modal) modal.classList.remove('is-open');
+    }
+
+    let currentRulesSource = 'text';
+
+    function switchRulesSource(source) {
+      currentRulesSource = source;
+      ['text', 'pdf1', 'pdf2'].forEach(key => {
+        const panel = document.getElementById('rules-source-' + key);
+        const tab = document.getElementById('tab-source-' + key);
+        if (panel) panel.hidden = key !== source;
+        if (tab) tab.classList.toggle('is-active', key === source);
+      });
+      if (source === 'text') renderRulesList();
     }
 
     function switchRulesTab(tab) {
