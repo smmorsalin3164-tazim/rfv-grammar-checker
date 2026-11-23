@@ -1,16 +1,16 @@
 import { json, session } from './_utils.js';
 
-function isDeviceScoped(s) {
-  return s.label === 'HSC 27' && !!s.device_hash;
+function isHsc27(s) {
+  return s.label === 'HSC 27';
 }
 
 export async function onRequestGet({ request, env }) {
   const s = await session(request, env);
   if (!s) return json({ error: 'Unauthorized' }, 401);
+  if (isHsc27(s) && !s.device_hash) return json({ error: 'এই সেশনের Device তথ্য পুরোনো। আবার Access Code দিয়ে প্রবেশ করো।' }, 401);
 
-  const deviceScoped = isDeviceScoped(s);
-  // HSC 27 reads only this device's progress. Other codes retain shared progress.
-  const row = deviceScoped
+  // HSC 27 reads only this device's progress. All other codes retain shared progress.
+  const row = isHsc27(s)
     ? await env.DB.prepare('SELECT state_json, updated_at FROM device_progress WHERE code_id=? AND device_hash=?').bind(s.code_id, s.device_hash).first()
     : await env.DB.prepare('SELECT state_json, updated_at FROM progress WHERE code_id=?').bind(s.code_id).first();
 
@@ -22,6 +22,7 @@ export async function onRequestGet({ request, env }) {
 export async function onRequestPut({ request, env }) {
   const s = await session(request, env);
   if (!s) return json({ error: 'Unauthorized' }, 401);
+  if (isHsc27(s) && !s.device_hash) return json({ error: 'এই সেশনের Device তথ্য পুরোনো। আবার Access Code দিয়ে প্রবেশ করো।' }, 401);
 
   let state;
   try { state = await request.json(); } catch { return json({ error: 'Invalid JSON' }, 400); }
@@ -37,7 +38,7 @@ export async function onRequestPut({ request, env }) {
   if (serialized.length > 250000) return json({ error: 'Progress data too large' }, 413);
 
   const now = Date.now();
-  if (isDeviceScoped(s)) {
+  if (isHsc27(s)) {
     await env.DB.prepare(`
       INSERT INTO device_progress(code_id, device_hash, state_json, updated_at)
       VALUES(?,?,?,?)
