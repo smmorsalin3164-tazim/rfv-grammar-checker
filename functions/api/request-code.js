@@ -31,6 +31,8 @@ export async function onRequestPost({ request, env }) {
     'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,3,?)'
   ).bind(id, await sha256(code), name, now, encryptedCode).run();
 
+  let diagnosticStage = 'fetch';
+  let mailStatus = null;
   try {
     const mailResponse = await fetch(env.MAILER_URL, {
       method: 'POST',
@@ -43,11 +45,27 @@ export async function onRequestPost({ request, env }) {
       }),
       redirect: 'follow'
     });
+    mailStatus = mailResponse.status;
+    diagnosticStage = 'read_provider_response';
     const mailResult = await mailResponse.json();
     if (!mailResponse.ok || mailResult.ok !== true) {
+      diagnosticStage = 'provider_rejected';
       throw new Error(mailResult.error || 'Email provider rejected the request');
     }
   } catch (error) {
+    const safeMessage = String(error && error.message || 'Unknown error')
+      .replaceAll(env.MAILER_URL, '[redacted-url]')
+      .replaceAll(env.MAILER_SECRET, '[redacted-secret]')
+      .replaceAll(email, '[redacted-email]')
+      .replaceAll(name, '[redacted-name]')
+      .replaceAll(code, '[redacted-code]')
+      .slice(0, 200);
+    console.error('[request-code] mail delivery failed', {
+      stage: diagnosticStage,
+      mailStatus,
+      errorName: String(error && error.name || 'Error'),
+      message: safeMessage
+    });
     await env.DB.prepare('DELETE FROM access_codes WHERE id=?').bind(id).run();
     return json({ error: 'ইমেল পাঠানো যায়নি। Email Address ঠিক আছে কি না দেখে আবার চেষ্টা করো।' }, 502);
   }
