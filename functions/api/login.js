@@ -34,7 +34,7 @@ export async function onRequestPost({ request, env }) {
       "INSERT INTO login_attempts (id, code_id, device_hash, attempted_at, status) VALUES (?, ?, ?, ?, 'blocked')"
     ).bind(crypto.randomUUID(), row.id, deviceHash, now).run();
     const message = row.label === 'HSC 27'
-      ? 'HSC 27 Free Access-এর সর্বোচ্চ Device ব্যবহার হয়ে গেছে।'
+      ? 'সর্বোচ্চ ডিভাইস ইতিমধ্যে ব্যবহার করা হয়ে গেছে।'
       : `এই Access Code-এর সর্বোচ্চ ${deviceLimit}টি Device ব্যবহার হয়ে গেছে। Admin-এর সঙ্গে যোগাযোগ করো।`;
     return json({ error: message }, 403);
   }
