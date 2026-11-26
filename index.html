@@ -896,25 +896,26 @@
   <section id="auth-screen">
     <div class="auth-card">
       <h2>RFV Grammar Checker</h2>
-      <p id="auth-intro">শুরু করতে তোমার নাম লিখো।</p>
+      <p id="auth-intro">শুরু করতে তোমার নাম ও মোবাইল নম্বরের শেষ ৫টি সংখ্যা লিখো।</p>
       <form id="enroll-form">
-        <label for="student-name">Student Name</label>
-        <input id="student-name" type="text" autocomplete="name" placeholder="তোমার সম্পূর্ণ নাম" required maxlength="80">
+        <label for="student-name">Student Name / Nickname</label>
+        <input id="student-name" type="text" autocomplete="name" placeholder="যেমন: Rafi" required maxlength="80">
+        <label for="mobile-last5">মোবাইল নম্বরের শেষ ৫টি সংখ্যা</label>
+        <input id="mobile-last5" type="text" inputmode="numeric" autocomplete="off" pattern="[0-9]{5}" maxlength="5" placeholder="যেমন: 20304" required>
+        <p class="muted">Registration ID Preview: <b id="registration-preview">—</b></p>
         <button type="submit" id="enroll-submit">Continue</button>
       </form>
       <section id="code-card" hidden>
-        <p>তোমার Access Code তৈরি হয়েছে।</p>
-        <div id="generated-code" class="generated-code" aria-live="polite"></div>
-        <button type="button" id="copy-code-btn">Copy Code</button>
-        <p class="code-warning">এই Access Code পরে আর দেখানো নাও যেতে পারে। তাই কোডটি কপি করে নিরাপদে সংরক্ষণ করে রাখুন।</p>
-        <p class="code-warning">কোডটি ভুলে গেলে Admin-এর সঙ্গে যোগাযোগ করুন।</p>
-        <button type="button" id="code-continue-btn" disabled>Continue</button>
+        <h3>Registration Status</h3>
+        <p id="registration-status" role="status">তোমার আবেদন Admin-এর অনুমোদনের অপেক্ষায় আছে।</p>
+        <button type="button" id="check-approval-btn">Approval Status দেখুন</button>
       </section>
       <form id="access-form" hidden>
         <label for="access-code">Access Code</label>
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
         <button type="submit" id="access-submit">প্রবেশ করো</button>
       </form>
+      <button type="button" id="show-access-form-btn" class="btn btn-secondary">আগে থেকেই Access Code আছে? সরাসরি প্রবেশ করো</button>
       <p id="auth-message" role="status"></p>
     </div>
   </section>
@@ -937,6 +938,8 @@
         <button type="button" id="btn-logout" onclick="logoutUser()" title="Sign out">Log Out</button>
       </div>
     </header>
+
+    <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Access Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.15rem;overflow-wrap:anywhere">—</strong></section>
 
     <!-- Live Summary Strip -->
     <section class="stats-strip" aria-label="Practice progress summary">
@@ -2530,13 +2533,22 @@
     const authForm = document.getElementById('access-form');
     const enrollForm = document.getElementById('enroll-form');
     const codeCard = document.getElementById('code-card');
-    const generatedCode = document.getElementById('generated-code');
-    const copyCodeBtn = document.getElementById('copy-code-btn');
-    const codeContinueBtn = document.getElementById('code-continue-btn');
     const authMessage = document.getElementById('auth-message');
     const authSubmit = document.getElementById('access-submit');
-    let issuedAccessCode = '';
-    let codeCopied = false;
+    const checkApprovalBtn = document.getElementById('check-approval-btn');
+    const deviceId = getOrCreateDeviceId();
+    let approvalPoll = null;
+    function getOrCreateDeviceId() { let id=localStorage.getItem('rfv_device_id'); if(!id){id=crypto.randomUUID();localStorage.setItem('rfv_device_id',id);} return id; }
+    function registrationPreview() { const n=document.getElementById('student-name').value.trim().replace(/\s+/g,''); const m=document.getElementById('mobile-last5').value.replace(/\D/g,'').slice(0,5); document.getElementById('registration-preview').textContent=n&&m?n+m:'—'; }
+    function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Admin অনুমোদন দিয়েছে। Access Code দিয়ে প্রবেশ করো।'; }
+    async function checkRegistrationStatus() {
+      const response=await fetch('/api/request-code?deviceId='+encodeURIComponent(deviceId));
+      const data=await response.json(); if(!response.ok) throw new Error(data.error||'Status পাওয়া যায়নি।');
+      if(data.status==='pending'){enrollForm.hidden=true;authForm.hidden=true;codeCard.hidden=false;document.getElementById('show-access-form-btn').hidden=true;document.getElementById('registration-status').textContent='তোমার আবেদন জমা হয়েছে। Admin অনুমোদন দিলে এখানে Access Code পাওয়া যাবে।';if(!approvalPoll)approvalPoll=setInterval(()=>checkRegistrationStatus().catch(()=>{}),10000);}
+      else if(data.status==='approved'){showAccessForm(data.code||'');authMessage.textContent=data.code?'অনুমোদন সম্পন্ন। Access Code বসানো হয়েছে।':'অনুমোদন সম্পন্ন। Access Code লিখে প্রবেশ করো।';}
+      else if(data.status==='rejected'){enrollForm.hidden=false;codeCard.hidden=true;authForm.hidden=true;document.getElementById('registration-status').textContent='আবেদনটি গ্রহণ করা হয়নি। তথ্য ঠিক করে আবার আবেদন করো।';}
+      return data;
+    }
 
     async function apiRequest(path, options = {}) {
       const token = localStorage.getItem('rfv_session_token');
@@ -2550,6 +2562,7 @@
       const response = await apiRequest('/api/progress');
       if (!response.ok) throw new Error('তোমার Progress লোড করা যায়নি। আবার প্রবেশ করো।');
       const data = await response.json();
+      try { const infoResponse=await apiRequest('/api/session-info'); if(infoResponse.ok){const info=await infoResponse.json(); if(info.code)localStorage.setItem('rfv_access_code',info.code); document.getElementById('session-access-code').textContent=info.code||localStorage.getItem('rfv_access_code')||'—'; document.getElementById('session-code-card').hidden=false;} } catch (_) {}
       const saved = data.progress;
       appState = saved && typeof saved === 'object' ? {
         currentQuestionId: saved.currentQuestionId || 1,
@@ -2572,70 +2585,29 @@
       localStorage.removeItem('rfv_session_token');
       document.body.classList.add('auth-locked');
       authScreen.hidden = false;
+      document.getElementById('session-code-card').hidden = true;
       authMessage.textContent = message;
       document.getElementById('access-code').value = '';
     }
     window.logoutUser = logoutUser;
 
-    enrollForm.addEventListener('submit', async (event) => {
+    document.getElementById('student-name').addEventListener('input', registrationPreview);
+    document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
+    document.getElementById('show-access-form-btn').addEventListener('click',()=>showAccessForm(''));
+    checkApprovalBtn.addEventListener('click',async()=>{try{checkApprovalBtn.disabled=true;await checkRegistrationStatus();}catch(e){authMessage.textContent=e.message;}finally{checkApprovalBtn.disabled=false;}});
+    enrollForm.addEventListener('submit',async(event)=>{
       event.preventDefault();
-      const name = document.getElementById('student-name').value.trim();
-      if (name.length < 2) {
-        authMessage.textContent = 'সঠিক নাম লিখো।';
-        return;
-      }
-      const enrollButton = document.getElementById('enroll-submit');
-      enrollButton.disabled = true;
-      enrollButton.textContent = 'তৈরি হচ্ছে…';
-      authMessage.textContent = '';
-      try {
-        const response = await fetch('/api/request-code', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({name})
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || 'Access Code তৈরি করা যায়নি।');
-        issuedAccessCode = data.code;
-        codeCopied = false;
-        generatedCode.textContent = issuedAccessCode;
-        codeContinueBtn.disabled = true;
-        enrollForm.hidden = true;
-        codeCard.hidden = false;
-        document.getElementById('auth-intro').textContent = 'তোমার Access Code কপি করে সংরক্ষণ করো।';
-      } catch (error) {
-        authMessage.textContent = error.message || 'আবার চেষ্টা করো।';
-      } finally {
-        enrollButton.disabled = false;
-        enrollButton.textContent = 'Continue';
-      }
+      const name=document.getElementById('student-name').value.trim();
+      const mobileLast5=document.getElementById('mobile-last5').value.replace(/\D/g,'');
+      if(name.length<2||!/^\d{5}$/.test(mobileLast5)){authMessage.textContent='নাম এবং মোবাইল নম্বরের শেষ ৫টি সংখ্যা সঠিকভাবে লিখো।';return;}
+      const button=document.getElementById('enroll-submit');button.disabled=true;button.textContent='জমা হচ্ছে…';authMessage.textContent='';
+      try{
+        const response=await fetch('/api/request-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,mobileLast5,deviceId})});
+        const data=await response.json();if(!response.ok)throw new Error(data.error||'আবেদন জমা দেওয়া যায়নি।');
+        await checkRegistrationStatus();
+      }catch(error){authMessage.textContent=error.message||'আবার চেষ্টা করো।';}
+      finally{button.disabled=false;button.textContent='Continue';}
     });
-
-    copyCodeBtn.addEventListener('click', async () => {
-      if (!issuedAccessCode) return;
-      try {
-        await navigator.clipboard.writeText(issuedAccessCode);
-        codeCopied = true;
-        copyCodeBtn.textContent = 'Copied!';
-        codeContinueBtn.disabled = false;
-        authMessage.style.color = '#147a43';
-        authMessage.textContent = 'Access Code কপি হয়েছে। এখন Continue চাপো।';
-      } catch (_) {
-        authMessage.style.color = '#a33b35';
-        authMessage.textContent = 'কপি করা যায়নি। কোডটি হাতে কপি করে আবার চেষ্টা করো।';
-      }
-    });
-
-    codeContinueBtn.addEventListener('click', () => {
-      if (!codeCopied || !issuedAccessCode) return;
-      document.getElementById('access-code').value = issuedAccessCode;
-      codeCard.hidden = true;
-      authForm.hidden = false;
-      document.getElementById('auth-intro').textContent = 'তোমার Access Code দিয়ে প্রবেশ করো।';
-      authMessage.style.color = '#147a43';
-      authMessage.textContent = 'Access Code স্বয়ংক্রিয়ভাবে বসানো হয়েছে। Login করো।';
-    });
-
     authForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       authSubmit.disabled = true;
@@ -2644,11 +2616,8 @@
       authMessage.textContent = '';
       try {
         const code = document.getElementById('access-code').value.trim();
-        let deviceId = localStorage.getItem('rfv_device_id');
-        if (!deviceId) {
-          deviceId = crypto.randomUUID();
-          localStorage.setItem('rfv_device_id', deviceId);
-        }
+        localStorage.setItem('rfv_access_code', code);
+        const deviceId = getOrCreateDeviceId();
         const response = await fetch('/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -2673,7 +2642,9 @@
       const token = localStorage.getItem('rfv_session_token');
       if (token) {
         try { await startUserSession(token); }
-        catch (_) { localStorage.removeItem('rfv_session_token'); }
+        catch (_) { localStorage.removeItem('rfv_session_token'); try { await checkRegistrationStatus(); } catch (_) {} }
+      } else {
+        try { await checkRegistrationStatus(); } catch (_) {}
       }
     }
 

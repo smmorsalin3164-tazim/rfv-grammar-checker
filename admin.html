@@ -26,6 +26,10 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="summary-card"><div class="summary-label">মোট Access Code</div><div class="summary-number" id="totalCodes">—</div></div>
 <div class="summary-card"><div class="summary-label">Active Code</div><div class="summary-number" id="activeCodes">—</div></div>
 </div>
+<section class="panel"><h2>Pending Registration Requests</h2>
+<p class="muted">শিক্ষার্থীর নাম, Registration ID, মোবাইল নম্বরের শেষ ৫ সংখ্যা ও আবেদনের সময় দেখে অনুমোদন দাও।</p>
+<div class="row"><button class="reset" type="button" onclick="loadRequests()">Refresh Requests</button></div>
+<div id="registrationRequests" class="muted">Connect করলে Pending Request দেখা যাবে।</div></section>
 <section class="panel"><h2>HSC 27 — Shared Access</h2>
 <p class="muted">Login Code: <b>hsc27.free</b> · সর্বোচ্চ ২৯টি আলাদা Device</p>
 <div class="summary">
@@ -60,9 +64,25 @@ async function loadCodes(){try{const d=await call('GET');adminData=d;document.ge
 const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+' / '+h.device_limit;document.getElementById('hRemain').textContent=h.remaining_devices;document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;document.getElementById('recentAttempts').innerHTML='<div class="table-wrap"><table><tr><th>Device (masked)</th><th>সময়</th><th>Status</th></tr>'+h.recent_attempts.map(a=>'<tr><td>'+esc(a.device)+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td class="'+(a.status==='success'?'status-success':'status-blocked')+'">'+(a.status==='success'?'Success':'Blocked')+'</td></tr>').join('')+'</table></div>'}else{['hUsed','hRemain','hFailedDevices','hFailedAttempts'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('recentAttempts').textContent='HSC 27 code এখনো তৈরি হয়নি।'}
 
 renderStudents();
+await loadRequests();
 
 }catch(e){document.getElementById('list').textContent=e.message;throw e}}
 
+async function loadRequests(){
+ try{const r=await fetch('/api/admin-requests',{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'Request load failed');renderRequests(d.requests||[]);}
+ catch(e){document.getElementById('registrationRequests').textContent=e.message;}
+}
+function renderRequests(items){
+ const rows=items.map(x=>'<tr><td>'+esc(x.name)+'</td><td>'+esc(x.registration_id)+'</td><td>'+esc(x.mobile_last5)+'</td><td>'+new Date(x.created_at).toLocaleString()+'</td><td>'+esc(x.status)+'</td><td><div class="actions">'+(x.status==='pending'?'<button type="button" onclick="reviewRequest(\''+esc(x.id)+'\',\'accept\')">Accept</button><button type="button" class="revoke" onclick="reviewRequest(\''+esc(x.id)+'\',\'reject\')">Reject</button>':'—')+'</div></td></tr>').join('');
+ document.getElementById('registrationRequests').innerHTML='<div class="table-wrap"><table><tr><th>Student Name</th><th>Registration ID</th><th>শেষ ৫ সংখ্যা</th><th>সময়</th><th>Status</th><th>Action</th></tr>'+(rows||'<tr><td colspan="6">কোনো Request নেই।</td></tr>')+'</table></div>';
+}
+async function reviewRequest(id,action){
+ const label=action==='accept'?'এই শিক্ষার্থীকে Accept করে Access Code তৈরি করবে?':'এই আবেদন Reject করবে?';if(!confirm(label))return;
+ try{const r=await fetch('/api/admin-requests',{method:'PATCH',headers:{'Content-Type':'application/json','X-Admin-Key':document.getElementById('key').value},body:JSON.stringify({id,action})});const d=await r.json();if(!r.ok)throw Error(d.error||'Action failed');
+ if(action==='accept'&&d.code){document.getElementById('newcode').innerHTML='<div class="code"><b>শিক্ষার্থীর Access Code: '+esc(d.code)+'</b><br><small>Code শিক্ষার্থীর একই Device-এ স্বয়ংক্রিয়ভাবে দেখাবে।</small></div>';}
+ await loadCodes();
+ }catch(e){alert(e.message)}
+}
 function filterStudents(){renderStudents()}
 function renderStudents(){
  if(!adminData)return;
