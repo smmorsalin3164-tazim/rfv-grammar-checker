@@ -85,7 +85,7 @@ function renderStudents(){
 }
 async function loadAttemptPage(scope,reset=false){
  const s=attemptPages[scope];if(reset){s.items=[];s.expanded=false;}
- const limit=reset?5:10,offset=s.items.length,search=scope==='all'?(document.getElementById('studentSearch').value||'').trim():'';
+ const limit=reset?(s.expanded?10:5):10,offset=s.items.length,search=scope==='all'?(document.getElementById('studentSearch').value||'').trim():'';
  try{const p=new URLSearchParams({scope,limit:String(limit),offset:String(offset),search});const r=await fetch('/api/admin-login-attempts?'+p.toString(),{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'History load failed');s.total=Number(d.total||0);s.items=reset?(d.attempts||[]):s.items.concat(d.attempts||[]);renderAttemptTable(scope);}catch(e){document.getElementById(scope==='hsc'?'recentAttempts':'studentHistory').textContent=e.message;}
 }
 function renderAttemptTable(scope){
