@@ -17,7 +17,7 @@ export async function onRequestPost({ request, env }) {
 
   const deviceHash = await sha256(deviceId);
   const now = Date.now();
-  const deviceLimit = row.label === 'HSC 27' ? 29 : Number(row.device_limit || 3);
+  const deviceLimit = row.label === 'HSC 27' ? 1 : Number(row.device_limit || 3);
   await env.DB.prepare(`
     INSERT INTO device_activations (id, code_id, device_hash, activated_at)
     SELECT ?, ?, ?, ?
@@ -34,7 +34,7 @@ export async function onRequestPost({ request, env }) {
       "INSERT INTO login_attempts (id, code_id, device_hash, attempted_at, status) VALUES (?, ?, ?, ?, 'blocked')"
     ).bind(crypto.randomUUID(), row.id, deviceHash, now).run();
     const message = row.label === 'HSC 27'
-      ? 'HSC 27 Free Access-এর ২৯টি Device পূর্ণ হয়ে গেছে।'
+      ? `HSC 27 Free Access-এর সর্বোচ্চ ${deviceLimit}টি Device ব্যবহার হয়ে গেছে।`
       : `এই Access Code-এর সর্বোচ্চ ${deviceLimit}টি Device ব্যবহার হয়ে গেছে। Admin-এর সঙ্গে যোগাযোগ করো।`;
     return json({ error: message }, 403);
   }
