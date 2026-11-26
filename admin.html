@@ -86,7 +86,7 @@ function renderStudents(){
  document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+codes.map(c=>{const count=Number(c.device_count||0),limit=Number(c.device_limit||3);return '<tr><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+Number(c.remaining_devices||0)+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
 }
 async function loadAttemptPage(scope,reset=false){
- const s=attemptPages[scope];if(reset){s.items=[];s.expanded=false;}
+ const s=attemptPages[scope];if(reset){s.items=[];}
  const limit=reset?(s.expanded?10:5):10,offset=s.items.length,search=scope==='all'?(document.getElementById('studentSearch').value||'').trim():'';
  try{const p=new URLSearchParams({scope,limit:String(limit),offset:String(offset),search});const r=await fetch('/api/admin-login-attempts?'+p.toString(),{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'History load failed');s.total=Number(d.total||0);s.items=reset?(d.attempts||[]):s.items.concat(d.attempts||[]);renderAttemptTable(scope);}catch(e){document.getElementById(scope==='hsc'?'recentAttempts':'studentHistory').textContent=e.message;}
 }
