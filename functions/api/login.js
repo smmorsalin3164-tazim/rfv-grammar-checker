@@ -11,18 +11,19 @@ export async function onRequestPost({ request, env }) {
 
   const codeHash = await sha256(code);
   const row = await env.DB.prepare(
-    'SELECT id, device_limit FROM access_codes WHERE code_hash=? AND active=1'
+    'SELECT id, label, device_limit FROM access_codes WHERE code_hash=? AND active=1'
   ).bind(codeHash).first();
   if (!row) return json({ error: 'Access Code সঠিক নয় অথবা বাতিল করা হয়েছে।' }, 401);
 
   const deviceHash = await sha256(deviceId);
   const now = Date.now();
+  const deviceLimit = row.label === 'HSC 27' ? 29 : Number(row.device_limit || 3);
   await env.DB.prepare(`
     INSERT INTO device_activations (id, code_id, device_hash, activated_at)
     SELECT ?, ?, ?, ?
     WHERE (SELECT COUNT(*) FROM device_activations WHERE code_id=?) < ?
     ON CONFLICT(code_id, device_hash) DO NOTHING
-  `).bind(crypto.randomUUID(), row.id, deviceHash, now, row.id, Number(row.device_limit || 3)).run();
+  `).bind(crypto.randomUUID(), row.id, deviceHash, now, row.id, deviceLimit).run();
 
   const activation = await env.DB.prepare(
     'SELECT id FROM device_activations WHERE code_id=? AND device_hash=?'
@@ -32,8 +33,10 @@ export async function onRequestPost({ request, env }) {
     await env.DB.prepare(
       "INSERT INTO login_attempts (id, code_id, device_hash, attempted_at, status) VALUES (?, ?, ?, ?, 'blocked')"
     ).bind(crypto.randomUUID(), row.id, deviceHash, now).run();
-    const limit = Number(row.device_limit || 3);
-    return json({ error: `এই Access Code-এর সর্বোচ্চ ${limit}টি Device ব্যবহার হয়ে গেছে। Admin-এর সঙ্গে যোগাযোগ করো।` }, 403);
+    const message = row.label === 'HSC 27'
+      ? 'HSC 27 Free Access-এর ২৯টি Device পূর্ণ হয়ে গেছে।'
+      : `এই Access Code-এর সর্বোচ্চ ${deviceLimit}টি Device ব্যবহার হয়ে গেছে। Admin-এর সঙ্গে যোগাযোগ করো।`;
+    return json({ error: message }, 403);
   }
 
   await env.DB.prepare(
