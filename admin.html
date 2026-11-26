@@ -27,7 +27,7 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="summary-card"><div class="summary-label">Active Code</div><div class="summary-number" id="activeCodes">—</div></div>
 </div>
 <section class="panel"><h2>Pending Registration Requests</h2>
-<div class="section-head"><p class="muted">শিক্ষার্থীর নাম, Access Code, প্রবেশের সময়, Login Status ও masked Device দেখা যাবে।</p><button id="studentAttemptView" class="reset" style="display:none" onclick="viewAllStudents()">View All</button></div><div id="studentAttemptTotal" class="muted"></div>
+<p class="muted">শিক্ষার্থীর নাম, Access Code, প্রবেশের সময়, Login Status ও masked Device দেখা যাবে।</p>
 <div class="row"><button class="reset" type="button" onclick="loadRequests()">Refresh Requests</button></div>
 <div id="registrationRequests" class="muted">Connect করলে Pending Request দেখা যাবে।</div></section>
 <section class="panel"><h2>HSC 27 — Shared Access</h2>
@@ -40,12 +40,13 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 </div>
 <div class="row"><button onclick="createHSC27()">Create / Enable HSC 27 Code</button><button class="reset" onclick="loadCodes()">Refresh</button></div>
 <div id="hscMessage" class="muted"></div>
-<div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
+<div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><div class="actions"><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button><button id="hscAttemptClose" class="revoke" style="display:none" onclick="closeAllHsc()">Close</button></div></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
 </section>
 <hr><h2>শিক্ষার্থী খুঁজুন ও Login History</h2>
 <p class="muted">নাম বা Access Code লিখে খুঁজো। নতুন Code-গুলো এখানে দেখা যাবে; পুরোনো Code Hash করা থাকায় উদ্ধার করা যাবে না।</p>
 <div class="row"><input id="studentSearch" placeholder="শিক্ষার্থীর নাম / Access Code দিয়ে খুঁজুন" oninput="filterStudents()"><button type="button" onclick="filterStudents()">Search</button></div>
 <p class="muted">শিক্ষার্থীর নাম, প্রবেশের সময়, Login Status ও masked Device দেখা যাবে। Email Address দেখানো বা সংরক্ষণ করা হয় না।</p>
+<div class="section-head"><h3>Student Login History <span id="studentAttemptTotal"></span></h3><div class="actions"><button id="studentAttemptView" class="reset" style="display:none" onclick="viewAllStudents()">View All</button><button id="studentAttemptClose" class="revoke" style="display:none" onclick="closeAllStudents()">Close</button></div></div>
 <div id="studentHistory" class="muted">Connect করলে দেখা যাবে।</div>
 <hr><h2>নতুন Access Code তৈরি</h2>
 <div class="row"><input id="label" placeholder="ব্যবহারকারীর নাম / পরিচিতি (ঐচ্ছিক)"><button onclick="createCode()">Create Code</button></div>
@@ -93,14 +94,17 @@ function renderAttemptTable(scope){
  const s=attemptPages[scope],isHsc=scope==='hsc',target=document.getElementById(isHsc?'recentAttempts':'studentHistory');
  document.getElementById(isHsc?'hscAttemptTotal':'studentAttemptTotal').textContent='মোট '+s.total+'টি';
  const view=document.getElementById(isHsc?'hscAttemptView':'studentAttemptView');view.style.display=(!s.expanded&&s.total>5)?'inline-block':'none';
+ const close=document.getElementById(isHsc?'hscAttemptClose':'studentAttemptClose');close.style.display=s.expanded?'inline-block':'none';
  const rows=s.items.map((a,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(a.label||'—')+'</td><td>'+esc(a.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td>'+esc(a.status)+'</td><td>'+esc(a.device)+'</td></tr>').join('');
  const header='<tr><th>ক্রমিক</th><th>শিক্ষার্থীর নাম</th><th>Access Code</th><th>সময়</th><th>Status</th><th>Device</th></tr>';
  let more='';if(s.expanded&&s.items.length<s.total)more='<button class="reset" id="'+(isHsc?'moreHsc':'moreAll')+'">আরও ১০টি দেখুন</button>';
  target.innerHTML='<div class="table-wrap"><table>'+header+(rows||'<tr><td colspan="6">কোনো তথ্য নেই</td></tr>')+'</table></div>'+more;
  const b=document.getElementById(isHsc?'moreHsc':'moreAll');if(b)b.onclick=()=>loadAttemptPage(scope);
 }
-async function viewAllHsc(){attemptPages.hsc.expanded=true;await loadAttemptPage('hsc',true);if(attemptPages.hsc.total>5)await loadAttemptPage('hsc');}
-async function viewAllStudents(){attemptPages.all.expanded=true;await loadAttemptPage('all',true);if(attemptPages.all.total>5)await loadAttemptPage('all');}
+async function viewAllHsc(){attemptPages.hsc.expanded=true;await loadAttemptPage('hsc',true);}
+async function viewAllStudents(){attemptPages.all.expanded=true;await loadAttemptPage('all',true);}
+async function closeAllHsc(){attemptPages.hsc.expanded=false;await loadAttemptPage('hsc',true);}
+async function closeAllStudents(){attemptPages.all.expanded=false;await loadAttemptPage('all',true);}
 async function resetDevices(id){if(!confirm('সব Device Activation Reset হবে; Progress ও Attempt History থাকবে। চালাবে?'))return;try{await call('PATCH',{id});alert('Device Activation Reset হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 async function revoke(id){if(!confirm('এই Access Code বাতিল করবে?'))return;try{await call('DELETE',{id});alert('Access Code বাতিল করা হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
