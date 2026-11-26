@@ -40,23 +40,23 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 </div>
 <div class="row"><button onclick="createHSC27()">Create / Enable HSC 27 Code</button><button class="reset" onclick="loadCodes()">Refresh</button></div>
 <div id="hscMessage" class="muted"></div>
-<div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><div class="actions"><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button><button id="hscAttemptClose" class="revoke" style="display:none" onclick="closeAllHsc()">Close</button></div></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
+<div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><div class="actions"><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button><button id="hscAttemptClose" class="revoke" style="display:none" onclick="closeAllHsc()">Close</button><button id="deleteHscHistory" class="revoke" type="button" onclick="deleteHistoryClick('hsc')">Delete HSC 27 History</button></div></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
 </section>
 <hr><h2>শিক্ষার্থী খুঁজুন ও Login History</h2>
 <p class="muted">নাম বা Access Code লিখে খুঁজো। নতুন Code-গুলো এখানে দেখা যাবে; পুরোনো Code Hash করা থাকায় উদ্ধার করা যাবে না।</p>
 <div class="row"><input id="studentSearch" placeholder="শিক্ষার্থীর নাম / Access Code দিয়ে খুঁজুন" oninput="filterStudents()"><button type="button" onclick="filterStudents()">Search</button></div>
 <p class="muted">শিক্ষার্থীর নাম, প্রবেশের সময়, Login Status ও masked Device দেখা যাবে। Email Address দেখানো বা সংরক্ষণ করা হয় না।</p>
-<div class="section-head"><h3>Student Login History <span id="studentAttemptTotal"></span></h3><div class="actions"><button id="studentAttemptView" class="reset" style="display:none" onclick="viewAllStudents()">View All</button><button id="studentAttemptClose" class="revoke" style="display:none" onclick="closeAllStudents()">Close</button></div></div>
+<div class="section-head"><h3>Student Login History <span id="studentAttemptTotal"></span></h3><div class="actions"><button id="studentAttemptView" class="reset" style="display:none" onclick="viewAllStudents()">View All</button><button id="studentAttemptClose" class="revoke" style="display:none" onclick="closeAllStudents()">Close</button><button id="deleteStudentHistory" class="revoke" type="button" onclick="deleteHistoryClick('all')">Delete Student Login History</button></div></div>
 <div id="studentHistory" class="muted">Connect করলে দেখা যাবে।</div>
 <hr><h2>নতুন Access Code তৈরি</h2>
 <div class="row"><input id="label" placeholder="ব্যবহারকারীর নাম / পরিচিতি (ঐচ্ছিক)"><button onclick="createCode()">Create Code</button></div>
 <div id="newcode"></div><hr>
 <h2>ব্যবহারকারীদের কোড</h2><p class="muted">সাধারণ Access Code সর্বোচ্চ ৩টি Device-এ ব্যবহার করা যাবে। HSC 27-এর সীমা ২৯টি।</p>
-<button onclick="loadCodes()">Refresh List</button><div id="list"></div>
+<div class="row"><button type="button" onclick="loadCodes()">Refresh List</button><button id="codesView" class="reset" type="button" style="display:none" onclick="viewAllCodes()">View All</button><button id="codesClose" class="revoke" type="button" style="display:none" onclick="closeAllCodes()">Close</button></div><div id="list"></div>
 <p class="muted"><small>একই কোড একাধিক ব্যক্তি ব্যবহার করলে তাদের Progress একই হবে। নতুন Access Code Admin Panel-এ নিরাপদভাবে encrypted অবস্থায় সংরক্ষিত থাকে এবং Admin প্রয়োজন হলে দেখতে পারবেন।</small></p>
 </main>
 <script>
-let adminData=null;const attemptPages={hsc:{items:[],total:0,expanded:false},all:{items:[],total:0,expanded:false}};let adminKey=sessionStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
+let adminData=null;let codesExpanded=false;const deleteConfirmState={hsc:false,all:false};const attemptPages={hsc:{items:[],total:0,expanded:false},all:{items:[],total:0,expanded:false}};let adminKey=sessionStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
 async function call(method,body){const r=await fetch('/api/admin-codes',{method,headers:{'Content-Type':'application/json','X-Admin-Key':document.getElementById('key').value},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d}
 async function connect(){const key=document.getElementById('key').value.trim();if(!key){alert('Admin Key প্রবেশ করাও।');return}try{await loadCodes();sessionStorage.setItem('rfv_admin_key',key);await Promise.all([loadRequests(),loadAttemptPage('hsc',true),loadAttemptPage('all',true)]);alert('Admin Connected Successfully')}catch(e){alert(e.message)}}
 async function createHSC27(){try{const d=await call('POST',{special:'hsc27'});document.getElementById('hscMessage').textContent='HSC 27 code সক্রিয়। Login Code: '+d.code+(d.existing?' (আগে থেকেই ছিল)':'');await loadCodes()}catch(e){alert(e.message)}}
@@ -83,7 +83,10 @@ function renderStudents(){
  const q=(document.getElementById('studentSearch')?.value||'').trim().toLowerCase();
 
  const codes=(adminData.codes||[]).filter(c=>(String(c.label||'')+' '+String(c.code||'')).toLowerCase().includes(q));
- document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+codes.map(c=>{const count=Number(c.device_count||0),limit=Number(c.device_limit||3);return '<tr><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+Number(c.remaining_devices||0)+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
+ const visibleCodes=codesExpanded?codes:codes.slice(0,5);
+ document.getElementById('codesView').style.display=(!codesExpanded&&codes.length>5)?'inline-block':'none';
+ document.getElementById('codesClose').style.display=codesExpanded?'inline-block':'none';
+ document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>ক্রমিক</th><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+visibleCodes.map((c,i)=>{const count=Number(c.device_count||0),limit=Number(c.device_limit||3);return '<tr><td>'+(i+1)+'</td><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+Number(c.remaining_devices||0)+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
 }
 async function loadAttemptPage(scope,reset=false){
  const s=attemptPages[scope];if(reset){s.items=[];}
@@ -105,6 +108,20 @@ async function viewAllHsc(){attemptPages.hsc.expanded=true;await loadAttemptPage
 async function viewAllStudents(){attemptPages.all.expanded=true;await loadAttemptPage('all',true);}
 async function closeAllHsc(){attemptPages.hsc.expanded=false;await loadAttemptPage('hsc',true);}
 async function closeAllStudents(){attemptPages.all.expanded=false;await loadAttemptPage('all',true);}
+function viewAllCodes(){codesExpanded=true;renderStudents();}
+function closeAllCodes(){codesExpanded=false;renderStudents();}
+async function deleteHistoryClick(scope){
+ const id=scope==='hsc'?'deleteHscHistory':'deleteStudentHistory',button=document.getElementById(id);
+ if(!deleteConfirmState[scope]){deleteConfirmState[scope]=true;button.textContent='Confirm Delete';return;}
+ button.disabled=true;button.textContent='Deleting...';
+ try{
+  const r=await fetch('/api/admin-login-attempts',{method:'DELETE',headers:{'Content-Type':'application/json','X-Admin-Key':document.getElementById('key').value},body:JSON.stringify({scope})});
+  const d=await r.json();if(!r.ok)throw Error(d.error||'History delete failed');
+  deleteConfirmState[scope]=false;button.textContent=scope==='hsc'?'Delete HSC 27 History':'Delete Student Login History';
+  attemptPages[scope].expanded=false;await loadAttemptPage(scope,true);alert('নির্বাচিত History মুছে ফেলা হয়েছে।');
+ }catch(e){alert(e.message);deleteConfirmState[scope]=false;button.textContent=scope==='hsc'?'Delete HSC 27 History':'Delete Student Login History';}
+ finally{button.disabled=false;}
+}
 async function resetDevices(id){if(!confirm('সব Device Activation Reset হবে; Progress ও Attempt History থাকবে। চালাবে?'))return;try{await call('PATCH',{id});alert('Device Activation Reset হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 async function revoke(id){if(!confirm('এই Access Code বাতিল করবে?'))return;try{await call('DELETE',{id});alert('Access Code বাতিল করা হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
