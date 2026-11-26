@@ -881,7 +881,8 @@
     .auth-card label { display:block; font-weight:700; margin:18px 0 7px; }
     .auth-card input { width:100%; box-sizing:border-box; padding:14px 15px; border:1px solid #cbd8dd; border-radius:12px; font:inherit; letter-spacing:.06em; }
     .auth-card button { width:100%; margin-top:14px; padding:13px 16px; border:0; border-radius:12px; background:#176b60; color:white; font:inherit; font-weight:700; cursor:pointer; }
-    #auth-message { min-height:24px; color:#a33b35; font-size:.92rem; }
+    #auth-message { min-height:24px; color:#a33b35; font-size:.92rem; font-weight:700; text-align:center; }
+    #auth-message.limit-reached { margin:18px 0 4px; padding:18px 14px; border:2px solid #b42318; border-radius:14px; background:#fff0ef; color:#991b1b; font-size:clamp(1.25rem,5vw,1.75rem); line-height:1.45; font-weight:800; }
     .generated-code { margin:18px 0 10px; padding:20px 12px; border:2px solid #176b60; border-radius:14px; background:#e8f5f1; color:#10584f; text-align:center; font:800 clamp(1.65rem,7vw,2.25rem)/1.3 'JetBrains Mono',monospace; letter-spacing:.06em; overflow-wrap:anywhere; }
     .code-warning { margin:10px 0; color:#9a3412 !important; font-weight:700; text-align:center; }
     #code-card button { margin-top:10px; }
@@ -907,8 +908,14 @@
   <section id="auth-screen">
     <div class="auth-card">
       <h2>RFV Grammar Checker</h2>
-      <p id="auth-intro">শুরু করতে তোমার নাম ও মোবাইল নম্বরের শেষ ৫টি সংখ্যা লিখো।</p>
-      <form id="enroll-form">
+      <p id="auth-intro">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
+      <section id="hsc27-access-panel">
+        <div class="generated-code" aria-label="HSC 27 Free Access Code">hsc27.free</div>
+        <button type="button" id="hsc27-direct-login">সরাসরি প্রবেশ করো</button>
+        <p class="muted" style="text-align:center;margin-bottom:0">HSC 27 শিক্ষার্থীদের জন্য</p>
+      </section>
+      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">General শিক্ষার্থী? এখানে প্রবেশ করো</button>
+      <form id="enroll-form" hidden>
         <label for="student-name">Student Name / Nickname</label>
         <input id="student-name" type="text" autocomplete="name" placeholder="যেমন: Rafi" required maxlength="80">
         <label for="mobile-last5">মোবাইল নম্বরের শেষ ৫টি সংখ্যা</label>
@@ -927,7 +934,7 @@
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
         <button type="submit" id="access-submit">প্রবেশ করো</button>
       </form>
-      <button type="button" id="show-access-form-btn" class="btn btn-secondary">আগে থেকেই Access Code আছে? সরাসরি প্রবেশ করো</button>
+      <button type="button" id="show-access-form-btn" class="btn btn-secondary" hidden>আগে থেকেই Access Code আছে? সরাসরি প্রবেশ করো</button>
       <p id="auth-message" role="status"></p>
     </div>
   </section>
@@ -2553,7 +2560,7 @@
     function getOrCreateDeviceId() { let id=localStorage.getItem('rfv_device_id'); if(!id){id=crypto.randomUUID();localStorage.setItem('rfv_device_id',id);} return id; }
     function registrationPreview() { const n=document.getElementById('student-name').value.trim().replace(/\s+/g,''); const m=document.getElementById('mobile-last5').value.replace(/\D/g,'').slice(0,5); document.getElementById('registration-preview').textContent=n&&m?n+m:'—'; }
     function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('access-back-btn').hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Admin অনুমোদন দিয়েছে। Access Code দিয়ে প্রবেশ করো।'; }
-    function returnToRegistration() { authForm.hidden=true;enrollForm.hidden=false;codeCard.hidden=true;document.getElementById('access-back-btn').hidden=true;document.getElementById('show-access-form-btn').hidden=false;document.getElementById('auth-intro').textContent='শুরু করতে তোমার নাম ও মোবাইল নম্বরের শেষ ৫টি সংখ্যা লিখো।';authMessage.textContent=''; }
+    function returnToRegistration() { authForm.hidden=true;enrollForm.hidden=false;codeCard.hidden=true;document.getElementById('access-back-btn').hidden=true;document.getElementById('show-access-form-btn').hidden=false;document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে প্রবেশ করো।';authMessage.textContent=''; }
     async function checkRegistrationStatus() {
       const response=await fetch('/api/request-code?deviceId='+encodeURIComponent(deviceId));
       const data=await response.json(); if(!response.ok) throw new Error(data.error||'Status পাওয়া যায়নি।');
@@ -2606,6 +2613,18 @@
 
     document.getElementById('student-name').addEventListener('input', registrationPreview);
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
+    document.getElementById('hsc27-direct-login').addEventListener('click',()=>{
+      document.getElementById('access-code').value='hsc27.free';
+      authForm.requestSubmit();
+    });
+    document.getElementById('show-general-flow').addEventListener('click',async()=>{
+      document.getElementById('hsc27-access-panel').hidden=true;
+      document.getElementById('show-general-flow').hidden=true;
+      enrollForm.hidden=false;
+      document.getElementById('show-access-form-btn').hidden=false;
+      document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে প্রবেশ করো।';
+      try { await checkRegistrationStatus(); } catch(e) { authMessage.textContent=e.message; }
+    });
     document.getElementById('show-access-form-btn').addEventListener('click',()=>showAccessForm(''));
     document.getElementById('access-back-btn').addEventListener('click',returnToRegistration);
     checkApprovalBtn.addEventListener('click',async()=>{try{checkApprovalBtn.disabled=true;await checkRegistrationStatus();}catch(e){authMessage.textContent=e.message;}finally{checkApprovalBtn.disabled=false;}});
@@ -2642,7 +2661,11 @@
         await startUserSession(data.token);
       } catch (error) {
         localStorage.removeItem('rfv_session_token');
-        authMessage.textContent = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
+        const message = error.message || 'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';
+        authMessage.textContent = message;
+        const isHscLimit = message.includes('২৯টি Device') || message.includes('29টি Device') || message.includes('সর্বোচ্চ ২৯');
+        authMessage.classList.toggle('limit-reached', isHscLimit);
+        if (isHscLimit) authMessage.textContent = 'HSC 27 Free Access-এর ২৯টি Device পূর্ণ হয়ে গেছে।';
       } finally {
         authSubmit.disabled = false;
         authSubmit.textContent = 'প্রবেশ করো';
@@ -2656,9 +2679,7 @@
       const token = localStorage.getItem('rfv_session_token');
       if (token) {
         try { await startUserSession(token); }
-        catch (_) { localStorage.removeItem('rfv_session_token'); try { await checkRegistrationStatus(); } catch (_) {} }
-      } else {
-        try { await checkRegistrationStatus(); } catch (_) {}
+        catch (_) { localStorage.removeItem('rfv_session_token'); }
       }
     }
 
