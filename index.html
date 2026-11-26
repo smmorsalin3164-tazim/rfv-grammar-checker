@@ -2646,6 +2646,7 @@
       authSubmit.disabled = true;
       authSubmit.textContent = 'যাচাই হচ্ছে…';
       authMessage.style.color = '#a33b35';
+      authMessage.classList.remove('limit-reached');
       authMessage.textContent = '';
       try {
         const code = document.getElementById('access-code').value.trim();
