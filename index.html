@@ -911,7 +911,7 @@
       <p id="auth-intro">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
       <section id="hsc27-access-panel">
         <div class="generated-code" aria-label="HSC 27 Free Access Code">hsc27.free</div>
-        <button type="button" id="hsc27-direct-login">সরাসরি প্রবেশ করো</button>
+        <button type="button" id="hsc27-direct-login">Enter Directly</button>
         <p class="muted" style="text-align:center;margin-bottom:0">HSC 27 শিক্ষার্থীদের জন্য</p>
       </section>
       <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">নতুন রেজিস্ট্রেশন</button>
@@ -926,15 +926,15 @@
       <section id="code-card" hidden>
         <h3>Registration Status</h3>
         <p id="registration-status" role="status">তোমার আবেদন Admin-এর অনুমোদনের অপেক্ষায় আছে।</p>
-        <button type="button" id="check-approval-btn">Approval Status দেখুন</button>
+        <button type="button" id="check-approval-btn">Check Approval Status</button>
       </section>
       <button type="button" id="access-back-btn" class="access-back-btn" hidden aria-label="নিবন্ধন পেজে ফিরে যাও">←</button>
       <form id="access-form" hidden>
         <label for="access-code">Access Code</label>
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
-        <button type="submit" id="access-submit">প্রবেশ করো</button>
+        <button type="submit" id="access-submit">Log In</button>
       </form>
-      <button type="button" id="show-access-form-btn" class="btn btn-secondary" hidden>আগে থেকেই Access Code আছে? সরাসরি প্রবেশ করো</button>
+      <button type="button" id="show-access-form-btn" class="btn btn-secondary" hidden>আগে থেকেই Access Code আছে? Enter Directly</button>
       <p id="auth-message" role="status"></p>
     </div>
   </section>
@@ -1052,7 +1052,7 @@
       </div>
       <div class="modal-body">
         <div class="tabs-bar rules-source-tabs" role="tablist" aria-label="নিয়মাবলীর উৎস">
-          <button type="button" class="tab-btn is-active" id="tab-source-text" onclick="switchRulesSource('text')">মূল নিয়মাবলি (Text)</button>
+          <button type="button" class="tab-btn is-active" id="tab-source-text" onclick="switchRulesSource('text')">Core Rules (Text)</button>
           <button type="button" class="tab-btn" id="tab-source-pdf1" onclick="switchRulesSource('pdf1')">RFV &amp; SAV (PDF)</button>
         </div>
         <section id="rules-source-text">
@@ -2140,7 +2140,7 @@
           headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
           body: snapshot
         });
-        if (response.status === 401) logoutUser('তোমার সেশন শেষ হয়েছে। আবার Access Code দিয়ে প্রবেশ করো।');
+        if (response.status === 401) logoutUser('তোমার সেশন শেষ হয়েছে। আবার Access Code দিয়ে Log In।');
         if (!response.ok) throw new Error('Progress save failed');
       }).catch(err => { console.error(err); });
       return saveQueue;
@@ -2559,13 +2559,13 @@
     let approvalPoll = null;
     function getOrCreateDeviceId() { let id=localStorage.getItem('rfv_device_id'); if(!id){id=crypto.randomUUID();localStorage.setItem('rfv_device_id',id);} return id; }
     function registrationPreview() { const n=document.getElementById('student-name').value.trim().replace(/\s+/g,''); const m=document.getElementById('mobile-last5').value.replace(/\D/g,'').slice(0,5); document.getElementById('registration-preview').textContent=n&&m?n+m:'—'; }
-    function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('access-back-btn').hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Admin অনুমোদন দিয়েছে। Access Code দিয়ে প্রবেশ করো।'; }
-    function returnToRegistration() { authForm.hidden=true;enrollForm.hidden=false;codeCard.hidden=true;document.getElementById('access-back-btn').hidden=true;document.getElementById('show-access-form-btn').hidden=false;document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে প্রবেশ করো।';authMessage.textContent=''; }
+    function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('access-back-btn').hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Admin অনুমোদন দিয়েছে। Access Code দিয়ে Log In।'; }
+    function returnToRegistration() { authForm.hidden=true;enrollForm.hidden=false;codeCard.hidden=true;document.getElementById('access-back-btn').hidden=true;document.getElementById('show-access-form-btn').hidden=false;document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে Log In।';authMessage.textContent=''; }
     async function checkRegistrationStatus() {
       const response=await fetch('/api/request-code?deviceId='+encodeURIComponent(deviceId));
       const data=await response.json(); if(!response.ok) throw new Error(data.error||'Status পাওয়া যায়নি।');
       if(data.status==='pending'){enrollForm.hidden=true;authForm.hidden=true;codeCard.hidden=false;document.getElementById('show-access-form-btn').hidden=true;document.getElementById('registration-status').textContent='তোমার আবেদন জমা হয়েছে। Admin অনুমোদন দিলে এখানে Access Code পাওয়া যাবে।';if(!approvalPoll)approvalPoll=setInterval(()=>checkRegistrationStatus().catch(()=>{}),10000);}
-      else if(data.status==='approved'){showAccessForm(data.code||'');authMessage.textContent=data.code?'অনুমোদন সম্পন্ন। Access Code বসানো হয়েছে।':'অনুমোদন সম্পন্ন। Access Code লিখে প্রবেশ করো।';}
+      else if(data.status==='approved'){showAccessForm(data.code||'');authMessage.textContent=data.code?'অনুমোদন সম্পন্ন। Access Code বসানো হয়েছে।':'অনুমোদন সম্পন্ন। Access Code লিখে Log In।';}
       else if(data.status==='rejected'){enrollForm.hidden=false;codeCard.hidden=true;authForm.hidden=true;document.getElementById('registration-status').textContent='আবেদনটি গ্রহণ করা হয়নি। তথ্য ঠিক করে আবার আবেদন করো।';}
       return data;
     }
@@ -2580,7 +2580,7 @@
     async function startUserSession(token) {
       localStorage.setItem('rfv_session_token', token);
       const response = await apiRequest('/api/progress');
-      if (!response.ok) throw new Error('তোমার Progress লোড করা যায়নি। আবার প্রবেশ করো।');
+      if (!response.ok) throw new Error('তোমার Progress লোড করা যায়নি। আবার Log In।');
       const data = await response.json();
       try { const infoResponse=await apiRequest('/api/session-info'); if(infoResponse.ok){const info=await infoResponse.json(); if(info.code)localStorage.setItem('rfv_access_code',info.code); document.getElementById('session-access-code').textContent=info.code||localStorage.getItem('rfv_access_code')||'—'; document.getElementById('session-code-card').hidden=false;} } catch (_) {}
       const saved = data.progress;
@@ -2622,7 +2622,7 @@
       document.getElementById('show-general-flow').hidden=true;
       enrollForm.hidden=false;
       document.getElementById('show-access-form-btn').hidden=false;
-      document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে প্রবেশ করো।';
+      document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে Log In।';
       try { await checkRegistrationStatus(); } catch(e) { authMessage.textContent=e.message; }
     });
     document.getElementById('show-access-form-btn').addEventListener('click',()=>showAccessForm(''));
@@ -2669,7 +2669,7 @@
         if (isHscLimit) authMessage.textContent = 'HSC 27 Free Access-এর ২৯টি Device পূর্ণ হয়ে গেছে।';
       } finally {
         authSubmit.disabled = false;
-        authSubmit.textContent = 'প্রবেশ করো';
+        authSubmit.textContent = 'Log In';
       }
     });
 
