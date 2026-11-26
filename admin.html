@@ -27,7 +27,7 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="summary-card"><div class="summary-label">Active Code</div><div class="summary-number" id="activeCodes">—</div></div>
 </div>
 <section class="panel"><h2>Pending Registration Requests</h2>
-<p class="muted">শিক্ষার্থীর নাম, Registration ID, মোবাইল নম্বরের শেষ ৫ সংখ্যা ও আবেদনের সময় দেখে অনুমোদন দাও।</p>
+<div class="section-head"><p class="muted">শিক্ষার্থীর নাম, Access Code, প্রবেশের সময়, Login Status ও masked Device দেখা যাবে।</p><button id="studentAttemptView" class="reset" style="display:none" onclick="viewAllStudents()">View All</button></div><div id="studentAttemptTotal" class="muted"></div>
 <div class="row"><button class="reset" type="button" onclick="loadRequests()">Refresh Requests</button></div>
 <div id="registrationRequests" class="muted">Connect করলে Pending Request দেখা যাবে।</div></section>
 <section class="panel"><h2>HSC 27 — Shared Access</h2>
@@ -40,7 +40,7 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 </div>
 <div class="row"><button onclick="createHSC27()">Create / Enable HSC 27 Code</button><button class="reset" onclick="loadCodes()">Refresh</button></div>
 <div id="hscMessage" class="muted"></div>
-<h3>সর্বশেষ ১০টি Login Attempt</h3><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
+<div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
 </section>
 <hr><h2>শিক্ষার্থী খুঁজুন ও Login History</h2>
 <p class="muted">নাম বা Access Code লিখে খুঁজো। নতুন Code-গুলো এখানে দেখা যাবে; পুরোনো Code Hash করা থাকায় উদ্ধার করা যাবে না।</p>
@@ -55,21 +55,13 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <p class="muted"><small>একই কোড একাধিক ব্যক্তি ব্যবহার করলে তাদের Progress একই হবে। নতুন Access Code Admin Panel-এ নিরাপদভাবে encrypted অবস্থায় সংরক্ষিত থাকে এবং Admin প্রয়োজন হলে দেখতে পারবেন।</small></p>
 </main>
 <script>
-let adminData=null;let adminKey=sessionStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
+let adminData=null;const attemptPages={hsc:{items:[],total:0,expanded:false},all:{items:[],total:0,expanded:false}};let adminKey=sessionStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
 async function call(method,body){const r=await fetch('/api/admin-codes',{method,headers:{'Content-Type':'application/json','X-Admin-Key':document.getElementById('key').value},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d}
 async function connect(){try{await loadCodes();sessionStorage.setItem('rfv_admin_key',document.getElementById('key').value);alert('Admin Connected Successfully')}catch(e){alert(e.message)}}
 async function createHSC27(){try{const d=await call('POST',{special:'hsc27'});document.getElementById('hscMessage').textContent='HSC 27 code সক্রিয়। Login Code: '+d.code+(d.existing?' (আগে থেকেই ছিল)':'');await loadCodes()}catch(e){alert(e.message)}}
 async function createCode(){try{const d=await call('POST',{label:document.getElementById('label').value});document.getElementById('newcode').innerHTML='<div class="code"><b>নতুন Access Code: '+esc(d.code)+'</b><br><small>কোডটি কপি করে ব্যবহারকারীকে পাঠাও। Admin Panel থেকেও পরে খুঁজে পাওয়া যাবে।</small></div>';document.getElementById('label').value='';await loadCodes()}catch(e){alert(e.message)}}
 async function loadCodes(){try{const d=await call('GET');adminData=d;document.getElementById('totalCodes').textContent=Number(d.total_codes??d.codes.length);document.getElementById('activeCodes').textContent=Number(d.active_codes??0);
-const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+' / '+h.device_limit;document.getElementById('hRemain').textContent=h.remaining_devices;document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;document.getElementById('recentAttempts').innerHTML='<div class="table-wrap"><table><tr><th>Device (masked)</th><th>সময়</th><th>Status</th></tr>'+h.recent_attempts.map(a=>'<tr><td>'+esc(a.device)+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td class="'+(a.status==='success'?'status-success':'status-blocked')+'">'+(a.status==='success'?'Success':'Blocked')+'</td></tr>').join('')+'</table></div>'}else{['hUsed','hRemain','hFailedDevices','hFailedAttempts'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('recentAttempts').textContent='HSC 27 code এখনো তৈরি হয়নি।'}
-
-renderStudents();
-await loadRequests();
-
-}catch(e){document.getElementById('list').textContent=e.message;throw e}}
-
-async function loadRequests(){
- try{const r=await fetch('/api/admin-requests',{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'Request load failed');renderRequests(d.requests||[]);}
+const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+' / '+h.device_limit;document.getElementById('hRemain').textContent=h.remaining_devices;document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;document.getElementById('recentAttempts').textContent='Login Attempt লোড হচ্ছে...'}
  catch(e){document.getElementById('registrationRequests').textContent=e.message;}
 }
 function renderRequests(items){
@@ -83,15 +75,31 @@ async function reviewRequest(id,action){
  await loadCodes();
  }catch(e){alert(e.message)}
 }
-function filterStudents(){renderStudents()}
+function filterStudents(){renderStudents();loadAttemptPage('all',true)}
 function renderStudents(){
  if(!adminData)return;
  const q=(document.getElementById('studentSearch')?.value||'').trim().toLowerCase();
- const attempts=(adminData.recent_attempts||[]).filter(a=>(String(a.label||'')+' '+String(a.code||'')).toLowerCase().includes(q));
- document.getElementById('studentHistory').innerHTML='<div class="table-wrap"><table><tr><th>শিক্ষার্থীর নাম</th><th>Access Code</th><th>সময়</th><th>Status</th><th>Device</th></tr>'+(attempts.map(a=>'<tr><td>'+esc(a.label)+'</td><td><b>'+esc(a.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td class="'+(a.status==='success'?'status-success':'status-blocked')+'">'+(a.status==='success'?'Success':'Blocked')+'</td><td>'+esc(a.device)+'</td></tr>').join('')||'<tr><td colspan="5">কোনো ফল পাওয়া যায়নি।</td></tr>')+'</table></div>';
+
  const codes=(adminData.codes||[]).filter(c=>(String(c.label||'')+' '+String(c.code||'')).toLowerCase().includes(q));
  document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+codes.map(c=>{const count=Number(c.device_count||0),limit=Number(c.device_limit||3);return '<tr><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+Number(c.remaining_devices||0)+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
 }
+async function loadAttemptPage(scope,reset=false){
+ const s=attemptPages[scope];if(reset){s.items=[];s.expanded=false;}
+ const limit=reset?5:10,offset=s.items.length,search=scope==='all'?(document.getElementById('studentSearch').value||'').trim():'';
+ try{const p=new URLSearchParams({scope,limit:String(limit),offset:String(offset),search});const r=await fetch('/api/admin-login-attempts?'+p.toString(),{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'History load failed');s.total=Number(d.total||0);s.items=reset?(d.attempts||[]):s.items.concat(d.attempts||[]);renderAttemptTable(scope);}catch(e){document.getElementById(scope==='hsc'?'recentAttempts':'studentHistory').textContent=e.message;}
+}
+function renderAttemptTable(scope){
+ const s=attemptPages[scope],isHsc=scope==='hsc',target=document.getElementById(isHsc?'recentAttempts':'studentHistory');
+ document.getElementById(isHsc?'hscAttemptTotal':'studentAttemptTotal').textContent='মোট '+s.total+'টি';
+ const view=document.getElementById(isHsc?'hscAttemptView':'studentAttemptView');view.style.display=(!s.expanded&&s.total>5)?'inline-block':'none';
+ const rows=s.items.map((a,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(a.label||'—')+'</td><td>'+esc(a.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td>'+esc(a.status)+'</td><td>'+esc(a.device)+'</td></tr>').join('');
+ const header='<tr><th>ক্রমিক</th><th>শিক্ষার্থীর নাম</th><th>Access Code</th><th>সময়</th><th>Status</th><th>Device</th></tr>';
+ let more='';if(s.expanded&&s.items.length<s.total)more='<button class="reset" id="'+(isHsc?'moreHsc':'moreAll')+'">আরও ১০টি দেখুন</button>';
+ target.innerHTML='<div class="table-wrap"><table>'+header+(rows||'<tr><td colspan="6">কোনো তথ্য নেই</td></tr>')+'</table></div>'+more;
+ const b=document.getElementById(isHsc?'moreHsc':'moreAll');if(b)b.onclick=()=>loadAttemptPage(scope);
+}
+async function viewAllHsc(){attemptPages.hsc.expanded=true;await loadAttemptPage('hsc',true);if(attemptPages.hsc.total>5)await loadAttemptPage('hsc');}
+async function viewAllStudents(){attemptPages.all.expanded=true;await loadAttemptPage('all',true);if(attemptPages.all.total>5)await loadAttemptPage('all');}
 async function resetDevices(id){if(!confirm('সব Device Activation Reset হবে; Progress ও Attempt History থাকবে। চালাবে?'))return;try{await call('PATCH',{id});alert('Device Activation Reset হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 async function revoke(id){if(!confirm('এই Access Code বাতিল করবে?'))return;try{await call('DELETE',{id});alert('Access Code বাতিল করা হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
