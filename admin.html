@@ -38,6 +38,7 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="summary-card"><div class="summary-label">ব্যর্থ Device</div><div class="summary-number" id="hFailedDevices">—</div></div>
 <div class="summary-card"><div class="summary-label">মোট ব্যর্থ চেষ্টা</div><div class="summary-number" id="hFailedAttempts">—</div></div>
 </div>
+<p class="muted">ব্যর্থ Device = আলাদা ব্যর্থ ডিভাইসের সংখ্যা। একই Device থেকে বারবার চেষ্টা করলে মোট ব্যর্থ চেষ্টা বাড়বে, কিন্তু ব্যর্থ Device একবারই গণনা হবে। নিচের Login Attempt History-তে প্রতিটি চেষ্টার সময় ও Device দেখা যাবে।</p>
 <div class="row"><button onclick="createHSC27()">Create / Enable HSC 27 Code</button><button class="reset" onclick="loadCodes()">Refresh</button></div>
 <div id="hscMessage" class="muted"></div>
 <div class="section-head"><h3>সর্বশেষ Login Attempt <span id="hscAttemptTotal"></span></h3><div class="actions"><button id="hscAttemptView" class="reset" style="display:none" onclick="viewAllHsc()">View All</button><button id="hscAttemptClose" class="revoke" style="display:none" onclick="closeAllHsc()">Close</button><button id="deleteHscHistory" class="revoke" type="button" onclick="deleteHistoryClick('hsc')">Delete HSC 27 History</button></div></div><div id="recentAttempts" class="muted">Connect করলে দেখা যাবে।</div>
