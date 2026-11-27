@@ -915,7 +915,7 @@
         <label for="hsc27-code">Access Code / Progress Sync Code</label>
         <input id="hsc27-code" type="text" autocomplete="one-time-code" placeholder="Access Code অথবা Progress Sync Code" required maxlength="40">
         <button type="button" id="hsc27-direct-login">Continue</button>
-        <p class="muted" style="text-align:center;margin-bottom:0">Free Access for HSC 27 Students</p>
+        <p class="muted" style="text-align:center;margin-bottom:0">Access Code অথবা Progress Sync Code দিয়ে প্রবেশ করো</p>
       </section>
       <form id="enroll-form" hidden>
         <label for="student-name">Student Name / Nickname</label>
@@ -2612,6 +2612,17 @@
     }
     window.logoutUser = logoutUser;\n    document.getElementById('copy-progress-code')?.addEventListener('click', async () => {\n      const value=document.getElementById('session-access-code').textContent.trim();\n      if(!value || value==='—') return;\n      try { await navigator.clipboard.writeText(value); document.getElementById('copy-progress-code').textContent='Copied'; }\n      catch (_) { document.getElementById('copy-progress-code').textContent='Copy failed'; }\n    });
 
+    const loginNameInput = document.getElementById('hsc27-name');
+    const loginNameLabel = document.querySelector('label[for="hsc27-name"]');
+    function updateLoginNameVisibility() {
+      const lastCode = (localStorage.getItem('rfv_last_login_code') || '').toUpperCase();
+      const currentCode = document.getElementById('hsc27-code').value.trim().toUpperCase();
+      const returningOnThisDevice = !!lastCode && currentCode === lastCode;
+      loginNameInput.hidden = returningOnThisDevice;
+      if (loginNameLabel) loginNameLabel.hidden = returningOnThisDevice;
+    }
+    document.getElementById('hsc27-code').addEventListener('input', updateLoginNameVisibility);
+    updateLoginNameVisibility();
     document.getElementById('student-name').addEventListener('input', registrationPreview);
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
     document.getElementById('hsc27-direct-login').addEventListener('click',async()=>{
@@ -2625,6 +2636,8 @@
         const data=await response.json();
         if(!response.ok)throw new Error(data.error||'Unable to log in. Please try again.');
         localStorage.setItem('rfv_access_code',code);
+        localStorage.setItem('rfv_last_login_code',code.toUpperCase());
+        updateLoginNameVisibility();
         await startUserSession(data.token);
       }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'Unable to log in. Please try again.';}
       finally{button.disabled=false;button.textContent='Continue';}
