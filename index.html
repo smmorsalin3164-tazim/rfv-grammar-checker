@@ -910,9 +910,10 @@
       <h2>RFV Grammar Checker</h2>
       <p id="auth-intro">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
       <section id="hsc27-access-panel">
-        <div class="generated-code" aria-label="HSC 27 Free Access Code">hsc27.free</div>
-        <button type="button" id="hsc27-direct-login">Enter Directly</button>
-        <p class="muted" style="text-align:center;margin-bottom:0">HSC 27 শিক্ষার্থীদের জন্য</p>
+        <label for="hsc27-name">তোমার নাম</label>
+        <input id="hsc27-name" type="text" autocomplete="name" placeholder="তোমার নাম লিখো" required maxlength="80">
+        <button type="button" id="hsc27-direct-login">Continue</button>
+        <p class="muted" style="text-align:center;margin-bottom:0">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
       </section>
       <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">New Registration</button>
       <form id="enroll-form" hidden>
@@ -2613,9 +2614,19 @@
 
     document.getElementById('student-name').addEventListener('input', registrationPreview);
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
-    document.getElementById('hsc27-direct-login').addEventListener('click',()=>{
-      document.getElementById('access-code').value='hsc27.free';
-      authForm.requestSubmit();
+    document.getElementById('hsc27-direct-login').addEventListener('click',async()=>{
+      const name=document.getElementById('hsc27-name').value.trim();
+      if(name.length<2){authMessage.textContent='প্রথমে তোমার নাম লিখো।';document.getElementById('hsc27-name').focus();return;}
+      const button=document.getElementById('hsc27-direct-login');
+      button.disabled=true;button.textContent='Entering…';authMessage.textContent='';
+      try{
+        const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:'hsc27.free',deviceId:getOrCreateDeviceId(),name})});
+        const data=await response.json();
+        if(!response.ok)throw new Error(data.error||'প্রবেশ করা যায়নি। আবার চেষ্টা করো।');
+        localStorage.setItem('rfv_access_code','hsc27.free');
+        await startUserSession(data.token);
+      }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';}
+      finally{button.disabled=false;button.textContent='Continue';}
     });
     document.getElementById('show-general-flow').addEventListener('click',async()=>{
       document.getElementById('hsc27-access-panel').hidden=true;
