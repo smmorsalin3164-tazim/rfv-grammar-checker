@@ -2610,7 +2610,13 @@
       authMessage.textContent = message;
       document.getElementById('access-code').value = '';
     }
-    window.logoutUser = logoutUser;\n    document.getElementById('copy-progress-code')?.addEventListener('click', async () => {\n      const value=document.getElementById('session-access-code').textContent.trim();\n      if(!value || value==='—') return;\n      try { await navigator.clipboard.writeText(value); document.getElementById('copy-progress-code').textContent='Copied'; }\n      catch (_) { document.getElementById('copy-progress-code').textContent='Copy failed'; }\n    });
+    window.logoutUser = logoutUser;
+    document.getElementById('copy-progress-code')?.addEventListener('click', async () => {
+      const value=document.getElementById('session-access-code').textContent.trim();
+      if(!value || value==='—') return;
+      try { await navigator.clipboard.writeText(value); document.getElementById('copy-progress-code').textContent='Copied'; }
+      catch (_) { document.getElementById('copy-progress-code').textContent='Copy failed'; }
+    });
 
     const loginNameInput = document.getElementById('hsc27-name');
     const loginNameLabel = document.querySelector('label[for="hsc27-name"]');
