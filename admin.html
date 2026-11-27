@@ -31,10 +31,10 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="row"><button class="reset" type="button" onclick="loadRequests()">Refresh Requests</button></div>
 <div id="registrationRequests" class="muted">Connect করলে Pending Request দেখা যাবে।</div></section>
 <section class="panel"><h2>HSC 27 — Shared Access</h2>
-<p class="muted">Login Code: <b>hsc27.free</b> · সর্বোচ্চ ২৯টি আলাদা Device</p>
+<p class="muted">Login Code: <b>hsc27.free</b> · Unlimited Device</p>
 <div class="summary">
 <div class="summary-card"><div class="summary-label">সফল Device</div><div class="summary-number" id="hUsed">—</div></div>
-<div class="summary-card"><div class="summary-label">বাকি Slot</div><div class="summary-number" id="hRemain">—</div></div>
+<div class="summary-card"><div class="summary-label">Device Limit</div><div class="summary-number" id="hRemain">Unlimited</div></div>
 <div class="summary-card"><div class="summary-label">ব্যর্থ Device</div><div class="summary-number" id="hFailedDevices">—</div></div>
 <div class="summary-card"><div class="summary-label">মোট ব্যর্থ চেষ্টা</div><div class="summary-number" id="hFailedAttempts">—</div></div>
 </div>
@@ -52,7 +52,7 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <hr><h2>নতুন Access Code তৈরি</h2>
 <div class="row"><input id="label" placeholder="ব্যবহারকারীর নাম / পরিচিতি (ঐচ্ছিক)"><button onclick="createCode()">Create Code</button></div>
 <div id="newcode"></div><hr>
-<h2>ব্যবহারকারীদের কোড</h2><p class="muted">সাধারণ Access Code সর্বোচ্চ ৩টি Device-এ ব্যবহার করা যাবে। HSC 27-এর সীমা ২৯টি।</p>
+<h2>ব্যবহারকারীদের কোড</h2><p class="muted">সাধারণ Access Code সর্বোচ্চ ৩টি Device-এ ব্যবহার করা যাবে। HSC 27-এর জন্য কোনো Device Limit নেই।</p>
 <div class="row"><button type="button" onclick="loadCodes()">Refresh List</button><button id="codesView" class="reset" type="button" style="display:none" onclick="viewAllCodes()">View All</button><button id="codesClose" class="revoke" type="button" style="display:none" onclick="closeAllCodes()">Close</button></div><div id="list"></div>
 <p class="muted"><small>একই কোড একাধিক ব্যক্তি ব্যবহার করলে তাদের Progress একই হবে। নতুন Access Code Admin Panel-এ নিরাপদভাবে encrypted অবস্থায় সংরক্ষিত থাকে এবং Admin প্রয়োজন হলে দেখতে পারবেন।</small></p>
 </main>
@@ -63,7 +63,7 @@ async function connect(){const key=document.getElementById('key').value.trim();i
 async function createHSC27(){try{const d=await call('POST',{special:'hsc27'});document.getElementById('hscMessage').textContent='HSC 27 code সক্রিয়। Login Code: '+d.code+(d.existing?' (আগে থেকেই ছিল)':'');await loadCodes()}catch(e){alert(e.message)}}
 async function createCode(){try{const d=await call('POST',{label:document.getElementById('label').value});document.getElementById('newcode').innerHTML='<div class="code"><b>নতুন Access Code: '+esc(d.code)+'</b><br><small>কোডটি কপি করে ব্যবহারকারীকে পাঠাও। Admin Panel থেকেও পরে খুঁজে পাওয়া যাবে।</small></div>';document.getElementById('label').value='';await loadCodes()}catch(e){alert(e.message)}}
 async function loadCodes(){try{const d=await call('GET');adminData=d;document.getElementById('totalCodes').textContent=Number(d.total_codes??d.codes.length);document.getElementById('activeCodes').textContent=Number(d.active_codes??0);
-const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+' / '+h.device_limit;document.getElementById('hRemain').textContent=h.remaining_devices;document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;}renderStudents();
+const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+'টি';document.getElementById('hRemain').textContent='Unlimited';document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;}renderStudents();
 }catch(e){throw e;}
 }
 async function loadRequests(){const r=await fetch('/api/admin-requests',{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'Registration requests load failed');renderRequests(d.requests||[]);}
@@ -87,7 +87,7 @@ function renderStudents(){
  const visibleCodes=codesExpanded?codes:codes.slice(0,5);
  document.getElementById('codesView').style.display=(!codesExpanded&&codes.length>5)?'inline-block':'none';
  document.getElementById('codesClose').style.display=codesExpanded?'inline-block':'none';
- document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>ক্রমিক</th><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+visibleCodes.map((c,i)=>{const count=Number(c.device_count||0),limit=Number(c.device_limit||3);return '<tr><td>'+(i+1)+'</td><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+Number(c.remaining_devices||0)+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
+ document.getElementById('list').innerHTML='<div class="table-wrap"><table><tr><th>ক্রমিক</th><th>পরিচিতি</th><th>Access Code</th><th>Device ব্যবহার</th><th>বাকি</th><th>ব্যর্থ চেষ্টা</th><th>অবস্থা</th><th>তৈরির সময়</th><th>Action</th></tr>'+visibleCodes.map((c,i)=>{const count=Number(c.device_count||0),isHsc=c.label==='HSC 27',limit=isHsc?'Unlimited':Number(c.device_limit||3);return '<tr><td>'+(i+1)+'</td><td>'+esc(c.label||'—')+'</td><td><b>'+esc(c.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</b></td><td><b>'+count+'/'+limit+'</b></td><td>'+(isHsc?'Unlimited':Number(c.remaining_devices||0))+'</td><td>'+Number(c.failed_attempt_count||0)+'</td><td>'+(c.active?'Active':'Revoked')+'</td><td>'+new Date(c.created_at).toLocaleDateString()+'</td><td><div class="actions">'+(c.active?'<button class="reset" onclick="resetDevices(\''+esc(c.id)+'\')">Reset Devices</button><button class="revoke" onclick="revoke(\''+esc(c.id)+'\')">Revoke</button>':'—')+'</div></td></tr>'}).join('')+'</table></div>';
 }
 async function loadAttemptPage(scope,reset=false){
  const s=attemptPages[scope];if(reset){s.items=[];}
@@ -99,7 +99,7 @@ function renderAttemptTable(scope){
  document.getElementById(isHsc?'hscAttemptTotal':'studentAttemptTotal').textContent='মোট '+s.total+'টি';
  const view=document.getElementById(isHsc?'hscAttemptView':'studentAttemptView');view.style.display=(!s.expanded&&s.total>5)?'inline-block':'none';
  const close=document.getElementById(isHsc?'hscAttemptClose':'studentAttemptClose');close.style.display=s.expanded?'inline-block':'none';
- const rows=s.items.map((a,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(a.label||'—')+'</td><td>'+esc(a.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td>'+esc(a.status)+'</td><td>'+esc(a.device)+'</td></tr>').join('');
+ const rows=s.items.map((a,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(isHsc?(a.name||a.label||'—'):(a.label||'—'))+'</td><td>'+esc(a.code||'পুরোনো Code উদ্ধারযোগ্য নয়')+'</td><td>'+new Date(a.attempted_at).toLocaleString()+'</td><td>'+esc(a.status)+'</td><td>'+esc(a.device)+'</td></tr>').join('');
  const header='<tr><th>ক্রমিক</th><th>শিক্ষার্থীর নাম</th><th>Access Code</th><th>সময়</th><th>Status</th><th>Device</th></tr>';
  let more='';if(s.expanded&&s.items.length<s.total)more='<button class="reset" id="'+(isHsc?'moreHsc':'moreAll')+'">আরও ১০টি দেখুন</button>';
  target.innerHTML='<div class="table-wrap"><table>'+header+(rows||'<tr><td colspan="6">কোনো তথ্য নেই</td></tr>')+'</table></div>'+more;
