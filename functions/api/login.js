@@ -130,7 +130,6 @@ export async function onRequestPost({ request, env }) {
     await env.DB.prepare('INSERT INTO sessions(token_hash, code_id, expires_at, device_hash, profile_id) VALUES(?,?,?,?,?)')
       .bind(tokenHash, access.id, expires, deviceHash, profile.profile_id).run();
     return json({ token, expiresAt: expires });
-  }
   } catch (error) {
     const diagnostic = String(error?.message || error || 'Unknown login error').slice(0, 300);
     console.error('LOGIN_DIAGNOSTIC_TEMP', error?.stack || diagnostic);
