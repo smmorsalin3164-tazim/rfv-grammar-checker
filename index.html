@@ -983,15 +983,56 @@
     </header>
 
     <style>
-      .sync-code-wrap{display:flex;align-items:center;justify-content:flex-start;gap:18px;margin:10px 0 14px;flex-wrap:wrap}
-      #session-code-card{width:fit-content;max-width:min(100%,360px);min-width:250px;padding:12px 14px;gap:4px}
-      #copy-progress-code{align-self:flex-start;margin-top:6px!important;padding:6px 11px;font-size:.8rem;min-height:unset}
-      .sync-code-reminder{color:#c62828;font-size:.9rem;font-weight:700;max-width:310px;line-height:1.5}
-      @media(max-width:600px){.sync-code-wrap{align-items:flex-start;gap:8px;flex-direction:column}}
+      .sync-code-wrap{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+        gap:22px;
+        align-items:stretch;
+        margin:18px 0 24px;
+      }
+      #session-code-card{
+        width:100%;
+        max-width:none;
+        min-width:0;
+        min-height:220px;
+        box-sizing:border-box;
+        padding:22px 24px;
+        gap:9px;
+        justify-content:center;
+      }
+      #copy-progress-code{
+        align-self:flex-start;
+        margin-top:7px!important;
+        padding:9px 15px;
+        font-size:.9rem;
+        min-height:unset;
+      }
+      .sync-code-reminder{
+        box-sizing:border-box;
+        display:flex;
+        align-items:center;
+        max-width:none;
+        min-width:0;
+        min-height:220px;
+        margin:0;
+        padding:26px 30px;
+        border:1px solid #efc5c5;
+        border-left:5px solid #d64545;
+        border-radius:18px;
+        background:#fffafa;
+        color:#c62828;
+        font-size:1rem;
+        font-weight:700;
+        line-height:1.75;
+      }
+      @media(max-width:700px){
+        .sync-code-wrap{grid-template-columns:minmax(0,1fr);gap:12px;margin:12px 0 18px}
+        #session-code-card,.sync-code-reminder{min-height:unset;padding:18px}
+      }
     </style>
     <div class="sync-code-wrap">
-      <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Progress Sync Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.05rem;overflow-wrap:anywhere">—</strong><span class="stat-note">অন্য Device-এ একই Study Report ও Accuracy Report পেতে এই কোড ব্যবহার করো।</span><button type="button" class="btn btn-secondary" id="copy-progress-code">Copy Progress Sync Code</button></section>
-      <p class="sync-code-reminder">এই কোডটি সংরক্ষণ করে রাখো। পরবর্তী সময়ে অন্য Device-এ Progress ফিরিয়ে আনতে বা লগইন করতে এটি প্রয়োজন হতে পারে।</p>
+      <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Progress Sync Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.2rem;overflow-wrap:anywhere">—</strong><span class="stat-note">অন্য Device-এ একই Study Report ও Accuracy Report পেতে এই কোড ব্যবহার করো।</span><button type="button" class="btn btn-secondary" id="copy-progress-code">Copy Progress Sync Code</button></section>
+      <aside class="sync-code-reminder">এই কোডটি সংরক্ষণ করে রাখো। পরবর্তী সময়ে অন্য Device-এ Progress ফিরিয়ে আনতে বা লগইন করতে এটি প্রয়োজন হতে পারে।</aside>
     </div>
 
     <!-- Live Summary Strip -->
