@@ -40,9 +40,9 @@ export async function onRequestPost({ request, env }) {
   
     const isHsc27 = access.label === 'HSC 27';
     const existingDevice = await env.DB.prepare(
-      'SELECT dp.profile_id, p.display_name FROM device_profiles dp
+      `SELECT dp.profile_id, p.display_name FROM device_profiles dp
       JOIN progress_profiles p ON p.id=dp.profile_id
-      WHERE dp.code_id=? AND dp.device_hash=?'
+      WHERE dp.code_id=? AND dp.device_hash=?`
     ).bind(access.id, deviceHash).first();
   
     // A new device must provide a name. A known device can log in with only its code.
@@ -73,7 +73,7 @@ export async function onRequestPost({ request, env }) {
     if (!activation) {
       await env.DB.prepare(
         "INSERT INTO login_attempts (id, code_id, device_hash, attempted_at, status, student_name) VALUES (?, ?, ?, ?, 'blocked', ?)"
-      ).bind(crypto.randomUUID(), access.id, deviceHash, now, profile.display_name || studentName || null).run();
+      ).bind(crypto.randomUUID(), access.id, deviceHash, now, studentName || null).run();
       const limit = Number(access.device_limit || 3);
       return json({ error: isHsc27 ? 'এই Device-এ প্রবেশ করা যাচ্ছে না। Admin-এর সঙ্গে যোগাযোগ করো।' : `এই Access Code-এর সর্বোচ্চ ${limit}টি Device ব্যবহার হয়ে গেছে। Admin-এর সঙ্গে যোগাযোগ করো।` }, 403);
     }
@@ -124,7 +124,7 @@ export async function onRequestPost({ request, env }) {
   
     await env.DB.prepare(
       "INSERT INTO login_attempts (id, code_id, device_hash, attempted_at, status, student_name) VALUES (?, ?, ?, ?, 'success', ?)"
-    ).bind(crypto.randomUUID(), access.id, deviceHash, now, studentName || null).run();
+    ).bind(crypto.randomUUID(), access.id, deviceHash, now, profile.display_name || studentName || null).run();
   
     const token = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2, '0')).join('');
     const tokenHash = await sha256(token);
