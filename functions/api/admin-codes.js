@@ -45,7 +45,7 @@ export async function onRequestGet({ request, env }) {
   const reveal = async value => { try { return value ? await decryptAccessCode(value, codeKey) : null; } catch { return null; } };
 
   return json({
-    codes: await Promise.all(results.map(async c => ({ ...c, code: await reveal(c.encrypted_code), encrypted_code: undefined, remaining_devices: Math.max(0, Number(c.device_limit || 3) - Number(c.device_count || 0)) }))),
+    codes: await Promise.all(results.map(async c => ({ ...c, device_limit: c.label === 'HSC 27' ? null : Number(c.device_limit || 3), code: await reveal(c.encrypted_code), encrypted_code: undefined, remaining_devices: c.label === 'HSC 27' ? null : Math.max(0, Number(c.device_limit || 3) - Number(c.device_count || 0)) }))),
     recent_attempts: await Promise.all((recentAttemptsAll.results || []).map(async a => ({
       label: a.label || '—', code: await reveal(a.encrypted_code), attempted_at: a.attempted_at, status: a.status,
       device: String(a.device_hash || '').slice(0, 10) + '…'
@@ -53,8 +53,8 @@ export async function onRequestGet({ request, env }) {
     total_codes: summary.total_codes, active_codes: summary.active_codes,
     hsc27: special ? {
       id: special.id, device_count: Number(special.device_count || 0),
-      device_limit: Number(special.device_limit || 29),
-      remaining_devices: Math.max(0, Number(special.device_limit || 29) - Number(special.device_count || 0)),
+      device_limit: null,
+      remaining_devices: null,
       failed_device_count: Number(special.failed_device_count || 0),
       failed_attempt_count: Number(special.failed_attempt_count || 0),
       recent_attempts: recentAttempts.map(a => ({ device: a.device_hash.slice(0, 10) + '…', attempted_at: a.attempted_at, status: a.status }))
@@ -74,11 +74,11 @@ export async function onRequestPost({ request, env }) {
     const codeHash = await sha256('HSC27.FREE');
     const existing = await env.DB.prepare('SELECT id, active FROM access_codes WHERE code_hash=?').bind(codeHash).first();
     if (existing) {
-      await env.DB.prepare("UPDATE access_codes SET label='HSC 27', device_limit=29, active=1, encrypted_code=? WHERE id=?").bind(await encryptAccessCode('hsc27.free', env.CODE_ENCRYPTION_KEY), existing.id).run();
+      await env.DB.prepare("UPDATE access_codes SET label='HSC 27', device_limit=0, active=1, encrypted_code=? WHERE id=?").bind(await encryptAccessCode('hsc27.free', env.CODE_ENCRYPTION_KEY), existing.id).run();
       return json({ id: existing.id, code: 'hsc27.free', label: 'HSC 27', active: true, existing: true });
     }
     await env.DB.prepare(
-      'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,29,?)'
+      'INSERT INTO access_codes(id,code_hash,label,active,created_at,device_limit,encrypted_code) VALUES(?,?,?,1,?,0,?)'
     ).bind(id, codeHash, 'HSC 27', createdAt, await encryptAccessCode('hsc27.free', env.CODE_ENCRYPTION_KEY)).run();
     return json({ id, code: 'hsc27.free', label: 'HSC 27', active: true }, 201);
   }
