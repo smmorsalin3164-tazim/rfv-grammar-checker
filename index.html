@@ -51,7 +51,7 @@
       --data-1: #059669;
       --data-2: #10b981;
       --data-3: #d97706;
-      --data-4: #0d9488;
+      --data-4: #6f8f7d;
       --data-context: #b6d4c5;
 
       /* Fonts */
@@ -737,8 +737,8 @@
     .rules-pdf-fallback { margin: 0; font-size: .9rem; color: var(--on-surface-variant); }
     .rules-pdf-fallback a { color: var(--primary-hover); font-weight: 700; }
     .rules-source-note { margin: 0; color: var(--on-surface-variant); font-size: .8rem; line-height: 1.5; }
-    .rules-recommended-note { margin: 2px 0 10px; padding: 10px 13px; border-left: 4px solid #0d9488; background: #e0f2fe; border-radius: 10px; }
-    .rules-recommended-note strong { color: #075985; font-size: .92rem; }
+    .rules-recommended-note { margin: 2px 0 10px; padding: 10px 13px; border-left: 4px solid #6f8f7d; background: #e7f0e8; border-radius: 10px; }
+    .rules-recommended-note strong { color: #365b4a; font-size: .92rem; }
     .rules-disclaimer-note { padding-top: 8px; border-top: 1px solid var(--outline-variant); font-style: italic; color: #dc2626; }
     @media (max-width: 640px) { .rules-pdf-frame { height: 65vh; min-height: 420px; } }
 
@@ -746,30 +746,30 @@
       min-height: 48px;
       padding: 0.65rem 1rem;
       border-radius: 12px;
-      border: 2px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
+      border: 2px solid #c7d4c9;
+      background: #f4f8f3;
+      color: #3f594b;
       font-weight: 800;
       cursor: pointer;
       transition: background .15s ease, border-color .15s ease, transform .15s ease;
     }
     .tab-btn:focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
     .tab-btn.is-active {
-      background: #0f766e;
+      background: #557b68;
       color: #ffffff;
-      border-color: #0f766e;
+      border-color: #557b68;
       box-shadow: 0 3px 0 rgba(15, 118, 110, .18);
     }
     .rules-source-tabs { gap: 10px; }
     .rules-source-tabs .tab-btn { flex: 1 1 180px; }
-    .rules-source-tabs #tab-source-text { border-color: #0d9488; }
-    .rules-source-tabs #tab-source-pdf1 { border-color: #7c3aed; }
-    .rules-source-tabs #tab-source-pdf1.is-active { background: #6d28d9; border-color: #6d28d9; }
+    .rules-source-tabs #tab-source-text { border-color: #6f8f7d; }
+    .rules-source-tabs #tab-source-pdf1 { border-color: #9aaf9d; }
+    .rules-source-tabs #tab-source-pdf1.is-active { background: #587b69; border-color: #587b69; }
     .rules-category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; border: 0; padding: 0; }
-    .rules-category-tabs #tab-rfv { background: #fff7ed; color: #9a3412; border-color: #f97316; }
-    .rules-category-tabs #tab-rfv.is-active { background: #ea580c; color: #fff; border-color: #ea580c; }
-    .rules-category-tabs #tab-sva { background: #eff6ff; color: #1d4ed8; border-color: #3b82f6; }
-    .rules-category-tabs #tab-sva.is-active { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .rules-category-tabs #tab-rfv { background: #edf3e9; color: #45664f; border-color: #829b79; }
+    .rules-category-tabs #tab-rfv.is-active { background: #557b68; color: #fff; border-color: #557b68; }
+    .rules-category-tabs #tab-sva { background: #e6eee5; color: #496957; border-color: #8da794; }
+    .rules-category-tabs #tab-sva.is-active { background: #78947e; color: #fff; border-color: #78947e; }
     .search-box-wrap {
       display: flex;
       flex-direction: column;
@@ -777,7 +777,7 @@
       margin: 12px 0 14px;
       padding: 12px;
       background: #f1f5f9;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #c7d4c9;
       border-radius: 12px;
     }
     .field-label {
@@ -907,7 +907,7 @@
     #auth-message { min-height:24px; color:#a33b35; font-size:.92rem; font-weight:700; text-align:center; }
     #auth-message.limit-reached { margin:18px 0 4px; padding:18px 14px; border:2px solid #b42318; border-radius:14px; background:#fff0ef; color:#991b1b; font-size:clamp(1.25rem,5vw,1.75rem); line-height:1.45; font-weight:800; }
     .generated-code { margin:18px 0 10px; padding:20px 12px; border:2px solid #176b60; border-radius:14px; background:#e8f5f1; color:#10584f; text-align:center; font:800 clamp(1.65rem,7vw,2.25rem)/1.3 'JetBrains Mono',monospace; letter-spacing:.06em; overflow-wrap:anywhere; }
-    .code-warning { margin:10px 0; color:#9a3412 !important; font-weight:700; text-align:center; }
+    .code-warning { margin:10px 0; color:#45664f !important; font-weight:700; text-align:center; }
     #code-card button { margin-top:10px; }
     #auth-screen[hidden] { display:none !important; }
     .access-back-btn {
