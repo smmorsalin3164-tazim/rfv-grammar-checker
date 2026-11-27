@@ -910,10 +910,10 @@
       <h2>RFV Grammar Checker</h2>
       <p id="auth-intro">HSC 27 Free Access</p>
       <section id="hsc27-access-panel">
-        <label for="hsc27-name">Your Name</label>
-        <input id="hsc27-name" type="text" autocomplete="name" placeholder="Enter your name" required maxlength="80">
-        <label for="hsc27-code">Access Code</label>
-        <input id="hsc27-code" type="text" autocomplete="one-time-code" placeholder="Enter your access code" required maxlength="40">
+        <label for="hsc27-name">Your Name <span class="muted">(নতুন Device হলে)</span></label>
+        <input id="hsc27-name" type="text" autocomplete="name" placeholder="Enter your name (প্রথমবার)" maxlength="80">
+        <label for="hsc27-code">Access Code / Progress Sync Code</label>
+        <input id="hsc27-code" type="text" autocomplete="one-time-code" placeholder="Access Code অথবা Progress Sync Code" required maxlength="40">
         <button type="button" id="hsc27-direct-login">Continue</button>
         <p class="muted" style="text-align:center;margin-bottom:0">Free Access for HSC 27 Students</p>
       </section>
@@ -2617,7 +2617,6 @@
     document.getElementById('hsc27-direct-login').addEventListener('click',async()=>{
       const name=document.getElementById('hsc27-name').value.trim();
       const code=document.getElementById('hsc27-code').value.trim();
-      if(name.length<2){authMessage.textContent='Please enter your name.';document.getElementById('hsc27-name').focus();return;}
       if(!code){authMessage.textContent='Please enter your access code.';document.getElementById('hsc27-code').focus();return;}
       const button=document.getElementById('hsc27-direct-login');
       button.disabled=true;button.textContent='Entering…';authMessage.textContent='';
@@ -2694,15 +2693,9 @@
       authScreen.hidden = false;
       const token = localStorage.getItem('rfv_session_token');
       const savedCode = (localStorage.getItem('rfv_access_code') || '').toLowerCase();
-      // HSC 27 must enter their name and press Continue whenever the site is opened.
-      if (token && savedCode === 'hsc27.free') {
-        localStorage.removeItem('rfv_session_token');
-        return;
-      }
-      if (token) {
-        try { await startUserSession(token); }
-        catch (_) { localStorage.removeItem('rfv_session_token'); }
-      }
+      // Every new visit asks for the code again. The server recognizes this device,
+      // so a returning device does not need to enter its name again.
+      if (token) localStorage.removeItem('rfv_session_token');
     }
 
     initApp();
