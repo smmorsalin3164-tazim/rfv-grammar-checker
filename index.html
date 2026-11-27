@@ -959,7 +959,7 @@
       </div>
     </header>
 
-    <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Access Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.15rem;overflow-wrap:anywhere">—</strong></section>
+    <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Progress Sync Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.15rem;overflow-wrap:anywhere">—</strong><span class="stat-note">অন্য Device-এ একই Study Report ও Accuracy Report পেতে এই কোড ব্যবহার করো।</span><button type="button" class="btn btn-secondary" id="copy-progress-code" style="margin-top:8px">Copy Progress Sync Code</button></section>
 
     <!-- Live Summary Strip -->
     <section class="stats-strip" aria-label="Practice progress summary">
@@ -2583,7 +2583,7 @@
       const response = await apiRequest('/api/progress');
       if (!response.ok) throw new Error('তোমার Progress লোড করা যায়নি। আবার Log In।');
       const data = await response.json();
-      try { const infoResponse=await apiRequest('/api/session-info'); if(infoResponse.ok){const info=await infoResponse.json(); if(info.code)localStorage.setItem('rfv_access_code',info.code); document.getElementById('session-access-code').textContent=info.code||localStorage.getItem('rfv_access_code')||'—'; document.getElementById('session-code-card').hidden=false;} } catch (_) {}
+      try { const infoResponse=await apiRequest('/api/session-info'); if(infoResponse.ok){const info=await infoResponse.json(); if(info.code)localStorage.setItem('rfv_access_code',info.code); document.getElementById('session-access-code').textContent=info.progressSyncCode||'—'; document.getElementById('session-code-card').hidden=false;} } catch (_) {}
       const saved = data.progress;
       appState = saved && typeof saved === 'object' ? {
         currentQuestionId: saved.currentQuestionId || 1,
@@ -2610,7 +2610,7 @@
       authMessage.textContent = message;
       document.getElementById('access-code').value = '';
     }
-    window.logoutUser = logoutUser;
+    window.logoutUser = logoutUser;\n    document.getElementById('copy-progress-code')?.addEventListener('click', async () => {\n      const value=document.getElementById('session-access-code').textContent.trim();\n      if(!value || value==='—') return;\n      try { await navigator.clipboard.writeText(value); document.getElementById('copy-progress-code').textContent='Copied'; }\n      catch (_) { document.getElementById('copy-progress-code').textContent='Copy failed'; }\n    });
 
     document.getElementById('student-name').addEventListener('input', registrationPreview);
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
@@ -2670,7 +2670,7 @@
         const response = await fetch('/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({code, deviceId})
+          body: JSON.stringify({code, deviceId, name: document.getElementById('hsc27-name')?.value.trim() || document.getElementById('student-name')?.value.trim() || ''})
         });
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'Access Code সঠিক নয়।');
