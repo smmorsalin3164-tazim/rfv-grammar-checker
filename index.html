@@ -982,7 +982,17 @@
       </div>
     </header>
 
-    <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Progress Sync Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.15rem;overflow-wrap:anywhere">—</strong><span class="stat-note">অন্য Device-এ একই Study Report ও Accuracy Report পেতে এই কোড ব্যবহার করো।</span><button type="button" class="btn btn-secondary" id="copy-progress-code" style="margin-top:8px">Copy Progress Sync Code</button></section>
+    <style>
+      .sync-code-wrap{display:flex;align-items:center;justify-content:flex-start;gap:18px;margin:10px 0 14px;flex-wrap:wrap}
+      #session-code-card{width:fit-content;max-width:min(100%,360px);min-width:250px;padding:12px 14px;gap:4px}
+      #copy-progress-code{align-self:flex-start;margin-top:6px!important;padding:6px 11px;font-size:.8rem;min-height:unset}
+      .sync-code-reminder{color:#c62828;font-size:.9rem;font-weight:700;max-width:310px;line-height:1.5}
+      @media(max-width:600px){.sync-code-wrap{align-items:flex-start;gap:8px;flex-direction:column}}
+    </style>
+    <div class="sync-code-wrap">
+      <section id="session-code-card" class="stat-tile" hidden><span class="stat-label">Your Progress Sync Code</span><strong id="session-access-code" class="stat-value" style="font-size:1.05rem;overflow-wrap:anywhere">—</strong><span class="stat-note">অন্য Device-এ একই Study Report ও Accuracy Report পেতে এই কোড ব্যবহার করো।</span><button type="button" class="btn btn-secondary" id="copy-progress-code">Copy Progress Sync Code</button></section>
+      <p class="sync-code-reminder">এই কোডটি সংরক্ষণ করে রাখো। পরবর্তী সময়ে অন্য Device-এ Progress ফিরিয়ে আনতে বা লগইন করতে এটি প্রয়োজন হতে পারে।</p>
+    </div>
 
     <!-- Live Summary Strip -->
     <section class="stats-strip" aria-label="Practice progress summary">
