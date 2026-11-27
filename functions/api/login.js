@@ -15,6 +15,7 @@ export async function onRequestPost({ request, env }) {
     'SELECT id, label, device_limit FROM access_codes WHERE code_hash=? AND active=1'
   ).bind(codeHash).first();
   if (!row) return json({ error: 'Access Code সঠিক নয় অথবা বাতিল করা হয়েছে।' }, 401);
+  if (row.label === 'HSC 27' && studentName.length < 2) return json({ error: 'প্রথমে তোমার নাম লিখো।' }, 400);
 
   const deviceHash = await sha256(deviceId);
   const now = Date.now();
