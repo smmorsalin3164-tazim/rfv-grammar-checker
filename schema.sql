@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS access_codes (
   id TEXT PRIMARY KEY, code_hash TEXT NOT NULL UNIQUE, encrypted_code TEXT, label TEXT NOT NULL DEFAULT '',
   active INTEGER NOT NULL DEFAULT 1, created_at INTEGER NOT NULL, device_limit INTEGER NOT NULL DEFAULT 3
 );
-CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, code_id TEXT NOT NULL REFERENCES access_codes(id), expires_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, code_id TEXT NOT NULL REFERENCES access_codes(id), expires_at INTEGER NOT NULL, device_hash TEXT, profile_id TEXT);
 CREATE INDEX IF NOT EXISTS idx_sessions_code_id ON sessions(code_id);
 CREATE TABLE IF NOT EXISTS progress (code_id TEXT PRIMARY KEY REFERENCES access_codes(id), state_json TEXT NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE IF NOT EXISTS device_activations (
@@ -29,3 +29,32 @@ CREATE TABLE IF NOT EXISTS registration_requests (
   reviewed_at INTEGER
 );
 CREATE INDEX IF NOT EXISTS idx_registration_requests_status_time ON registration_requests(status, created_at DESC);
+
+
+CREATE TABLE IF NOT EXISTS progress_profiles (
+  id TEXT PRIMARY KEY,
+  code_id TEXT NOT NULL REFERENCES access_codes(id),
+  sync_code_hash TEXT NOT NULL UNIQUE,
+  encrypted_sync_code TEXT NOT NULL,
+  display_name TEXT NOT NULL DEFAULT '',
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_progress_profiles_code_id ON progress_profiles(code_id);
+CREATE TABLE IF NOT EXISTS device_profiles (
+  code_id TEXT NOT NULL REFERENCES access_codes(id),
+  device_hash TEXT NOT NULL,
+  profile_id TEXT NOT NULL REFERENCES progress_profiles(id),
+  PRIMARY KEY(code_id, device_hash)
+);
+CREATE TABLE IF NOT EXISTS profile_progress (
+  profile_id TEXT PRIMARY KEY REFERENCES progress_profiles(id),
+  state_json TEXT NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS device_progress (
+  code_id TEXT NOT NULL REFERENCES access_codes(id),
+  device_hash TEXT NOT NULL,
+  state_json TEXT NOT NULL,
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY(code_id, device_hash)
+);
