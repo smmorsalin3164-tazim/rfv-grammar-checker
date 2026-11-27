@@ -28,12 +28,19 @@ export async function onRequestGet({ request, env }) {
 
   const special = results.find(c => c.label === 'HSC 27');
   let recentAttempts = [];
+  let hsc24h = { connected_devices: 0, failed_attempts: 0 };
   if (special) {
     const attempts = await env.DB.prepare(`
       SELECT device_hash, attempted_at, status FROM login_attempts
       WHERE code_id=? ORDER BY attempted_at DESC LIMIT 10
     `).bind(special.id).all();
     recentAttempts = attempts.results || [];
+    const since24h = Date.now() - 24 * 60 * 60 * 1000;
+    hsc24h = await env.DB.prepare(`
+      SELECT COUNT(DISTINCT CASE WHEN status='success' THEN device_hash END) AS connected_devices,
+        SUM(CASE WHEN status='blocked' THEN 1 ELSE 0 END) AS failed_attempts
+      FROM login_attempts WHERE code_id=? AND attempted_at>=?
+    `).bind(special.id, since24h).first() || hsc24h;
   }
   const recentAttemptsAll = await env.DB.prepare(`
     SELECT a.label, a.encrypted_code, l.attempted_at, l.status, l.device_hash
@@ -57,6 +64,8 @@ export async function onRequestGet({ request, env }) {
       remaining_devices: null,
       failed_device_count: Number(special.failed_device_count || 0),
       failed_attempt_count: Number(special.failed_attempt_count || 0),
+      connected_devices_24h: Number(hsc24h.connected_devices || 0),
+      failed_attempts_24h: Number(hsc24h.failed_attempts || 0),
       recent_attempts: recentAttempts.map(a => ({ device: a.device_hash.slice(0, 10) + '…', attempted_at: a.attempted_at, status: a.status }))
     } : null
   });
