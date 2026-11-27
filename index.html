@@ -2549,6 +2549,43 @@
       }
     });
 
+    // Bind the HSC 27 login action early, before legacy registration setup.
+    document.addEventListener('click', async function(e) {
+      const button = e.target && e.target.closest ? e.target.closest('#hsc27-direct-login') : null;
+      if (!button || button.disabled) return;
+      const name = document.getElementById('hsc27-name')?.value.trim() || '';
+      const codeInput = document.getElementById('hsc27-code');
+      const code = codeInput?.value.trim() || '';
+      const message = document.getElementById('auth-message');
+      if (!code) {
+        if (message) message.textContent = 'Please enter your access code.';
+        if (codeInput) codeInput.focus();
+        return;
+      }
+      button.disabled = true;
+      button.textContent = 'Entering…';
+      if (message) message.textContent = '';
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code, deviceId: getOrCreateDeviceId(), name})
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Unable to log in. Please try again.');
+        localStorage.setItem('rfv_access_code', code);
+        localStorage.setItem('rfv_last_login_code', code.toUpperCase());
+        updateLoginNameVisibility();
+        await startUserSession(data.token);
+      } catch (error) {
+        localStorage.removeItem('rfv_session_token');
+        if (message) message.textContent = error.message || 'Unable to log in. Please try again.';
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Continue';
+      }
+    });
+
     const authScreen = document.getElementById('auth-screen');
     const authForm = document.getElementById('access-form');
     const enrollForm = document.getElementById('enroll-form');
@@ -2631,23 +2668,7 @@
     updateLoginNameVisibility();
     document.getElementById('student-name').addEventListener('input', registrationPreview);
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
-    document.getElementById('hsc27-direct-login').addEventListener('click',async()=>{
-      const name=document.getElementById('hsc27-name').value.trim();
-      const code=document.getElementById('hsc27-code').value.trim();
-      if(!code){authMessage.textContent='Please enter your access code.';document.getElementById('hsc27-code').focus();return;}
-      const button=document.getElementById('hsc27-direct-login');
-      button.disabled=true;button.textContent='Entering…';authMessage.textContent='';
-      try{
-        const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,deviceId:getOrCreateDeviceId(),name})});
-        const data=await response.json();
-        if(!response.ok)throw new Error(data.error||'Unable to log in. Please try again.');
-        localStorage.setItem('rfv_access_code',code);
-        localStorage.setItem('rfv_last_login_code',code.toUpperCase());
-        updateLoginNameVisibility();
-        await startUserSession(data.token);
-      }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'Unable to log in. Please try again.';}
-      finally{button.disabled=false;button.textContent='Continue';}
-    });
+    // HSC 27 login is handled by the early delegated click listener above.
     const showGeneralFlowButton = document.getElementById('show-general-flow');
     if (showGeneralFlowButton) showGeneralFlowButton.addEventListener('click',async()=>{
       document.getElementById('hsc27-access-panel').hidden=true;
