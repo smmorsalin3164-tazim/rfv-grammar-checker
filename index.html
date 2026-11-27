@@ -908,14 +908,16 @@
   <section id="auth-screen">
     <div class="auth-card">
       <h2>RFV Grammar Checker</h2>
-      <p id="auth-intro">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
+      <p id="auth-intro">HSC 27 Free Access</p>
       <section id="hsc27-access-panel">
-        <label for="hsc27-name">তোমার নাম</label>
-        <input id="hsc27-name" type="text" autocomplete="name" placeholder="তোমার নাম লিখো" required maxlength="80">
+        <label for="hsc27-name">Your Name</label>
+        <input id="hsc27-name" type="text" autocomplete="name" placeholder="Enter your name" required maxlength="80">
+        <label for="hsc27-code">Access Code</label>
+        <input id="hsc27-code" type="text" autocomplete="one-time-code" placeholder="Enter your access code" required maxlength="40">
         <button type="button" id="hsc27-direct-login">Continue</button>
-        <p class="muted" style="text-align:center;margin-bottom:0">HSC 27 শিক্ষার্থীদের জন্য Free Access</p>
+        <p class="muted" style="text-align:center;margin-bottom:0">Free Access for HSC 27 Students</p>
       </section>
-      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">New Registration</button>
+      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px" hidden>New Registration</button>
       <form id="enroll-form" hidden>
         <label for="student-name">Student Name / Nickname</label>
         <input id="student-name" type="text" autocomplete="name" placeholder="যেমন: Rafi" required maxlength="80">
@@ -2616,16 +2618,18 @@
     document.getElementById('mobile-last5').addEventListener('input', registrationPreview);
     document.getElementById('hsc27-direct-login').addEventListener('click',async()=>{
       const name=document.getElementById('hsc27-name').value.trim();
-      if(name.length<2){authMessage.textContent='প্রথমে তোমার নাম লিখো।';document.getElementById('hsc27-name').focus();return;}
+      const code=document.getElementById('hsc27-code').value.trim();
+      if(name.length<2){authMessage.textContent='Please enter your name.';document.getElementById('hsc27-name').focus();return;}
+      if(!code){authMessage.textContent='Please enter your access code.';document.getElementById('hsc27-code').focus();return;}
       const button=document.getElementById('hsc27-direct-login');
       button.disabled=true;button.textContent='Entering…';authMessage.textContent='';
       try{
-        const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:'hsc27.free',deviceId:getOrCreateDeviceId(),name})});
+        const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,deviceId:getOrCreateDeviceId(),name})});
         const data=await response.json();
-        if(!response.ok)throw new Error(data.error||'প্রবেশ করা যায়নি। আবার চেষ্টা করো।');
-        localStorage.setItem('rfv_access_code','hsc27.free');
+        if(!response.ok)throw new Error(data.error||'Unable to log in. Please try again.');
+        localStorage.setItem('rfv_access_code',code);
         await startUserSession(data.token);
-      }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'প্রবেশ করা যায়নি। আবার চেষ্টা করো।';}
+      }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'Unable to log in. Please try again.';}
       finally{button.disabled=false;button.textContent='Continue';}
     });
     document.getElementById('show-general-flow').addEventListener('click',async()=>{
