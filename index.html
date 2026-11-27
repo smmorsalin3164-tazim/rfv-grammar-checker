@@ -2755,11 +2755,40 @@
     async function initApp() {
       document.body.classList.add('auth-locked');
       authScreen.hidden = false;
+
       const token = localStorage.getItem('rfv_session_token');
-      const savedCode = (localStorage.getItem('rfv_access_code') || '').toLowerCase();
-      // Every new visit asks for the code again. The server recognizes this device,
-      // so a returning device does not need to enter its name again.
-      if (token) localStorage.removeItem('rfv_session_token');
+      const savedCode = (localStorage.getItem('rfv_access_code') || '').trim();
+      const deviceId = getOrCreateDeviceId();
+
+      // First reuse the existing session. A normal page refresh should never ask
+      // the student to enter the Access Code again.
+      if (token) {
+        try {
+          await startUserSession(token);
+          return;
+        } catch (error) {
+          localStorage.removeItem('rfv_session_token');
+        }
+      }
+
+      // If the session expired, silently sign this already-activated device in
+      // with its saved real Access Code. The server verifies the device binding.
+      if (savedCode) {
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({code: savedCode, deviceId, name: ''})
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || 'Saved Access Code দিয়ে Log In করা যায়নি।');
+          await startUserSession(data.token);
+          return;
+        } catch (error) {
+          localStorage.removeItem('rfv_session_token');
+          authMessage.textContent = 'Saved Access Code দিয়ে স্বয়ংক্রিয়ভাবে প্রবেশ করা যায়নি। আবার Access Code দিয়ে Log In করো।';
+        }
+      }
     }
 
     initApp();
