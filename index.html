@@ -917,7 +917,7 @@
         <button type="button" id="hsc27-direct-login">Continue</button>
         <p class="muted" style="text-align:center;margin-bottom:0">Free Access for HSC 27 Students</p>
       </section>
-      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px" hidden>New Registration</button>
+      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">New Registration</button>
       <form id="enroll-form" hidden>
         <label for="student-name">Student Name / Nickname</label>
         <input id="student-name" type="text" autocomplete="name" placeholder="যেমন: Rafi" required maxlength="80">
@@ -2562,7 +2562,7 @@
     let approvalPoll = null;
     function getOrCreateDeviceId() { let id=localStorage.getItem('rfv_device_id'); if(!id){id=crypto.randomUUID();localStorage.setItem('rfv_device_id',id);} return id; }
     function registrationPreview() { const n=document.getElementById('student-name').value.trim().replace(/\s+/g,''); const m=document.getElementById('mobile-last5').value.replace(/\D/g,'').slice(0,5); document.getElementById('registration-preview').textContent=n&&m?n+m:'—'; }
-    function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('access-back-btn').hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Admin অনুমোদন দিয়েছে। Access Code দিয়ে Log In।'; }
+    function showAccessForm(code) { if(approvalPoll){clearInterval(approvalPoll);approvalPoll=null;} document.getElementById('hsc27-access-panel').hidden=true;document.getElementById('show-general-flow').hidden=true;enrollForm.hidden=true;codeCard.hidden=true;authForm.hidden=false;document.getElementById('access-back-btn').hidden=false;document.getElementById('show-access-form-btn').hidden=true;if(code)document.getElementById('access-code').value=code;document.getElementById('auth-intro').textContent='Enter your Access Code to Log In.'; }
     function returnToRegistration() { authForm.hidden=true;enrollForm.hidden=false;codeCard.hidden=true;document.getElementById('access-back-btn').hidden=true;document.getElementById('show-access-form-btn').hidden=false;document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে Log In।';authMessage.textContent=''; }
     async function checkRegistrationStatus() {
       const response=await fetch('/api/request-code?deviceId='+encodeURIComponent(deviceId));
