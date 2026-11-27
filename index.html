@@ -917,7 +917,6 @@
         <button type="button" id="hsc27-direct-login">Continue</button>
         <p class="muted" style="text-align:center;margin-bottom:0">Free Access for HSC 27 Students</p>
       </section>
-      <button type="button" id="show-general-flow" class="btn btn-secondary" style="margin-top:18px">New Registration</button>
       <form id="enroll-form" hidden>
         <label for="student-name">Student Name / Nickname</label>
         <input id="student-name" type="text" autocomplete="name" placeholder="যেমন: Rafi" required maxlength="80">
@@ -937,7 +936,6 @@
         <input id="access-code" type="text" autocomplete="one-time-code" placeholder="যেমন: RFV-AB12-CD34" required maxlength="40">
         <button type="submit" id="access-submit">Log In</button>
       </form>
-      <button type="button" id="show-access-form-btn" class="btn btn-secondary">Already have an Access Code? Log In</button>
       <p id="auth-message" role="status"></p>
     </div>
   </section>
@@ -2632,7 +2630,8 @@
       }catch(error){localStorage.removeItem('rfv_session_token');authMessage.textContent=error.message||'Unable to log in. Please try again.';}
       finally{button.disabled=false;button.textContent='Continue';}
     });
-    document.getElementById('show-general-flow').addEventListener('click',async()=>{
+    const showGeneralFlowButton = document.getElementById('show-general-flow');
+    if (showGeneralFlowButton) showGeneralFlowButton.addEventListener('click',async()=>{
       document.getElementById('hsc27-access-panel').hidden=true;
       document.getElementById('show-general-flow').hidden=true;
       enrollForm.hidden=false;
@@ -2640,7 +2639,8 @@
       document.getElementById('auth-intro').textContent='General শিক্ষার্থীরা Registration করো অথবা নিজের Access Code দিয়ে Log In।';
       try { await checkRegistrationStatus(); } catch(e) { authMessage.textContent=e.message; }
     });
-    document.getElementById('show-access-form-btn').addEventListener('click',()=>showAccessForm(''));
+    const showAccessFormButton = document.getElementById('show-access-form-btn');
+    if (showAccessFormButton) showAccessFormButton.addEventListener('click',()=>showAccessForm(''));
     document.getElementById('access-back-btn').addEventListener('click',returnToRegistration);
     checkApprovalBtn.addEventListener('click',async()=>{try{checkApprovalBtn.disabled=true;await checkRegistrationStatus();}catch(e){authMessage.textContent=e.message;}finally{checkApprovalBtn.disabled=false;}});
     enrollForm.addEventListener('submit',async(event)=>{
