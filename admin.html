@@ -50,9 +50,9 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div id="newcode"></div>
 </main>
 <script>
-let adminData=null;const deleteConfirmState={hsc:false,all:false};const attemptPages={hsc:{items:[],total:0,expanded:false},all:{items:[],total:0,expanded:false}};let adminKey=sessionStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
+let adminData=null;const deleteConfirmState={hsc:false,all:false};const attemptPages={hsc:{items:[],total:0,expanded:false},all:{items:[],total:0,expanded:false}};let adminKey=localStorage.getItem('rfv_admin_key')||'';document.getElementById('key').value=adminKey;
 async function call(method,body){const r=await fetch('/api/admin-codes',{method,headers:{'Content-Type':'application/json','X-Admin-Key':document.getElementById('key').value},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d}
-async function connect(){const key=document.getElementById('key').value.trim();if(!key){alert('Admin Key প্রবেশ করাও।');return}try{await loadCodes();sessionStorage.setItem('rfv_admin_key',key);await Promise.all([loadAttemptPage('hsc',true),loadAttemptPage('all',true)]);alert('Admin Connected Successfully')}catch(e){alert(e.message)}}
+async function connect(showMessage=true){const key=document.getElementById('key').value.trim();if(!key){if(showMessage)alert('Admin Key প্রবেশ করাও।');return}try{await loadCodes();localStorage.setItem('rfv_admin_key',key);await Promise.all([loadAttemptPage('hsc',true),loadAttemptPage('all',true)]);if(showMessage)alert('Admin Connected Successfully')}catch(e){localStorage.removeItem('rfv_admin_key');if(showMessage)alert(e.message)}}
 async function createHSC27(){try{const d=await call('POST',{special:'hsc27'});document.getElementById('hscMessage').textContent='HSC 27 code সক্রিয়। Login Code: '+d.code+(d.existing?' (আগে থেকেই ছিল)':'');await loadCodes()}catch(e){alert(e.message)}}
 async function createCode(){try{const d=await call('POST',{label:document.getElementById('label').value});document.getElementById('newcode').innerHTML='<div class="code"><b>নতুন Access Code: '+esc(d.code)+'</b><br><small>কোডটি কপি করে ব্যবহারকারীকে পাঠাও। Admin Panel থেকেও পরে খুঁজে পাওয়া যাবে।</small></div>';document.getElementById('label').value='';await loadCodes()}catch(e){alert(e.message)}}
 async function loadCodes(){try{const d=await call('GET');adminData=d;document.getElementById('totalCodes').textContent=Number(d.total_codes??d.codes.length);document.getElementById('activeCodes').textContent=Number(d.active_codes??0);
@@ -107,4 +107,5 @@ async function deleteHistoryClick(scope){
 async function resetDevices(id){if(!confirm('সব Device Activation Reset হবে; Progress ও Attempt History থাকবে। চালাবে?'))return;try{await call('PATCH',{id});alert('Device Activation Reset হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 async function revoke(id){if(!confirm('এই Access Code বাতিল করবে?'))return;try{await call('DELETE',{id});alert('Access Code বাতিল করা হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+if(adminKey){connect(false);}
 </script></body></html>
