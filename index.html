@@ -737,36 +737,59 @@
     .rules-pdf-fallback { margin: 0; font-size: .9rem; color: var(--on-surface-variant); }
     .rules-pdf-fallback a { color: var(--primary-hover); font-weight: 700; }
     .rules-source-note { margin: 0; color: var(--on-surface-variant); font-size: .8rem; line-height: 1.5; }
-    .rules-recommended-note { padding: 7px 10px; border-left: 3px solid var(--primary); background: var(--surface-container); border-radius: var(--rounded); }
-    .rules-recommended-note strong { color: var(--primary-hover); }
+    .rules-recommended-note { margin: 2px 0 10px; padding: 10px 13px; border-left: 4px solid #0d9488; background: #e0f2fe; border-radius: 10px; }
+    .rules-recommended-note strong { color: #075985; font-size: .92rem; }
     .rules-disclaimer-note { padding-top: 8px; border-top: 1px solid var(--outline-variant); font-style: italic; color: #dc2626; }
     @media (max-width: 640px) { .rules-pdf-frame { height: 65vh; min-height: 420px; } }
 
     .tab-btn {
-      min-height: 40px;
-      padding: 0.45rem 1rem;
-      border-radius: var(--rounded);
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--on-surface-variant);
-      font-weight: 700;
+      min-height: 48px;
+      padding: 0.65rem 1rem;
+      border-radius: 12px;
+      border: 2px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 800;
       cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
     }
+    .tab-btn:focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
     .tab-btn.is-active {
-      background: var(--primary-container);
-      color: var(--on-primary-container);
-      border-color: var(--primary);
+      background: #0f766e;
+      color: #ffffff;
+      border-color: #0f766e;
+      box-shadow: 0 3px 0 rgba(15, 118, 110, .18);
     }
-
+    .rules-source-tabs { gap: 10px; }
+    .rules-source-tabs .tab-btn { flex: 1 1 180px; }
+    .rules-source-tabs #tab-source-text { border-color: #0d9488; }
+    .rules-source-tabs #tab-source-pdf1 { border-color: #7c3aed; }
+    .rules-source-tabs #tab-source-pdf1.is-active { background: #6d28d9; border-color: #6d28d9; }
+    .rules-category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; border: 0; padding: 0; }
+    .rules-category-tabs #tab-rfv { background: #fff7ed; color: #9a3412; border-color: #f97316; }
+    .rules-category-tabs #tab-rfv.is-active { background: #ea580c; color: #fff; border-color: #ea580c; }
+    .rules-category-tabs #tab-sva { background: #eff6ff; color: #1d4ed8; border-color: #3b82f6; }
+    .rules-category-tabs #tab-sva.is-active { background: #2563eb; color: #fff; border-color: #2563eb; }
     .search-box-wrap {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
+      margin: 12px 0 14px;
+      padding: 12px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
     }
     .field-label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--on-surface-variant);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .rules-search-help { margin: 0; color: #475569; font-size: .82rem; line-height: 1.5; }
+    @media (max-width: 480px) {
+      .rules-category-tabs { grid-template-columns: 1fr; }
+      .rules-category-tabs .tab-btn { width: 100%; text-align: left; }
+      .rules-source-tabs .tab-btn { min-height: 46px; }
     }
     .text-input {
       width: 100%;
@@ -1058,13 +1081,14 @@
         </div>
         <section id="rules-source-text">
           <p class="rules-source-note rules-recommended-note"><strong>Recommended for Students</strong></p>
-          <div class="tabs-bar">
-            <button type="button" class="tab-btn is-active" id="tab-rfv" onclick="switchRulesTab('rfv')">Right Form of Verbs (Rules 1–30)</button>
-            <button type="button" class="tab-btn" id="tab-sva" onclick="switchRulesTab('sva')">Subject-Verb Agreement (Rules 1–27)</button>
+          <div class="tabs-bar rules-category-tabs" aria-label="ব্যাকরণ নিয়মের বিভাগ">
+            <button type="button" class="tab-btn is-active" id="tab-rfv" onclick="switchRulesTab('rfv')">📘 Right Form of Verbs<br><small>Rules 1–30</small></button>
+            <button type="button" class="tab-btn" id="tab-sva" onclick="switchRulesTab('sva')">📗 Subject-Verb Agreement<br><small>Rules 1–27</small></button>
           </div>
           <div class="search-box-wrap">
-            <label for="rules-search" class="field-label">Search rules, keywords, or examples</label>
-            <input type="text" id="rules-search" class="text-input" placeholder="e.g., since, lest, with a view to, singular, either..." oninput="renderRulesList()">
+            <label for="rules-search" class="field-label">🔎 নিয়ম খুঁজুন (Search Rules)</label>
+            <p class="rules-search-help">নিয়মের নম্বর, কোনো শব্দ বা উদাহরণ লিখে নির্দিষ্ট নিয়ম খুঁজে বের করো।</p>
+            <input type="text" id="rules-search" class="text-input" placeholder="যেমন: Rule 5, since, lest, singular..." oninput="renderRulesList()">
           </div>
           <div id="rules-list" style="display:flex; flex-direction:column; gap:10px;"></div>
           <p class="rules-source-note rules-disclaimer-note">নোট: নিয়মগুলোতে অনিচ্ছাকৃত ভুল বা মুদ্রণপ্রমাদ থাকতে পারে।</p>
