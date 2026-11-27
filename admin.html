@@ -31,10 +31,8 @@ td,th{text-align:left;padding:10px;border-bottom:1px solid #e2e9eb}.actions{disp
 <div class="summary">
 <div class="summary-card"><div class="summary-label">সফল Device</div><div class="summary-number" id="hUsed">—</div></div>
 <div class="summary-card"><div class="summary-label">Device Limit</div><div class="summary-number" id="hRemain">Unlimited</div></div>
-<div class="summary-card"><div class="summary-label">ব্যর্থ Device</div><div class="summary-number" id="hFailedDevices">—</div></div>
-<div class="summary-card"><div class="summary-label">মোট ব্যর্থ চেষ্টা</div><div class="summary-number" id="hFailedAttempts">—</div></div>
 <div class="summary-card"><div class="summary-label">গত ২৪ ঘণ্টায় Connected Device</div><div class="summary-number" id="hConnected24h">—</div></div>
-<div class="summary-card"><div class="summary-label">গত ২৪ ঘণ্টায় ব্যর্থ চেষ্টা</div><div class="summary-number" id="hFailed24h">—</div></div>
+<div class="summary-card"><div class="summary-label">গত ১ ঘণ্টায় Connected Device</div><div class="summary-number" id="hConnected1h">—</div></div>
 </div>
 <p class="muted">ব্যর্থ Device = আলাদা ব্যর্থ ডিভাইসের সংখ্যা। একই Device থেকে বারবার চেষ্টা করলে মোট ব্যর্থ চেষ্টা বাড়বে, কিন্তু ব্যর্থ Device একবারই গণনা হবে। নিচের Login Attempt History-তে প্রতিটি চেষ্টার সময় ও Device দেখা যাবে।</p>
 <div class="row"><button onclick="createHSC27()">Create / Enable HSC 27 Code</button><button class="reset" onclick="loadCodes()">Refresh</button></div>
@@ -58,7 +56,7 @@ async function connect(){const key=document.getElementById('key').value.trim();i
 async function createHSC27(){try{const d=await call('POST',{special:'hsc27'});document.getElementById('hscMessage').textContent='HSC 27 code সক্রিয়। Login Code: '+d.code+(d.existing?' (আগে থেকেই ছিল)':'');await loadCodes()}catch(e){alert(e.message)}}
 async function createCode(){try{const d=await call('POST',{label:document.getElementById('label').value});document.getElementById('newcode').innerHTML='<div class="code"><b>নতুন Access Code: '+esc(d.code)+'</b><br><small>কোডটি কপি করে ব্যবহারকারীকে পাঠাও। Admin Panel থেকেও পরে খুঁজে পাওয়া যাবে।</small></div>';document.getElementById('label').value='';await loadCodes()}catch(e){alert(e.message)}}
 async function loadCodes(){try{const d=await call('GET');adminData=d;document.getElementById('totalCodes').textContent=Number(d.total_codes??d.codes.length);document.getElementById('activeCodes').textContent=Number(d.active_codes??0);
-const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+'টি';document.getElementById('hRemain').textContent='Unlimited';document.getElementById('hFailedDevices').textContent=h.failed_device_count;document.getElementById('hFailedAttempts').textContent=h.failed_attempt_count;document.getElementById('hConnected24h').textContent=h.connected_devices_24h??0;document.getElementById('hFailed24h').textContent=h.failed_attempts_24h??0;}
+const h=d.hsc27;if(h){document.getElementById('hUsed').textContent=h.device_count+'টি';document.getElementById('hRemain').textContent='Unlimited';document.getElementById('hConnected24h').textContent=h.connected_devices_24h??0;document.getElementById('hConnected1h').textContent=h.connected_devices_1h??0;}
 }catch(e){throw e;}
 }
 async function loadRequests(){const r=await fetch('/api/admin-requests',{headers:{'X-Admin-Key':document.getElementById('key').value}});const d=await r.json();if(!r.ok)throw Error(d.error||'Registration requests load failed');renderRequests(d.requests||[]);}
