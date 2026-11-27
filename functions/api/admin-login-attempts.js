@@ -8,8 +8,8 @@ export async function onRequestGet({request,env}) {
  if(scope==='hsc') where.push("a.label = 'HSC 27'"); else { where.push("a.label != 'HSC 27'"); if(search){where.push("(LOWER(COALESCE(a.label,'')) LIKE ? OR a.code_hash = ?)");binds.push('%'+search.toLowerCase()+'%',await sha256(search.toUpperCase()));} }
  const clause=where.length?'WHERE '+where.join(' AND '):'';
  const count=await env.DB.prepare('SELECT COUNT(*) AS total FROM login_attempts l JOIN access_codes a ON a.id=l.code_id '+clause).bind(...binds).first();
- const rows=await env.DB.prepare('SELECT a.label,a.encrypted_code,l.attempted_at,l.status,l.device_hash FROM login_attempts l JOIN access_codes a ON a.id=l.code_id '+clause+' ORDER BY l.attempted_at DESC LIMIT ? OFFSET ?').bind(...binds,limit,offset).all();
- const key=env.CODE_ENCRYPTION_KEY||''; const attempts=await Promise.all((rows.results||[]).map(async a=>{let code=null;try{code=a.encrypted_code?await decryptAccessCode(a.encrypted_code,key):null;}catch{}return {label:a.label||'—',code,attempted_at:a.attempted_at,status:a.status,device:String(a.device_hash||'').slice(0,10)+'…'};}));
+ const rows=await env.DB.prepare('SELECT a.label,a.encrypted_code,l.attempted_at,l.status,l.device_hash,l.student_name FROM login_attempts l JOIN access_codes a ON a.id=l.code_id '+clause+' ORDER BY l.attempted_at DESC LIMIT ? OFFSET ?').bind(...binds,limit,offset).all();
+ const key=env.CODE_ENCRYPTION_KEY||''; const attempts=await Promise.all((rows.results||[]).map(async a=>{let code=null;try{code=a.encrypted_code?await decryptAccessCode(a.encrypted_code,key):null;}catch{}return {label:a.label||'—',name:a.student_name||'',code,attempted_at:a.attempted_at,status:a.status,device:String(a.device_hash||'').slice(0,10)+'…'};}));
  return json({total:Number(count?.total||0),offset,limit,attempts});
 }
 
