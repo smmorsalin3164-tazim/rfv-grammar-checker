@@ -2689,6 +2689,12 @@
       document.body.classList.add('auth-locked');
       authScreen.hidden = false;
       const token = localStorage.getItem('rfv_session_token');
+      const savedCode = (localStorage.getItem('rfv_access_code') || '').toLowerCase();
+      // HSC 27 must enter their name and press Continue whenever the site is opened.
+      if (token && savedCode === 'hsc27.free') {
+        localStorage.removeItem('rfv_session_token');
+        return;
+      }
       if (token) {
         try { await startUserSession(token); }
         catch (_) { localStorage.removeItem('rfv_session_token'); }
