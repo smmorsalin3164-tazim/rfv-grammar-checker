@@ -110,4 +110,5 @@ async function resetDevices(id){if(!confirm('সব Device Activation Reset হ�
 async function revoke(id){if(!confirm('এই Access Code বাতিল করবে?'))return;try{await call('DELETE',{id});alert('Access Code বাতিল করা হয়েছে।');await loadCodes()}catch(e){alert(e.message)}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
-document.getElementById('key').value=savedAdminKey;if(savedAdminKey)connect(false);\n</script></body></html>
+document.getElementById('key').value=savedAdminKey;if(savedAdminKey)connect(false);
+</script></body></html>
